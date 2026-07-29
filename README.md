@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Campaign demos
 
-## Getting Started
+Three Hebrew campaign demo pages, published as a static site on GitHub Pages.
 
-First, run the development server:
+The pages are fictional portfolio concepts.
+No brand, product, or service shown here is real.
+
+## Routes
+
+| Route | Contents |
+| --- | --- |
+| `/` | English index linking to the three demos |
+| `/cookies/` | limited-edition cookie drop |
+| `/skincare/` | three-step summer skincare routine |
+| `/mortgage/` | mortgage clarity consultation |
+
+The index is English and left-to-right.
+Each demo sets `lang="he"` and `dir="rtl"` on its own top-level element, so Hebrew and RTL stay scoped to the demo pages.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The site is then served at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+`next build` writes a static export to `out/`.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the export and publishes `out/` through GitHub Pages.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+GitHub Pages serves a project repository under `/<repo-name>`, so the build needs a matching base path.
+The workflow derives it from `GITHUB_REPOSITORY` and passes it as `NEXT_PUBLIC_BASE_PATH`, which keeps the repository name out of the source.
+Local builds leave the variable unset and therefore use an empty base path.
 
-## Deploy on Vercel
+`next/link` and `next/font` apply the base path on their own.
+A string `src` passed to `next/image` does not, and has to be prefixed manually.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Assets
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No third-party assets are in use yet.
+Sources and licences are recorded here as assets are added.
