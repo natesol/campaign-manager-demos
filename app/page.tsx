@@ -1,32 +1,26 @@
 import Link from "next/link";
 
 const demos = [
-  { href: "/cookies/", label: "Cookies" },
-  { href: "/skincare/", label: "Skincare" },
-  { href: "/mortgage/", label: "Mortgage" },
+  { href: "/cookies/", label: "עוגיות" },
+  { href: "/skincare/", label: "טיפוח" },
+  { href: "/mortgage/", label: "משכנתא" },
 ];
 
 export default function Home() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-4 px-6 py-10">
       <header className="rounded border border-dashed border-black/25 p-6">
-        <p className="mb-3 text-xs uppercase tracking-widest text-black/40">
-          header
-        </p>
-        <h1 className="text-2xl font-bold">Campaign demos</h1>
+        <p className="mb-3 text-xs tracking-widest text-black/40">כותרת עליונה</p>
+        <h1 className="text-2xl font-bold">דמו קמפיינים</h1>
       </header>
 
       <section className="rounded border border-dashed border-black/25 p-6">
-        <p className="mb-3 text-xs uppercase tracking-widest text-black/40">
-          intro
-        </p>
-        <p>Short description of the set.</p>
+        <p className="mb-3 text-xs tracking-widest text-black/40">פתיח</p>
+        <p>תיאור קצר של הסט.</p>
       </section>
 
       <main className="rounded border border-dashed border-black/25 p-6">
-        <p className="mb-3 text-xs uppercase tracking-widest text-black/40">
-          demo list
-        </p>
+        <p className="mb-3 text-xs tracking-widest text-black/40">רשימת הדמואים</p>
         <ul className="flex flex-col gap-3">
           {demos.map((demo) => (
             <li key={demo.href}>
@@ -39,10 +33,8 @@ export default function Home() {
       </main>
 
       <footer className="rounded border border-dashed border-black/25 p-6">
-        <p className="mb-3 text-xs uppercase tracking-widest text-black/40">
-          footer
-        </p>
-        <p className="text-sm text-black/60">Disclosure line.</p>
+        <p className="mb-3 text-xs tracking-widest text-black/40">כותרת תחתונה</p>
+        <p className="text-sm text-black/60">שורת גילוי נאות.</p>
       </footer>
     </div>
   );

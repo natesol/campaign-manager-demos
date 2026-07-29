@@ -2,11 +2,7 @@ import Link from "next/link";
 
 export default function MortgageRoute() {
   return (
-    <div
-      lang="he"
-      dir="rtl"
-      className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-4 px-6 py-10"
-    >
+    <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-4 px-6 py-10">
       <header className="rounded border border-dashed border-black/25 p-6">
         <p className="mb-3 text-xs tracking-widest text-black/40">כותרת עליונה</p>
         <Link href="/" className="underline underline-offset-4">

@@ -12,15 +12,18 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// The homepage is English and left-to-right.
-// Each Hebrew demo sets lang and dir on its own top-level element.
+// Every page is Hebrew and right-to-left, so lang and dir live on the document element.
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${heebo.variable} h-full antialiased`}>
+    <html
+      lang="he"
+      dir="rtl"
+      className={`${heebo.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
