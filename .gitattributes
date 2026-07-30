@@ -1,0 +1,9 @@
+# Normalize line endings so Windows, CI, and agent edits never fight.
+* text=auto eol=lf
+
+# Binary assets — never diffed, never converted.
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary
+*.woff2 binary

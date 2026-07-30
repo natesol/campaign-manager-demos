@@ -28,6 +28,14 @@ npm run dev
 
 The site is then served at http://localhost:3000.
 
+## Formatting
+
+```bash
+npm run check
+```
+
+Biome formats and lints. `npm run format` and `npm run lint` run either half on its own.
+
 ## Build
 
 ```bash
@@ -39,7 +47,8 @@ There is no server to run: `output: "export"` produces files, and the `start` sc
 
 ## Deployment
 
-`.github/workflows/deploy.yml` builds the export and publishes `out/` through GitHub Pages on every push to `main`.
+`.github/workflows/deploy.yml` checks formatting, builds the export, and publishes `out/` through GitHub Pages on every push to `main`.
+A formatting or lint failure blocks the deployment.
 
 The workflow only runs when this project is the root of its own repository.
 Development happens inside a parent repository where these files live under `demos/`, and GitHub Actions ignores workflows outside a repository root — so the workflow is inert there and active only in the published demos repository.

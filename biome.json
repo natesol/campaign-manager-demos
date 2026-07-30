@@ -1,0 +1,112 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.5.6/schema.json",
+    "files": {
+        "ignoreUnknown": true
+    },
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true
+    },
+    "formatter": {
+        "enabled": true,
+        "formatWithErrors": false,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineEnding": "lf",
+        "lineWidth": 100,
+        "attributePosition": "auto",
+        "bracketSameLine": false,
+        "bracketSpacing": true,
+        "expand": "auto",
+        "useEditorconfig": false
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "preset": "recommended",
+            "suspicious": {
+                "noExplicitAny": "warn"
+            },
+            "nursery": {
+                "useSortedClasses": {
+                    "level": "error",
+                    "fix": "safe"
+                }
+            }
+        }
+    },
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "organizeImports": {
+                    "level": "on",
+                    "options": {
+                        "groups": [
+                            [":NODE:", "react", "react/**", "react-dom", "react-dom/**"],
+                            ":BLANK_LINE:",
+                            ["next", "next/**"],
+                            ":BLANK_LINE:",
+                            ":PACKAGE_WITH_PROTOCOL:",
+                            ":BLANK_LINE:",
+                            ":PACKAGE:",
+                            ":BLANK_LINE:",
+                            ["@/**"],
+                            ":BLANK_LINE:",
+                            ["../**", "./**"],
+                            ":BLANK_LINE:",
+                            ["**/*.css"]
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "overrides": [
+        {
+            "includes": ["**/*.css"],
+            "linter": {
+                "rules": {
+                    "suspicious": {
+                        "noUnknownAtRules": "off"
+                    },
+                    "correctness": {
+                        "noInvalidPositionAtImportRule": "off"
+                    }
+                }
+            }
+        }
+    ],
+    "css": {
+        "parser": {
+            "tailwindDirectives": true
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "expand": "auto",
+            "quoteStyle": "double",
+            "quoteProperties": "asNeeded",
+            "jsxQuoteStyle": "double",
+            "trailingCommas": "all",
+            "semicolons": "always",
+            "arrowParentheses": "always",
+            "attributePosition": "auto",
+            "bracketSameLine": false,
+            "bracketSpacing": true
+        },
+        "parser": {
+            "jsxEverywhere": false
+        }
+    },
+    "json": {
+        "parser": {
+            "allowTrailingCommas": true
+        },
+        "formatter": {
+            "trailingCommas": "none",
+            "indentWidth": 4
+        }
+    }
+}
