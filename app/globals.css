@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Clicking a hero cookie scrolls to its chapter, unless the user asks for less motion. */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+}
+
 /*
  * DESIGN SYSTEM — the only place to edit tokens.
  *
@@ -38,6 +51,12 @@
     --text-4xl--line-height: 1.05;
     --text-5xl: 4.75rem;
     --text-5xl--line-height: 1;
+    --text-6xl: 6rem;
+    --text-6xl--line-height: 0.95;
+    --text-7xl: 7.5rem;
+    --text-7xl--line-height: 0.9;
+    --text-8xl: 9.5rem;
+    --text-8xl--line-height: 0.86;
 
     /* Letter spacing. */
     --tracking-eyebrow: 0.22em;
@@ -55,11 +74,19 @@
     --color-border: var(--color-slate-300);
     --color-border-strong: var(--color-slate-400);
 
-    /* Campaign palettes — placeholder art direction until each page is built. */
-    --color-drop-paper: var(--color-amber-50);
-    --color-drop-pistachio: var(--color-lime-600);
-    --color-drop-raspberry: var(--color-rose-700);
+    /* Cookie-drop campaign palette, taken from the approved mockups.
+       Pink and cocoa alias Tailwind steps that match. The warm creams and the
+       olive do not exist anywhere in Tailwind's palette — every neutral there is
+       cool — so those are brand values, set directly. */
+    --color-drop-paper: #f7f2e8;
+    --color-drop-pistachio: #6d7c3c;
+    --color-drop-raspberry: var(--color-pink-600);
     --color-drop-cocoa: var(--color-stone-800);
+
+    /* Flavor chapter grounds. Each chapter sits on its own tint of the same warmth. */
+    --color-drop-pistachio-tint: #eef2e1;
+    --color-drop-raspberry-tint: #fbe9ee;
+    --color-drop-cocoa-tint: #f2ebe0;
 
     --color-routine-paper: var(--color-sky-50);
     --color-routine-mist: var(--color-sky-200);
