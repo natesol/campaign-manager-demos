@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
-import { Heebo } from "next/font/google";
+import { Assistant, Rubik } from "next/font/google";
 import "./globals.css";
 
-const heebo = Heebo({
-    variable: "--font-heebo",
+const assistant = Assistant({
+    variable: "--font-assistant",
     subsets: ["hebrew", "latin"],
 });
 
+const rubik = Rubik({
+    variable: "--font-rubik",
+    subsets: ["hebrew", "latin"],
+});
+
+// The template applies to child segments only, so app/page.tsx takes the default.
 export const metadata: Metadata = {
-    title: "demos",
+    title: {
+        default: "דמו קמפיינים",
+        template: "%s | דמו קמפיינים",
+    },
     robots: { index: false, follow: false },
 };
 
@@ -19,8 +28,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="he" dir="rtl" className={`${heebo.variable} h-full antialiased`}>
-            <body className="flex min-h-full flex-col">{children}</body>
+        <html
+            lang="he"
+            dir="rtl"
+            className={`${assistant.variable} ${rubik.variable} h-full antialiased`}
+        >
+            <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
+                {children}
+            </body>
         </html>
     );
 }
