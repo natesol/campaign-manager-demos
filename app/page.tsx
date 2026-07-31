@@ -62,24 +62,22 @@ export default function Home() {
     return (
         <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-16 px-6 py-16 sm:gap-24 sm:px-8 sm:py-24">
             <header className="flex flex-col items-center gap-6 text-center">
-                <p className="font-medium text-foreground/80 text-sm tracking-eyebrow">
-                    תיק עבודות
-                </p>
+                <p className="font-medium text-muted text-sm tracking-eyebrow">תיק עבודות</p>
                 <div className="flex flex-col gap-4">
                     <h1 className="text-balance font-bold font-display text-5xl tracking-tight sm:text-5xl">
                         קמפיינים ודפי נחיתה
                     </h1>
-                    <p className="text-pretty font-display text-foreground/80 text-xl sm:text-2xl">
+                    <p className="text-pretty font-display text-muted text-xl sm:text-2xl">
                         עמודי נחיתה ואתרים פירסומיים למותגים בדיוניים.
                     </p>
                 </div>
-                <p className="max-w-2xl text-pretty text-base text-foreground/85 sm:text-lg">
+                <p className="max-w-2xl text-pretty text-base text-muted sm:text-lg">
                     כל עמוד נבנה כקמפיין עצמאי, עם שפה ויזואלית, מקצב ואינטראקציה משלו.
                     <br />
                     סט הדמואים נבנה כדי להראות טווח — מהשקת מוצר צבעונית ועד עמוד ליצירת לידים שנשען
                     על אמון ועל בהירות.
                 </p>
-                <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-foreground/70 text-sm">
+                <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-subtle">
                     <li>עברית מלאה ו-RTL</li>
                     <li aria-hidden="true">·</li>
                     <li>מותאם לנייד</li>
@@ -95,7 +93,7 @@ export default function Home() {
                         <li key={demo.href}>
                             <Link
                                 href={demo.href}
-                                className={`group flex flex-col overflow-hidden rounded-md border border-foreground/15 bg-surface outline-offset-4 transition-colors hover:border-foreground/20 focus-visible:outline-2 focus-visible:outline-foreground sm:flex-row ${
+                                className={`group flex flex-col overflow-hidden rounded-md border border-border bg-surface outline-offset-4 transition-colors hover:border-border-strong focus-visible:outline-2 focus-visible:outline-foreground sm:flex-row ${
                                     index % 2 === 1 ? "sm:flex-row-reverse" : ""
                                 }`}
                             >
@@ -104,26 +102,24 @@ export default function Home() {
                                 </div>
                                 <div className="flex flex-1 flex-col gap-4 p-6 sm:p-8">
                                     <div className="flex items-baseline gap-3 text-sm">
-                                        <span className="text-foreground/55 tabular-nums">
+                                        <span className="text-subtle tabular-nums">
                                             {String(index + 1).padStart(2, "0")}
                                         </span>
                                         <span className="font-semibold text-foreground">
                                             {demo.company}
                                         </span>
-                                        <span className="text-foreground/65">{demo.sector}</span>
+                                        <span className="text-subtle">{demo.sector}</span>
                                     </div>
                                     <div className="flex flex-col gap-1.5">
                                         <h2 className="font-bold font-display text-2xl tracking-tight sm:text-3xl">
                                             {demo.campaign}
                                         </h2>
-                                        <p className="text-base text-foreground/75">
-                                            {demo.product}
-                                        </p>
+                                        <p className="text-base text-muted">{demo.product}</p>
                                     </div>
-                                    <p className="text-pretty text-base text-foreground/85">
+                                    <p className="text-pretty text-base text-muted">
                                         {demo.description}
                                     </p>
-                                    <span className="mt-1 font-medium text-base underline decoration-foreground/45 underline-offset-4 transition-colors group-hover:decoration-foreground">
+                                    <span className="mt-1 font-medium text-base underline decoration-border-strong underline-offset-4 transition-colors group-hover:decoration-foreground">
                                         לצפייה בעמוד
                                     </span>
                                 </div>
@@ -133,8 +129,8 @@ export default function Home() {
                 </ul>
             </main>
 
-            <footer className="flex flex-col items-center gap-3 border-foreground/25 border-t pt-10 text-center">
-                <p className="max-w-2xl text-pretty text-base text-foreground/85">
+            <footer className="flex flex-col items-center gap-3 border-border border-t pt-10 text-center">
+                <p className="max-w-2xl text-pretty text-base text-muted">
                     כל המותגים, המוצרים והשירותים בעמודים אלה בדיוניים, ונוצרו לצורך תיק עבודות
                     בלבד. אין קשר בין השמות המוצגים לחברות או למוצרים קיימים.
                 </p>

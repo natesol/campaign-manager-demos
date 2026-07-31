@@ -46,10 +46,14 @@
     --font-sans: var(--font-assistant), system-ui, sans-serif;
     --font-display: var(--font-rubik), system-ui, sans-serif;
 
-    /* Surfaces and ink. Opacity modifiers cover every muted step. */
+    /* Surfaces, ink and rules. Each text role is a named step, never an opacity. */
     --color-background: var(--color-slate-200);
     --color-surface: var(--color-slate-50);
     --color-foreground: var(--color-slate-900);
+    --color-muted: var(--color-slate-700);
+    --color-subtle: var(--color-slate-500);
+    --color-border: var(--color-slate-300);
+    --color-border-strong: var(--color-slate-400);
 
     /* Campaign palettes — placeholder art direction until each page is built. */
     --color-drop-paper: var(--color-amber-50);
