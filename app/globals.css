@@ -98,4 +98,26 @@
     --color-advice-paper: var(--color-stone-100);
     --color-advice-ink: var(--color-slate-800);
     --color-advice-brass: var(--color-amber-600);
+    /* Brass reaches only 2.93:1 on its own paper, under the 3:1 large-text floor.
+       This step is the same accent for use on the light advice ground, at 4.61:1. */
+    --color-advice-brass-deep: var(--color-amber-700);
+
+    /* Poster grounds — each campaign's colour whispered into the page surface, so a
+       section reads as a change of temperature rather than a block of colour.
+       Cookies keep their cream; skincare is the lavender of its approved concept;
+       mortgage is emerald. Accents carry the same hue at a step that stays legible. */
+    --color-routine-lilac: var(--color-violet-500);
+    --color-advice-emerald: var(--color-emerald-600);
+
+    --color-drop-ground: color-mix(in oklab, var(--color-drop-paper) 20%, var(--color-surface));
+    --color-routine-ground: color-mix(
+        in oklab,
+        var(--color-routine-lilac) 3%,
+        var(--color-surface)
+    );
+    --color-advice-ground: color-mix(
+        in oklab,
+        var(--color-advice-emerald) 3%,
+        var(--color-surface)
+    );
 }

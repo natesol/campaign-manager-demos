@@ -63,7 +63,14 @@ const lockedDemoCopy: Partial<Record<Demo["theme"], DemoCopy>> = {
     },
 };
 
-const qualities = ["עברית מלאה ו-RTL", "מותאם לכל מסך", "אתר סטטי"];
+// Every variant resolves copy the same way, so comparing them shows layout differences
+// and nothing else. The mortgage campaign has no approved copy yet, so it keeps its
+// placeholder here rather than borrowing a voice it has not earned.
+function copyFor(demo: Demo): DemoCopy {
+    return lockedDemoCopy[demo.theme] ?? demo;
+}
+
+const qualities = ["עברית מלאה ו-RTL", "מותאם לכל מסך", "אתרים סטטיים"];
 
 const previewColors: Record<Demo["theme"], string> = {
     drop: "bg-drop-paper",
@@ -75,6 +82,20 @@ const boldCardColors: Record<Demo["theme"], string> = {
     drop: "bg-drop-paper text-drop-cocoa",
     routine: "bg-routine-mist text-routine-deep",
     advice: "bg-advice-brass text-foreground",
+};
+
+// Poster bands: each campaign gets a full-width ground in its own palette, and an
+// accent reserved for the oversized numeral so it only ever carries large text.
+const posterGrounds: Record<Demo["theme"], string> = {
+    drop: "bg-drop-ground text-foreground",
+    routine: "bg-routine-ground text-foreground",
+    advice: "bg-advice-ground text-foreground",
+};
+
+const posterAccents: Record<Demo["theme"], string> = {
+    drop: "text-drop-raspberry",
+    routine: "text-routine-lilac",
+    advice: "text-advice-emerald",
 };
 
 function DemoPreview({ theme, compact = false }: { theme: Demo["theme"]; compact?: boolean }) {
@@ -126,7 +147,74 @@ function Disclaimer({ inverted = false }: { inverted?: boolean }) {
     );
 }
 
-function EditorialLayout({ working }: { working: boolean }) {
+// Full-bleed poster bands, shared by the root and by /home-2 so the two pages differ
+// in their framing only. Each band is one campaign on its own barely-tinted ground.
+//
+// The bands carry no hover or active treatment beyond the arrow nudge, and that is
+// deliberate. Once DemoPreview gives way to the real campaign previews, the previews
+// themselves supply the movement a hover needs, and that is enough on its own. Any
+// treatment added here in the meantime would only end up competing with it.
+function PosterBands() {
+    return (
+        <ol>
+            {demos.map((demo, index) => {
+                const copy = copyFor(demo);
+
+                return (
+                    <li key={demo.href} className={posterGrounds[demo.theme]}>
+                        <Link
+                            href={demo.href}
+                            className="group block focus-visible:outline-2 focus-visible:outline-current focus-visible:-outline-offset-4"
+                        >
+                            <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-16 sm:px-8 sm:py-24 lg:grid-cols-12 lg:items-center">
+                                <div className="flex flex-col gap-6 lg:col-span-5">
+                                    <div className="flex items-center gap-5">
+                                        <span
+                                            className={`font-display text-5xl tabular-nums leading-none ${posterAccents[demo.theme]}`}
+                                        >
+                                            {String(index + 1).padStart(2, "0")}
+                                        </span>
+                                        <p className="text-sm">
+                                            <span className="block font-semibold">
+                                                {copy.company}
+                                            </span>
+                                            <span className="block">{copy.sector}</span>
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-col gap-3">
+                                        <p className="font-medium text-sm tracking-eyebrow">
+                                            {copy.product}
+                                        </p>
+                                        <h2 className="whitespace-pre-line text-balance font-bold font-display text-3xl tracking-tight sm:text-5xl">
+                                            {copy.campaign}
+                                        </h2>
+                                        <p className="max-w-xl text-pretty text-base">
+                                            {copy.description}
+                                        </p>
+                                    </div>
+                                    <span className="inline-flex items-center gap-3 self-start border-current border-b pb-1 font-semibold text-sm">
+                                        לצפייה בפרויקט
+                                        <span
+                                            aria-hidden="true"
+                                            className="transition-transform group-hover:-translate-x-1"
+                                        >
+                                            ←
+                                        </span>
+                                    </span>
+                                </div>
+                                <div className="aspect-video overflow-hidden rounded-sm border border-current/20 lg:col-span-7">
+                                    <DemoPreview theme={demo.theme} />
+                                </div>
+                            </div>
+                        </Link>
+                    </li>
+                );
+            })}
+        </ol>
+    );
+}
+
+export function WorkingHome() {
     return (
         <div className="min-h-screen bg-surface">
             <header className="mx-auto w-full max-w-7xl px-6 sm:px-8">
@@ -137,99 +225,33 @@ function EditorialLayout({ working }: { working: boolean }) {
                 <div className="grid gap-10 py-16 sm:py-24 lg:grid-cols-12 lg:items-end">
                     <div className="lg:col-span-8">
                         <p className="mb-5 font-medium text-muted text-sm tracking-eyebrow">
-                            {working ? "פרויקטים נבחרים" : "שלושה פרויקטים נבחרים"}
+                            פרויקטים נבחרים
                         </p>
                         <h1 className="text-balance font-bold font-display text-4xl tracking-tight sm:text-6xl">
                             קמפיינים שנבנו
-                            <span className="block text-subtle">כדי להרגיש אחרת.</span>
+                            <span className="block text-subtle">להיראות אחרת.</span>
                         </h1>
                     </div>
                     <div className="flex flex-col gap-7 lg:col-span-4">
                         <p className="text-pretty text-lg text-muted">
-                            {working
-                                ? "אוסף קמפיינים דיגיטליים למותגים בדיוניים, שנבנו מקצה לקצה סביב רעיון אחד חד ושפה שנאמנה לו בכל מסך."
-                                : "אוסף דפי נחיתה למותגים בדיוניים. לכל פרויקט רעיון, שפה ויזואלית וקצב משלו, מהשקת מוצר צבעונית ועד מסע שמבוסס על אמון."}
+                            אוסף קמפיינים דיגיטליים למותגים בדיוניים, שנבנו מקצה לקצה סביב רעיון אחד
+                            חד ושפה שנאמנה לו בכל מסך.
                         </p>
                         <Qualities />
                     </div>
                 </div>
             </header>
 
-            <main className="mx-auto w-full max-w-7xl px-6 pb-20 sm:px-8 sm:pb-28">
-                <ol className="border-border border-t">
-                    {demos.map((demo, index) => {
-                        const copy = working ? (lockedDemoCopy[demo.theme] ?? demo) : demo;
-
-                        return (
-                            <li key={demo.href} className="border-border border-b">
-                                <Link
-                                    href={demo.href}
-                                    className={`group gap-8 outline-offset-4 focus-visible:outline-2 focus-visible:outline-foreground ${
-                                        working
-                                            ? `my-4 flex flex-col px-4 py-4 transition-colors hover:bg-hover active:bg-border lg:items-stretch ${
-                                                  index % 2 === 1
-                                                      ? "lg:flex-row-reverse"
-                                                      : "lg:flex-row"
-                                              }`
-                                            : "grid py-10 sm:py-14 lg:grid-cols-12 lg:items-stretch"
-                                    }`}
-                                >
-                                    <div
-                                        className={`aspect-video overflow-hidden rounded-sm border border-border ${
-                                            working ? "flex-1" : "lg:col-span-7"
-                                        }`}
-                                    >
-                                        <DemoPreview theme={demo.theme} />
-                                    </div>
-                                    <div
-                                        className={`flex flex-col ${
-                                            working ? "flex-auto" : "lg:col-span-5 lg:py-3"
-                                        }`}
-                                    >
-                                        <div className="mb-10 flex items-baseline justify-between gap-4">
-                                            <p className="font-semibold text-muted text-sm">
-                                                {copy.company} / {copy.sector}
-                                            </p>
-                                            <span className="font-display text-sm text-subtle tabular-nums">
-                                                {String(index + 1).padStart(2, "0")}
-                                            </span>
-                                        </div>
-                                        <div className="flex flex-col gap-3">
-                                            <p className="font-medium text-muted text-sm">
-                                                {copy.product}
-                                            </p>
-                                            <h2 className="whitespace-pre-line text-balance font-bold font-display text-3xl tracking-tight sm:text-4xl">
-                                                {copy.campaign}
-                                            </h2>
-                                            <p className="max-w-xl text-pretty text-base text-muted">
-                                                {copy.description}
-                                            </p>
-                                        </div>
-                                        <span className="mt-8 inline-flex items-center gap-3 self-start border-foreground border-b pb-1 font-semibold text-sm transition-colors group-hover:border-subtle group-hover:text-muted lg:mt-auto">
-                                            לצפייה בפרויקט
-                                            <span
-                                                aria-hidden="true"
-                                                className={
-                                                    working
-                                                        ? "transition-transform group-hover:-translate-x-1"
-                                                        : undefined
-                                                }
-                                            >
-                                                ←
-                                            </span>
-                                        </span>
-                                    </div>
-                                </Link>
-                            </li>
-                        );
-                    })}
-                </ol>
+            <main>
+                <PosterBands />
             </main>
 
-            <footer className="border-border border-t bg-background">
-                <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 py-10 sm:px-8 lg:grid-cols-12 lg:items-end">
+            <footer>
+                <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 pt-14 pb-10 sm:px-8 lg:grid-cols-12 lg:items-end">
                     <p className="font-bold font-display text-xl lg:col-span-4">
-                        סוף העמוד. תחילת הרעיון.
+                        סוף העמוד.
+                        <br />
+                        תחילת הרעיון.
                     </p>
                     <div className="lg:col-span-8 lg:justify-self-end">
                         <Disclaimer />
@@ -240,12 +262,41 @@ function EditorialLayout({ working }: { working: boolean }) {
     );
 }
 
-export function EditorialHome() {
-    return <EditorialLayout working={false} />;
-}
+export function PosterHome() {
+    return (
+        <div className="min-h-screen bg-surface">
+            <header className="mx-auto w-full max-w-7xl px-6 sm:px-8">
+                <div className="flex items-center justify-between border-border border-b py-6 text-sm">
+                    <p className="font-bold font-display">תיק עבודות</p>
+                    <p className="text-subtle">קמפיינים דיגיטליים / 2026</p>
+                </div>
+                <div className="flex flex-col gap-12 py-20 sm:py-28">
+                    <h1 className="max-w-5xl text-balance font-bold font-display text-4xl tracking-tight sm:text-6xl">
+                        לכל קמפיין
+                        <span className="block text-subtle">יש צבע משלו.</span>
+                    </h1>
+                    <div className="grid gap-8 border-border border-t pt-10 lg:grid-cols-2 lg:items-end">
+                        <p className="max-w-2xl text-pretty text-lg text-muted">
+                            שלושה מותגים בדיוניים, ולכל אחד שפה ויזואלית שנבנתה רק בשבילו.
+                        </p>
+                        <div className="lg:justify-self-end">
+                            <Qualities />
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-export function WorkingHome() {
-    return <EditorialLayout working />;
+            <main>
+                <PosterBands />
+            </main>
+
+            <footer className="border-border border-t bg-background">
+                <div className="mx-auto w-full max-w-7xl px-6 py-10 sm:px-8">
+                    <Disclaimer />
+                </div>
+            </footer>
+        </div>
+    );
 }
 
 export function MinimalHome() {
@@ -275,39 +326,45 @@ export function MinimalHome() {
 
             <main className="mx-auto w-full max-w-6xl px-6 pb-24 sm:px-8 sm:pb-32">
                 <ol className="border-border border-t">
-                    {demos.map((demo, index) => (
-                        <li key={demo.href} className="border-border border-b">
-                            <Link
-                                href={demo.href}
-                                className="group grid gap-7 py-8 outline-offset-4 focus-visible:outline-2 focus-visible:outline-foreground sm:grid-cols-[auto_1fr] sm:py-10 lg:grid-cols-[5rem_1fr_18rem_auto] lg:items-center"
-                            >
-                                <span className="text-sm text-subtle tabular-nums">
-                                    {String(index + 1).padStart(2, "0")}
-                                </span>
-                                <div className="flex flex-col gap-3">
-                                    <p className="text-sm text-subtle">
-                                        {demo.company} / {demo.sector}
-                                    </p>
-                                    <div>
-                                        <h2 className="font-bold font-display text-2xl tracking-tight">
-                                            {demo.campaign}
-                                        </h2>
-                                        <p className="mt-1 text-muted text-sm">{demo.product}</p>
+                    {demos.map((demo, index) => {
+                        const copy = copyFor(demo);
+
+                        return (
+                            <li key={demo.href} className="border-border border-b">
+                                <Link
+                                    href={demo.href}
+                                    className="group grid gap-7 py-8 outline-offset-4 focus-visible:outline-2 focus-visible:outline-foreground sm:grid-cols-[auto_1fr] sm:py-10 lg:grid-cols-[5rem_1fr_18rem_auto] lg:items-center"
+                                >
+                                    <span className="text-sm text-subtle tabular-nums">
+                                        {String(index + 1).padStart(2, "0")}
+                                    </span>
+                                    <div className="flex flex-col gap-3">
+                                        <p className="text-sm text-subtle">
+                                            {copy.company} / {copy.sector}
+                                        </p>
+                                        <div>
+                                            <h2 className="whitespace-pre-line font-bold font-display text-2xl tracking-tight">
+                                                {copy.campaign}
+                                            </h2>
+                                            <p className="mt-1 text-muted text-sm">
+                                                {copy.product}
+                                            </p>
+                                        </div>
+                                        <p className="max-w-2xl text-pretty text-muted text-sm">
+                                            {copy.description}
+                                        </p>
                                     </div>
-                                    <p className="max-w-2xl text-pretty text-muted text-sm">
-                                        {demo.description}
-                                    </p>
-                                </div>
-                                <div className="h-32 overflow-hidden rounded-sm border border-border sm:col-start-2 lg:col-start-auto">
-                                    <DemoPreview theme={demo.theme} compact />
-                                </div>
-                                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-border-strong text-lg transition-colors group-hover:border-foreground group-hover:bg-foreground group-hover:text-surface sm:col-start-2 sm:justify-self-end lg:col-start-auto">
-                                    <span className="sr-only">לצפייה בפרויקט</span>
-                                    <span aria-hidden="true">←</span>
-                                </span>
-                            </Link>
-                        </li>
-                    ))}
+                                    <div className="h-32 overflow-hidden rounded-sm border border-border sm:col-start-2 lg:col-start-auto">
+                                        <DemoPreview theme={demo.theme} compact />
+                                    </div>
+                                    <span className="flex h-12 w-12 items-center justify-center rounded-full border border-border-strong text-lg transition-colors group-hover:border-foreground group-hover:bg-foreground group-hover:text-surface sm:col-start-2 sm:justify-self-end lg:col-start-auto">
+                                        <span className="sr-only">לצפייה בפרויקט</span>
+                                        <span aria-hidden="true">←</span>
+                                    </span>
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ol>
             </main>
 
@@ -350,43 +407,51 @@ export function BoldHome() {
 
             <main className="mx-auto w-full max-w-7xl px-6 pb-24 sm:px-8 sm:pb-32">
                 <ol className="grid gap-5 lg:grid-cols-3">
-                    {demos.map((demo, index) => (
-                        <li key={demo.href}>
-                            <Link
-                                href={demo.href}
-                                className={`group flex h-full flex-col overflow-hidden rounded-sm outline-offset-4 focus-visible:outline-2 focus-visible:outline-surface ${boldCardColors[demo.theme]}`}
-                            >
-                                <div className="aspect-video border-foreground/20 border-b">
-                                    <DemoPreview theme={demo.theme} />
-                                </div>
-                                <div className="flex flex-1 flex-col p-6 sm:p-8">
-                                    <div className="mb-14 flex items-start justify-between gap-4 text-sm">
-                                        <p className="font-semibold">
-                                            {demo.company}
-                                            <span className="block font-normal">{demo.sector}</span>
+                    {demos.map((demo, index) => {
+                        const copy = copyFor(demo);
+
+                        return (
+                            <li key={demo.href}>
+                                <Link
+                                    href={demo.href}
+                                    className={`group flex h-full flex-col overflow-hidden rounded-sm outline-offset-4 focus-visible:outline-2 focus-visible:outline-surface ${boldCardColors[demo.theme]}`}
+                                >
+                                    <div className="aspect-video border-foreground/20 border-b">
+                                        <DemoPreview theme={demo.theme} />
+                                    </div>
+                                    <div className="flex flex-1 flex-col p-6 sm:p-8">
+                                        <div className="mb-14 flex items-start justify-between gap-4 text-sm">
+                                            <p className="font-semibold">
+                                                {copy.company}
+                                                <span className="block font-normal">
+                                                    {copy.sector}
+                                                </span>
+                                            </p>
+                                            <span className="font-display tabular-nums">
+                                                {String(index + 1).padStart(2, "0")}
+                                            </span>
+                                        </div>
+                                        <p className="mb-2 font-medium text-sm">{copy.product}</p>
+                                        <h2 className="whitespace-pre-line text-balance font-bold font-display text-3xl tracking-tight">
+                                            {copy.campaign}
+                                        </h2>
+                                        <p className="mt-5 text-pretty text-base">
+                                            {copy.description}
                                         </p>
-                                        <span className="font-display tabular-nums">
-                                            {String(index + 1).padStart(2, "0")}
+                                        <span className="mt-10 flex items-center justify-between border-current border-t pt-4 font-bold text-sm lg:mt-auto">
+                                            לצפייה בפרויקט
+                                            <span
+                                                aria-hidden="true"
+                                                className="text-xl transition-transform group-hover:-translate-x-1"
+                                            >
+                                                ←
+                                            </span>
                                         </span>
                                     </div>
-                                    <p className="mb-2 font-medium text-sm">{demo.product}</p>
-                                    <h2 className="text-balance font-bold font-display text-3xl tracking-tight">
-                                        {demo.campaign}
-                                    </h2>
-                                    <p className="mt-5 text-pretty text-base">{demo.description}</p>
-                                    <span className="mt-10 flex items-center justify-between border-current border-t pt-4 font-bold text-sm lg:mt-auto">
-                                        לצפייה בפרויקט
-                                        <span
-                                            aria-hidden="true"
-                                            className="text-xl transition-transform group-hover:-translate-x-1"
-                                        >
-                                            ←
-                                        </span>
-                                    </span>
-                                </div>
-                            </Link>
-                        </li>
-                    ))}
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ol>
             </main>
 
