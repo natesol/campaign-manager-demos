@@ -73,6 +73,7 @@
     --color-subtle: var(--color-slate-500);
     --color-border: var(--color-slate-300);
     --color-border-strong: var(--color-slate-400);
+    --color-hover: var(--color-slate-100);
 
     /* Cookie-drop campaign palette, taken from the approved mockups.
        Pink and cocoa alias Tailwind steps that match. The warm creams and the
