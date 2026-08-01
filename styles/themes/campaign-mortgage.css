@@ -1,0 +1,78 @@
+/*
+ * Mortgage campaign — palette and theme.
+ *
+ * Same four identity colors and the same overwritten roles as every other
+ * campaign. See campaign-cookies.css for the reasoning behind each step.
+ */
+
+@theme inline {
+    --color-campaign-mortgage-paper: var(--color-stone-100);
+    --color-campaign-mortgage-ink: var(--color-slate-800);
+    --color-campaign-mortgage-accent: var(--color-emerald-600);
+    --color-campaign-mortgage-band: color-mix(
+        in oklab,
+        var(--color-campaign-mortgage-accent) var(--campaign-band-tint-accent),
+        var(--background)
+    );
+}
+
+[data-campaign="mortgage"] {
+    --background: var(--color-campaign-mortgage-paper);
+    --foreground: var(--color-campaign-mortgage-ink);
+    --card: var(--color-campaign-mortgage-paper);
+    --card-foreground: var(--color-campaign-mortgage-ink);
+    --popover: var(--color-campaign-mortgage-paper);
+    --popover-foreground: var(--color-campaign-mortgage-ink);
+
+    --muted: color-mix(
+        in oklab,
+        var(--color-campaign-mortgage-ink) 8%,
+        var(--color-campaign-mortgage-paper)
+    );
+    --muted-foreground: color-mix(
+        in oklab,
+        var(--color-campaign-mortgage-ink) 75%,
+        var(--color-campaign-mortgage-paper)
+    );
+    --subtle-foreground: color-mix(
+        in oklab,
+        var(--color-campaign-mortgage-ink) 65%,
+        var(--color-campaign-mortgage-paper)
+    );
+
+    --primary: color-mix(
+        in oklab,
+        var(--color-campaign-mortgage-ink) 25%,
+        var(--color-campaign-mortgage-accent)
+    );
+    --primary-foreground: var(--color-campaign-mortgage-paper);
+    --secondary: color-mix(
+        in oklab,
+        var(--color-campaign-mortgage-ink) 10%,
+        var(--color-campaign-mortgage-paper)
+    );
+    --secondary-foreground: var(--color-campaign-mortgage-ink);
+    --accent: color-mix(
+        in oklab,
+        var(--color-campaign-mortgage-ink) 6%,
+        var(--color-campaign-mortgage-paper)
+    );
+    --accent-foreground: var(--color-campaign-mortgage-ink);
+
+    --border: color-mix(
+        in oklab,
+        var(--color-campaign-mortgage-ink) 20%,
+        var(--color-campaign-mortgage-paper)
+    );
+    --border-strong: color-mix(
+        in oklab,
+        var(--color-campaign-mortgage-ink) 40%,
+        var(--color-campaign-mortgage-paper)
+    );
+    --input: color-mix(
+        in oklab,
+        var(--color-campaign-mortgage-ink) 20%,
+        var(--color-campaign-mortgage-paper)
+    );
+    --ring: var(--color-campaign-mortgage-accent);
+}

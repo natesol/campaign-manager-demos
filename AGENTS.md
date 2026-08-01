@@ -28,13 +28,20 @@ The deployment workflow runs `biome ci` before the build, so unformatted or fail
 # Styling
 
 Tailwind v4, configured in CSS. There is no `tailwind.config.js` and none gets added.
-`app/globals.css` is the only place tokens are defined, in one `@theme inline` block.
-`inline` is required there: the tokens reference other theme variables, and without it Tailwind tree-shakes the referenced defaults and the `var()` resolves to nothing.
+
+`styles/` holds every token, split by what each file does: `tokens.css` for the non-color scale, `roles.css` for the color role names, `themes/` for the values each scheme and each campaign gives those roles.
+`styles/globals.css` is the entry point and contains imports only.
+A page may add its own stylesheet next to itself for what only that page uses.
+
+`inline` is required on the `@theme` blocks: the tokens reference other theme variables, and without it Tailwind tree-shakes the referenced defaults and the `var()` resolves to nothing.
 
 - **Scale the design from the theme, never the markup.**
   `--spacing` drives every spacing utility, `--text-*` drives the type scale.
-- **Alias Tailwind's palette instead of picking hex values.**
-  Its colours are already designed and tested; a hand-mixed shade is not.
+- **Try Tailwind's palette first. Where it has no right answer, set the value directly.**
+  Its ramps are designed and tested, so an alias is the better default and every neutral should come from one.
+  But the campaigns bring brand colors that no ramp contains, and the neutral ramps themselves run out at the extremes: each is either too blue or too flat for a given ground.
+  Bending a design to the nearest available step is worse than a value that is simply correct, so never force the alias.
+  Alias where a step genuinely fits, set the value where none does, and leave a comment saying which case it was, so the next reader knows it was a decision rather than an oversight.
 - **Name roles, not shades.**
   `text-muted`, `border-border`. A different opacity step at each call site is a magic number wearing a class name.
 - **Opacity modifiers and `[…]` values are correct for genuine one-offs, wrong as the default.**

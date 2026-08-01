@@ -1,0 +1,44 @@
+/*
+ * The values every role takes in the dark color scheme.
+ *
+ * The variant is tied to a class rather than left at Tailwind's default, which
+ * compiles to prefers-color-scheme. next-themes writes that class onto <html>,
+ * so the scheme follows the toggle rather than the visitor's operating system —
+ * and every dark: variant a registry component ships with stays inert until the
+ * class is set.
+ */
+@custom-variant dark (&:is(.dark *));
+
+.dark {
+    --background: var(--color-zinc-950);
+    --foreground: var(--color-zinc-50);
+    --card: var(--color-zinc-900);
+    --card-foreground: var(--color-zinc-50);
+    --popover: var(--color-zinc-900);
+    --popover-foreground: var(--color-zinc-50);
+    --muted: var(--color-zinc-800);
+    --muted-foreground: var(--color-zinc-300);
+
+    --primary: var(--color-zinc-50);
+    --primary-foreground: var(--color-zinc-900);
+    --secondary: var(--color-zinc-800);
+    --secondary-foreground: var(--color-zinc-50);
+    --accent: var(--color-zinc-800);
+    --accent-foreground: var(--color-zinc-50);
+    --destructive: var(--color-red-500);
+
+    --border: var(--color-zinc-800);
+    --input: var(--color-zinc-800);
+    --ring: var(--color-zinc-600);
+
+    --subtle-foreground: var(--color-zinc-400);
+    /* Emphasis carries a real tint against the neutral zinc around it, light
+       where the light scheme's is dark. */
+    --emphasis-foreground: var(--color-indigo-300);
+    --border-strong: var(--color-zinc-700);
+
+    /* Uniform here: the light scheme's 20% paper pour would leave the cookies band
+       glaring beside the other two on a dark ground. */
+    --campaign-band-tint-paper: 6%;
+    --campaign-band-tint-accent: 6%;
+}

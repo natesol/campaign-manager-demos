@@ -1,0 +1,23 @@
+@import "../../styles/globals.css";
+
+/*
+ * Cookie-drop page styles.
+ *
+ * Everything shared lives in globals.css, imported above. Only what this page
+ * alone uses belongs here.
+ *
+ * The chapter tints and the olive have no equivalent anywhere in Tailwind's
+ * palette — every neutral there is cool — so they are brand values, set directly
+ * from the approved mockups.
+ *
+ * The drop paper, cocoa and raspberry stay in globals.css rather than moving
+ * here, because the home page previews this campaign and needs them too.
+ */
+@theme inline {
+    --color-drop-pistachio: #6d7c3c;
+
+    /* Flavor chapter grounds. Each chapter sits on its own tint of the same warmth. */
+    --color-drop-pistachio-tint: #eef2e1;
+    --color-drop-raspberry-tint: #fbe9ee;
+    --color-drop-cocoa-tint: #f2ebe0;
+}

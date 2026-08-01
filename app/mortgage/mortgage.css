@@ -1,0 +1,12 @@
+@import "../../styles/globals.css";
+
+/*
+ * Mortgage consultation page styles.
+ *
+ * Everything shared lives in globals.css, imported above. Only what this page
+ * alone uses belongs here.
+ *
+ * The page is still a skeleton. The advice-* tokens currently in globals.css
+ * stay there for now because the home page previews this campaign; anything this
+ * page alone needs lands here when it is built.
+ */

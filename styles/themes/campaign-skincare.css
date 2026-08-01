@@ -1,0 +1,78 @@
+/*
+ * Skincare campaign — palette and theme.
+ *
+ * Same four identity colors and the same overwritten roles as every other
+ * campaign. See campaign-cookies.css for the reasoning behind each step.
+ */
+
+@theme inline {
+    --color-campaign-skincare-paper: var(--color-sky-50);
+    --color-campaign-skincare-ink: var(--color-teal-900);
+    --color-campaign-skincare-accent: var(--color-violet-500);
+    --color-campaign-skincare-band: color-mix(
+        in oklab,
+        var(--color-campaign-skincare-accent) var(--campaign-band-tint-accent),
+        var(--background)
+    );
+}
+
+[data-campaign="skincare"] {
+    --background: var(--color-campaign-skincare-paper);
+    --foreground: var(--color-campaign-skincare-ink);
+    --card: var(--color-campaign-skincare-paper);
+    --card-foreground: var(--color-campaign-skincare-ink);
+    --popover: var(--color-campaign-skincare-paper);
+    --popover-foreground: var(--color-campaign-skincare-ink);
+
+    --muted: color-mix(
+        in oklab,
+        var(--color-campaign-skincare-ink) 8%,
+        var(--color-campaign-skincare-paper)
+    );
+    --muted-foreground: color-mix(
+        in oklab,
+        var(--color-campaign-skincare-ink) 75%,
+        var(--color-campaign-skincare-paper)
+    );
+    --subtle-foreground: color-mix(
+        in oklab,
+        var(--color-campaign-skincare-ink) 65%,
+        var(--color-campaign-skincare-paper)
+    );
+
+    --primary: color-mix(
+        in oklab,
+        var(--color-campaign-skincare-ink) 25%,
+        var(--color-campaign-skincare-accent)
+    );
+    --primary-foreground: var(--color-campaign-skincare-paper);
+    --secondary: color-mix(
+        in oklab,
+        var(--color-campaign-skincare-ink) 10%,
+        var(--color-campaign-skincare-paper)
+    );
+    --secondary-foreground: var(--color-campaign-skincare-ink);
+    --accent: color-mix(
+        in oklab,
+        var(--color-campaign-skincare-ink) 6%,
+        var(--color-campaign-skincare-paper)
+    );
+    --accent-foreground: var(--color-campaign-skincare-ink);
+
+    --border: color-mix(
+        in oklab,
+        var(--color-campaign-skincare-ink) 20%,
+        var(--color-campaign-skincare-paper)
+    );
+    --border-strong: color-mix(
+        in oklab,
+        var(--color-campaign-skincare-ink) 40%,
+        var(--color-campaign-skincare-paper)
+    );
+    --input: color-mix(
+        in oklab,
+        var(--color-campaign-skincare-ink) 20%,
+        var(--color-campaign-skincare-paper)
+    );
+    --ring: var(--color-campaign-skincare-accent);
+}

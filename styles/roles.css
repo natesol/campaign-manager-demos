@@ -1,0 +1,67 @@
+/*
+ * The role vocabulary — the only color names a page or component may use.
+ *
+ * This file names the roles and sets none of their values. Every theme in
+ * themes/ does that.
+ *
+ * The set is shadcn's, unchanged, plus two additions marked below. Keeping
+ * shadcn's names exactly is what lets a registry component drop in and work: it
+ * already speaks these, so it never needs editing.
+ *
+ * Build every page out of these. A brand color never belongs in markup:
+ * `bg-background` on a campaign page resolves to that campaign's paper, while a
+ * campaign-specific class hard-wires the page to one palette and has to be
+ * rewritten when the palette changes.
+ *
+ * WHY THE INDIRECTION. Each role points at a plain variable rather than a value.
+ * `inline` bakes a literal into every utility it generates, so a role defined
+ * directly here could never change at runtime. Pointing at var(--background)
+ * instead means anything that sets that variable retypes everything beneath it.
+ * That is how every theme works, and why they nest: a campaign theme inside a
+ * dark document overrides only the roles it names.
+ *
+ * TWO PAIRS THAT READ ALIKE AND ARE NOT:
+ *   muted  is a muted SURFACE   / muted-foreground  is muted TEXT
+ *   accent is the hover GROUND  / accent-foreground is the ink on it
+ */
+@theme inline {
+    /* The ground behind everything, outside every theme. A page that sets no
+       background of its own lands on this. */
+    --color-canvas: var(--color-slate-50);
+    --color-canvas-foreground: var(--color-slate-900);
+
+    /* Surfaces and the ink on them. */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    /* Actions. */
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+
+    /* Rules and focus. */
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    /* The additions. shadcn stops at one muted text step and one rule weight;
+       editorial layouts need a quieter text step below muted, a rule strong
+       enough to read as a drawn line rather than a seam, and a text step that
+       EMPHASIZES — the tinted line inside a heading, the eyebrow above it.
+       Emphasis and subtle may share a value in one scheme and must not in
+       another, which is exactly why they are separate roles. Every theme sets
+       all three, so they behave exactly like the roles above. */
+    --color-subtle-foreground: var(--subtle-foreground);
+    --color-emphasis-foreground: var(--emphasis-foreground);
+    --color-border-strong: var(--border-strong);
+}

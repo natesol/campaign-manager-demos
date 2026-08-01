@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { FlavorRail } from "./_components/FlavorRail";
+import "./cookies.css";
 import { ReminderForm } from "./_components/ReminderForm";
 import { ScrollReveal } from "./_components/ScrollReveal";
 

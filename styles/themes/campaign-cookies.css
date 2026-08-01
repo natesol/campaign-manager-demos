@@ -1,0 +1,85 @@
+/*
+ * Cookies campaign — palette and theme.
+ *
+ * A page opts in with data-campaign="cookies" on its root element, and is then
+ * written entirely in shadcn's role utilities. Every campaign declares the same
+ * four identity colors and overwrites the same roles, so there is one system to
+ * learn, not one per campaign.
+ */
+
+@theme inline {
+    /* Identity. Every campaign declares exactly these four.
+       Cream has no equivalent in Tailwind's palette — every neutral there is
+       cool — so it is set directly, from the approved mockups. */
+    --color-campaign-cookies-paper: #f7f2e8;
+    --color-campaign-cookies-ink: var(--color-stone-800);
+    --color-campaign-cookies-accent: var(--color-pink-600);
+    --color-campaign-cookies-band: color-mix(
+        in oklab,
+        var(--color-campaign-cookies-paper) var(--campaign-band-tint-paper),
+        var(--background)
+    );
+}
+
+[data-campaign="cookies"] {
+    --background: var(--color-campaign-cookies-paper);
+    --foreground: var(--color-campaign-cookies-ink);
+    --card: var(--color-campaign-cookies-paper);
+    --card-foreground: var(--color-campaign-cookies-ink);
+    --popover: var(--color-campaign-cookies-paper);
+    --popover-foreground: var(--color-campaign-cookies-ink);
+
+    --muted: color-mix(
+        in oklab,
+        var(--color-campaign-cookies-ink) 8%,
+        var(--color-campaign-cookies-paper)
+    );
+    --muted-foreground: color-mix(
+        in oklab,
+        var(--color-campaign-cookies-ink) 75%,
+        var(--color-campaign-cookies-paper)
+    );
+    --subtle-foreground: color-mix(
+        in oklab,
+        var(--color-campaign-cookies-ink) 65%,
+        var(--color-campaign-cookies-paper)
+    );
+
+    /* The accent is darkened toward the ink before it carries a label. At full
+       strength a small label on it is too low-contrast to read comfortably. */
+    --primary: color-mix(
+        in oklab,
+        var(--color-campaign-cookies-ink) 25%,
+        var(--color-campaign-cookies-accent)
+    );
+    --primary-foreground: var(--color-campaign-cookies-paper);
+    --secondary: color-mix(
+        in oklab,
+        var(--color-campaign-cookies-ink) 10%,
+        var(--color-campaign-cookies-paper)
+    );
+    --secondary-foreground: var(--color-campaign-cookies-ink);
+    --accent: color-mix(
+        in oklab,
+        var(--color-campaign-cookies-ink) 6%,
+        var(--color-campaign-cookies-paper)
+    );
+    --accent-foreground: var(--color-campaign-cookies-ink);
+
+    --border: color-mix(
+        in oklab,
+        var(--color-campaign-cookies-ink) 20%,
+        var(--color-campaign-cookies-paper)
+    );
+    --border-strong: color-mix(
+        in oklab,
+        var(--color-campaign-cookies-ink) 40%,
+        var(--color-campaign-cookies-paper)
+    );
+    --input: color-mix(
+        in oklab,
+        var(--color-campaign-cookies-ink) 20%,
+        var(--color-campaign-cookies-paper)
+    );
+    --ring: var(--color-campaign-cookies-accent);
+}

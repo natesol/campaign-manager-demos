@@ -1,0 +1,23 @@
+/*
+ * The stylesheet entry point. Imports only — every rule lives in the file named
+ * for what it does.
+ *
+ *   vendor   Tailwind and the third-party layers, first because all else extends them
+ *   tokens   the non-color scale: spacing, type, tracking, families
+ *   roles    the color role names, set by no one and used by everyone
+ *   themes   the values those roles take: the two color schemes, and one campaign
+ *            per file. Swapping a campaign's whole look is editing its one file.
+ *   base     element defaults, last so its @apply sees everything above
+ */
+
+@import "./vendor.css";
+@import "./tokens.css";
+@import "./roles.css";
+
+@import "./themes/light.css";
+@import "./themes/dark.css";
+@import "./themes/campaign-cookies.css";
+@import "./themes/campaign-skincare.css";
+@import "./themes/campaign-mortgage.css";
+
+@import "./base.css";

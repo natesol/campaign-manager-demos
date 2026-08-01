@@ -1,0 +1,5 @@
+/* Third-party layers. Nothing project-specific belongs in this file. */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";

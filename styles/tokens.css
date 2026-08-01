@@ -1,0 +1,59 @@
+/*
+ * The non-color scale.
+ *
+ *   --spacing   one unit drives every p-*, m-*, gap-*, w-* and h-* utility
+ *   --text-*    the type scale, each step with its own line height
+ *   --font-*    families, fed by next/font variables set on <html>
+ *
+ * `inline` is required throughout these files: the tokens reference other theme
+ * variables, and without it Tailwind tree-shakes the referenced defaults and the
+ * var() resolves to nothing.
+ */
+@theme inline {
+    /* Raise this one number to scale the whole layout. */
+    --spacing: 0.28rem;
+
+    /* Raise these to scale the type independently of layout. */
+    --text-xs: 0.875rem;
+    --text-xs--line-height: 1.5;
+    --text-sm: 1rem;
+    --text-sm--line-height: 1.55;
+    --text-base: 1.125rem;
+    --text-base--line-height: 1.65;
+    --text-lg: 1.375rem;
+    --text-lg--line-height: 1.55;
+    --text-xl: 1.75rem;
+    --text-xl--line-height: 1.35;
+    --text-2xl: 2.25rem;
+    --text-2xl--line-height: 1.15;
+    --text-3xl: 2.875rem;
+    --text-3xl--line-height: 1.1;
+    --text-4xl: 3.75rem;
+    --text-4xl--line-height: 1.05;
+    --text-5xl: 4.75rem;
+    --text-5xl--line-height: 1;
+    --text-6xl: 6rem;
+    --text-6xl--line-height: 0.95;
+    --text-7xl: 7.5rem;
+    --text-7xl--line-height: 0.9;
+    --text-8xl: 9.5rem;
+    --text-8xl--line-height: 0.86;
+
+    --tracking-eyebrow: 0.22em;
+
+    /* The heaviest weight on the scale. Rubik is loaded as a variable font, so
+       this is a real cut rather than a synthesized bold — and any value between
+       the stops is reachable too, which is what the title uses. */
+    --font-weight-black: 900;
+
+    /* Tailwind's own scale starts at sm (40rem), which leaves everything from a
+       small phone to a 600px tablet sharing one set of styles. xs splits that
+       range. The rest of the scale is Tailwind's, untouched:
+       sm 40rem / md 48rem / lg 64rem / xl 80rem / 2xl 96rem. */
+    --breakpoint-xs: 30rem;
+
+    /* Both families carry Hebrew subsets; a Latin-only family cannot serve as
+       --font-sans here, because every page is Hebrew. */
+    --font-sans: var(--font-assistant), system-ui, sans-serif;
+    --font-display: var(--font-rubik), system-ui, sans-serif;
+}

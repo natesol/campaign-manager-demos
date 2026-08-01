@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import "./mortgage.css";
+
 export const metadata: Metadata = {
     title: "ייעוץ משכנתא",
 };

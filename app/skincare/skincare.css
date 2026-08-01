@@ -1,0 +1,13 @@
+@import "../../styles/globals.css";
+
+/*
+ * Seasonal skincare page styles.
+ *
+ * Everything shared lives in globals.css, imported above. Only what this page
+ * alone uses belongs here.
+ *
+ * The page is still a skeleton. Its palette is approved as lavender and
+ * periwinkle, and the routine-* tokens currently in globals.css are an older
+ * sky-and-cyan generation kept there because the home page previews this
+ * campaign. They move here, in the approved colors, when this page is built.
+ */

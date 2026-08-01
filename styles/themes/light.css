@@ -1,0 +1,37 @@
+/* The values every role takes in the light color scheme, and the document default. */
+:root {
+    /* The one step off the zinc ramp: zinc-50 reads flat here, gray-50 carries
+       the faint cool cast the ground wants. */
+    --background: var(--color-gray-50);
+    --foreground: var(--color-zinc-900);
+    --card: var(--color-zinc-50);
+    --card-foreground: var(--color-zinc-900);
+    --popover: var(--color-zinc-50);
+    --popover-foreground: var(--color-zinc-900);
+    --muted: var(--color-zinc-200);
+    --muted-foreground: var(--color-zinc-700);
+
+    --primary: var(--color-zinc-900);
+    --primary-foreground: var(--color-zinc-50);
+    --secondary: var(--color-zinc-100);
+    --secondary-foreground: var(--color-zinc-900);
+    --accent: var(--color-zinc-100);
+    --accent-foreground: var(--color-zinc-900);
+    --destructive: var(--color-red-600);
+
+    --border: var(--color-zinc-300);
+    --input: var(--color-zinc-300);
+    --ring: var(--color-zinc-400);
+
+    --subtle-foreground: var(--color-zinc-500);
+    /* Emphasis carries a real tint against the neutral zinc around it: dark
+       enough for weight, colored enough to read as a deliberate second voice. */
+    --emphasis-foreground: var(--color-indigo-600);
+    --border-strong: var(--color-zinc-400);
+
+    /* How strongly a campaign's color is poured into the page background to make
+       its band on the home page. A paper is nearly white and needs a strong pour
+       to register on a light ground; an accent is saturated and needs almost none. */
+    --campaign-band-tint-paper: 15%;
+    --campaign-band-tint-accent: 2%;
+}
