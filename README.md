@@ -17,8 +17,8 @@ No brand, product, or service shown here is real.
 Every page is Hebrew and right-to-left.
 `lang` and `dir` are set once on the document element in the root layout.
 
-The index and the cookie drop are built.
-The skincare and mortgage routes are still unstyled section skeletons.
+All four routes are built and in the final steps of implementation.
+Campaign imagery is currently drawn in markup and CSS while asset production is under way.
 
 ## Local Development
 
