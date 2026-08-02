@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import "./skincare.css";
 import { FinalCta } from "./_components/FinalCta";
@@ -12,6 +12,10 @@ import { Testimonials } from "./_components/Testimonials";
 
 export const metadata: Metadata = {
     title: "בדיוק לעונה",
+};
+
+export const viewport: Viewport = {
+    themeColor: "#fbfafd",
 };
 
 export default function SkincareRoute() {

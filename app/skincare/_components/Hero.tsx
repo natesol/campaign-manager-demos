@@ -1,9 +1,25 @@
 import Image from "next/image";
 
-import { Sparkles } from "lucide-react";
-
 import heroTrio from "../_assets/seasonal-skincare_asset-01_hero-trio_v3-transparent.webp";
 import { hero } from "../content";
+
+function HeroAccentBurst() {
+    return (
+        <svg
+            aria-hidden="true"
+            viewBox="0 0 20 20"
+            className="pointer-events-none absolute -start-4 -top-2 size-5 overflow-visible text-campaign-skincare-coral"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="2"
+        >
+            <path d="M3 10V2" />
+            <path d="m7 12 6-6" />
+            <path d="M9 17h8" />
+        </svg>
+    );
+}
 
 /*
  * The approved v3 hero: copy on the start side, the unified trio on its
@@ -18,15 +34,20 @@ export function Hero() {
         >
             <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-10">
                 <div className="flex flex-col gap-6">
-                    <Sparkles
-                        aria-hidden
-                        strokeWidth={1.5}
-                        className="size-7 text-campaign-skincare-coral"
-                    />
                     <h1 className="font-bold font-display text-[clamp(2.75rem,6vw,5rem)] leading-[1.08]">
-                        {hero.headline.map((line) => (
+                        {hero.headline.map((line, index) => (
                             <span key={line.text} className="block">
-                                {line.text}
+                                {index === 0 ? (
+                                    <>
+                                        <span className="relative inline-block">
+                                            הקיץ
+                                            <HeroAccentBurst />
+                                        </span>{" "}
+                                        הגיע
+                                    </>
+                                ) : (
+                                    line.text
+                                )}
                                 {line.dot && (
                                     <span className="text-campaign-skincare-coral">.</span>
                                 )}
