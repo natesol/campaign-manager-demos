@@ -63,4 +63,4 @@ A string `src` passed to `next/image` does not, and has to be prefixed by hand.
 ## Assets
 
 No third-party assets are in use.
-Sources and licences are recorded here as assets are added.
+Sources and licenses are recorded here as assets are added.
