@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import {
     ArrowLeft,
@@ -13,6 +14,14 @@ import {
     RefreshCw,
 } from "lucide-react";
 
+import heroArchitecture from "./_assets/mortgage-counseling_asset-01_hero-architecture_v1.png";
+import servicesConsultation from "./_assets/mortgage-counseling_asset-02_services-consultation_v1.png";
+import processConsultation from "./_assets/mortgage-counseling_asset-03_process-consultation_v1.png";
+import companyPositionArchitecture from "./_assets/mortgage-counseling_asset-04_company-position-architecture_v1.png";
+import teamYael from "./_assets/mortgage-counseling_asset-05_team-yael-raz_v1.png";
+import teamItai from "./_assets/mortgage-counseling_asset-06_team-itai-shalev_v1.png";
+import teamMichal from "./_assets/mortgage-counseling_asset-07_team-michal-barak_v1.png";
+import teamOmer from "./_assets/mortgage-counseling_asset-08_team-omer-levi_v1.png";
 import { BrandMark } from "./_components/BrandMark";
 import { ContactForm } from "./_components/ContactForm";
 import { MobileNavigation } from "./_components/MobileNavigation";
@@ -37,6 +46,8 @@ const contactIcons: Record<ContactIconName, LucideIcon> = {
     message: MessageCircle,
     email: Mail,
 };
+
+const supportingTeamImages = [teamItai, teamMichal, teamOmer] as const;
 
 function AccentLastWord({ text }: { text: string }) {
     const breakAt = text.lastIndexOf(" ");
@@ -73,14 +84,31 @@ function ServiceCard({ service }: { service: (typeof mortgageContent.services.it
                     : "mortgage-service-card"
             }
         >
-            <div className="mortgage-service-card__icon">
-                <Icon aria-hidden="true" />
+            {service.featured ? (
+                <div className="mortgage-service-card__media" aria-hidden="true">
+                    <Image
+                        src={servicesConsultation}
+                        alt=""
+                        fill
+                        sizes="(max-width: 48rem) calc(100vw - 32px), (max-width: 72rem) calc(100vw - 48px), 62vw"
+                        className="mortgage-service-card__image"
+                    />
+                </div>
+            ) : null}
+
+            <div className="mortgage-service-card__content">
+                <div className="mortgage-service-card__icon">
+                    <Icon aria-hidden="true" />
+                </div>
+                <h3>{service.title}</h3>
+                <p>{service.body}</p>
+                <span className="mortgage-service-card__note" aria-disabled="true">
+                    <span>{mortgageContent.services.detailLabel}</span>
+                    <span className="mortgage-service-card__availability">
+                        {mortgageContent.services.detailStatus}
+                    </span>
+                </span>
             </div>
-            <h3>{service.title}</h3>
-            <p>{service.body}</p>
-            <span className="mortgage-service-card__note">
-                {mortgageContent.services.detailLabel}
-            </span>
         </article>
     );
 }
@@ -110,7 +138,16 @@ export default function MortgageRoute() {
 
             <main>
                 <section className="mortgage-hero" id="top" aria-labelledby="mortgage-hero-title">
-                    <div className="mortgage-hero__media" aria-hidden="true" />
+                    <div className="mortgage-hero__media">
+                        <Image
+                            src={heroArchitecture}
+                            alt="בית מודרני מואר בשעת ערב"
+                            fill
+                            priority
+                            sizes="(max-width: 48rem) 100vw, 70vw"
+                            className="mortgage-hero__image"
+                        />
+                    </div>
 
                     <div className="mortgage-hero__content">
                         <h1 id="mortgage-hero-title">
@@ -192,16 +229,29 @@ export default function MortgageRoute() {
                                     </li>
                                 ))}
                             </ol>
-                            <div
-                                className="mortgage-image-placeholder mortgage-process__image"
-                                aria-hidden="true"
-                            />
+                            <div className="mortgage-process__image">
+                                <Image
+                                    src={processConsultation}
+                                    alt="יועץ משכנתאות בפגישה עם זוג"
+                                    fill
+                                    sizes="(max-width: 72rem) calc(100vw - 48px), 58vw"
+                                    className="mortgage-process__photo"
+                                />
+                            </div>
                         </div>
                     </section>
                 </div>
 
                 <div className="mortgage-section-gap mortgage-section-gap--position">
                     <section className="mortgage-position" aria-labelledby="position-title">
+                        <Image
+                            src={companyPositionArchitecture}
+                            alt=""
+                            fill
+                            sizes="calc(100vw - 32px)"
+                            className="mortgage-position__image"
+                        />
+                        <span className="mortgage-position__overlay" aria-hidden="true" />
                         <ArchitecturalLineArt />
                         <div className="mortgage-position__copy">
                             <p className="mortgage-eyebrow">{position.label}</p>
@@ -229,10 +279,15 @@ export default function MortgageRoute() {
                         </div>
 
                         <div className="mortgage-team__composition">
-                            <div
-                                className="mortgage-image-placeholder mortgage-team__featured-image"
-                                aria-hidden="true"
-                            />
+                            <div className="mortgage-team__featured-image">
+                                <Image
+                                    src={teamYael}
+                                    alt={`דיוקן של ${team.featured.name}`}
+                                    fill
+                                    sizes="(max-width: 48rem) calc(100vw - 60px), (max-width: 72rem) 45vw, 28vw"
+                                    className="mortgage-team__photo"
+                                />
+                            </div>
                             <article className="mortgage-team__featured-copy">
                                 <h3>{team.featured.name}</h3>
                                 <p className="mortgage-team__role">{team.featured.role}</p>
@@ -243,9 +298,16 @@ export default function MortgageRoute() {
                                 {team.people.map((person, index) => (
                                     <article className="mortgage-team-card" key={person.name}>
                                         <div
-                                            className={`mortgage-image-placeholder mortgage-team-card__image mortgage-team-card__image--${index + 1}`}
-                                            aria-hidden="true"
-                                        />
+                                            className={`mortgage-team-card__image mortgage-team-card__image--${index + 1}`}
+                                        >
+                                            <Image
+                                                src={supportingTeamImages[index]}
+                                                alt={`דיוקן של ${person.name}`}
+                                                fill
+                                                sizes="(max-width: 48rem) calc(100vw - 60px), (max-width: 72rem) 30vw, 12vw"
+                                                className="mortgage-team__photo"
+                                            />
+                                        </div>
                                         <div className="mortgage-team-card__content">
                                             <h3>{person.name}</h3>
                                             <p className="mortgage-team__role">{person.role}</p>
@@ -353,10 +415,7 @@ export default function MortgageRoute() {
                     </div>
 
                     <div className="mortgage-footer__legal">
-                        <div className="mortgage-footer__legal-copy">
-                            <p>{footer.copyright}</p>
-                            <p className="mortgage-footer__disclosure">{footer.disclosure}</p>
-                        </div>
+                        <p>{footer.copyright}</p>
                         <ul>
                             {footer.legal.map((item) => (
                                 <li key={item}>
