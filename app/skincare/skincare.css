@@ -3,12 +3,8 @@
 /*
  * Seasonal skincare page styles.
  *
- * Everything shared lives in globals.css, imported above. Only what this page
- * alone uses belongs here.
- *
- * The page is still a skeleton.
- * Its palette is approved as lavender and periwinkle, while the campaign-skincare-*
- * tokens in styles/campaigns/skincare.css are an older sky-and-cyan generation,
- * kept because the home page previews this campaign. They are corrected there,
- * not here, when this page is built.
+ * Everything shared lives in globals.css, imported above. The campaign's
+ * identity colors stay in styles/campaigns/skincare.css, because the home page
+ * previews this campaign. The page keeps the default Rubik display face, which
+ * already matches the approved v3 hero's rounded bold Hebrew.
  */

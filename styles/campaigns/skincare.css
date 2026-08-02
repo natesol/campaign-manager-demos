@@ -1,17 +1,23 @@
 /*
  * Skincare campaign — palette and theme.
  *
- * Same four identity colors and the same overwritten roles as every other
- * campaign. See campaign-cookies.css for the reasoning behind each step.
+ * A page opts in with data-campaign="skincare" on its root element, and is then
+ * written in shadcn's role utilities plus the campaign colors below. paper, ink
+ * and band play the identity part every campaign declares; lavender and coral
+ * are this campaign's own, named by what they color.
  */
 
 @theme inline {
-    --color-campaign-skincare-paper: var(--color-sky-50);
-    --color-campaign-skincare-ink: var(--color-teal-900);
-    --color-campaign-skincare-accent: var(--color-violet-500);
+    /* All set directly, from the approved v3 hero: an almost-white ground with
+       a faint lavender cast, deep cobalt-indigo typography, the periwinkle
+       lavender of the packaging, and the controlled coral accent. */
+    --color-campaign-skincare-paper: #fbfafd;
+    --color-campaign-skincare-ink: #2e3178;
+    --color-campaign-skincare-lavender: #b7b1e3;
+    --color-campaign-skincare-coral: #ee8566;
     --color-campaign-skincare-band: color-mix(
         in oklab,
-        var(--color-campaign-skincare-accent) var(--campaign-band-tint-accent),
+        var(--color-campaign-skincare-lavender) var(--campaign-band-tint-accent),
         var(--background)
     );
 }
@@ -40,10 +46,12 @@
         var(--color-campaign-skincare-paper)
     );
 
+    /* The coral is darkened toward the ink before it carries a label. At full
+       strength a small label on it is too low-contrast to read comfortably. */
     --primary: color-mix(
         in oklab,
-        var(--color-campaign-skincare-ink) 25%,
-        var(--color-campaign-skincare-accent)
+        var(--color-campaign-skincare-ink) 20%,
+        var(--color-campaign-skincare-coral)
     );
     --primary-foreground: var(--color-campaign-skincare-paper);
     --secondary: color-mix(
@@ -52,9 +60,11 @@
         var(--color-campaign-skincare-paper)
     );
     --secondary-foreground: var(--color-campaign-skincare-ink);
+    /* The quiet surface here is a lavender wash rather than an ink wash: the
+       campaign's secondary planes are lavender by design. */
     --accent: color-mix(
         in oklab,
-        var(--color-campaign-skincare-ink) 6%,
+        var(--color-campaign-skincare-lavender) 14%,
         var(--color-campaign-skincare-paper)
     );
     --accent-foreground: var(--color-campaign-skincare-ink);
@@ -74,5 +84,5 @@
         var(--color-campaign-skincare-ink) 20%,
         var(--color-campaign-skincare-paper)
     );
-    --ring: var(--color-campaign-skincare-accent);
+    --ring: var(--color-campaign-skincare-coral);
 }

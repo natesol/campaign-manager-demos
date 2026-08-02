@@ -1,7 +1,8 @@
 import { Bell, Lock } from "lucide-react";
 
+import { ScrollReveal } from "@/components/ScrollReveal";
+
 import { ReminderForm } from "./ReminderForm";
-import { ScrollReveal } from "./ScrollReveal";
 
 /*
  * The page's one action. The form is demonstrative: nothing is sent or stored,

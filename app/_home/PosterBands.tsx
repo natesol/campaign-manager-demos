@@ -9,7 +9,7 @@ import { type Demo, demos } from "./demos";
 // saturated color only ever carries large type.
 const accent: Record<Demo["theme"], string> = {
     cookies: "text-campaign-cookies-raspberry",
-    skincare: "text-campaign-skincare-accent",
+    skincare: "text-campaign-skincare-coral",
     mortgage: "text-campaign-mortgage-accent",
 };
 

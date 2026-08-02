@@ -1,6 +1,7 @@
+import { ScrollReveal } from "@/components/ScrollReveal";
+
 import type { Flavor } from "../content";
 import { Disc } from "./placeholders";
-import { ScrollReveal } from "./ScrollReveal";
 
 /*
  * One flavor, one chapter, one viewport at lg. The ground comes from the

@@ -1,5 +1,6 @@
+import { ScrollReveal } from "@/components/ScrollReveal";
+
 import { dropDetails } from "../content";
-import { ScrollReveal } from "./ScrollReveal";
 
 /*
  * The release payoff reunites the trio and centralizes the release facts. It is
