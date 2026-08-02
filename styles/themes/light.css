@@ -26,7 +26,7 @@
     --subtle-foreground: var(--color-zinc-500);
     /* Emphasis carries a real tint against the neutral zinc around it: dark
        enough for weight, colored enough to read as a deliberate second voice. */
-    --emphasis-foreground: var(--color-indigo-600);
+    --emphasis-foreground: #465359;
     --border-strong: var(--color-zinc-400);
 
     /* How strongly a campaign's color is poured into the page background to make

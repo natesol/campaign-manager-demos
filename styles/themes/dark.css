@@ -32,9 +32,10 @@
     --ring: var(--color-zinc-600);
 
     --subtle-foreground: var(--color-zinc-400);
-    /* Emphasis carries a real tint against the neutral zinc around it, light
-       where the light scheme's is dark. */
-    --emphasis-foreground: var(--color-indigo-300);
+    /* The light scheme's #465359 mirrored: same muted blue-gray hue, lifted to
+       read against a dark ground instead of a light one. No zinc step carries
+       the tint, so the value is set directly. */
+    --emphasis-foreground: #afbbc0;
     --border-strong: var(--color-zinc-700);
 
     /* Uniform here: the light scheme's 20% paper pour would leave the cookies band
