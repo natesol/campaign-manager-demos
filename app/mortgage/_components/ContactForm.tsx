@@ -1,15 +1,20 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 
 import { ShieldCheck } from "lucide-react";
 
-import { mortgageContent } from "../content";
+import type { ContactFormContent } from "../content";
 
-const { form } = mortgageContent.contact;
-
-export function ContactForm() {
+export function ContactForm({ form }: { form: ContactFormContent }) {
     const [submitted, setSubmitted] = useState(false);
+    const statusRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (submitted) {
+            statusRef.current?.focus();
+        }
+    }, [submitted]);
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -18,7 +23,12 @@ export function ContactForm() {
 
     if (submitted) {
         return (
-            <div className="mortgage-form mortgage-form--success" aria-live="polite">
+            <div
+                className="mortgage-form mortgage-form--success"
+                ref={statusRef}
+                role="status"
+                tabIndex={-1}
+            >
                 <ShieldCheck aria-hidden="true" />
                 <p>{form.success}</p>
             </div>
@@ -40,6 +50,7 @@ export function ContactForm() {
                     id="mortgage-phone"
                     name="phone"
                     type="tel"
+                    dir="ltr"
                     inputMode="tel"
                     autoComplete="tel"
                     required

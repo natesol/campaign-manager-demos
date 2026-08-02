@@ -20,7 +20,7 @@ export const mortgageContent = {
         heading: "איך אנחנו יכולים לעזור",
         introduction:
             "כל משכנתא מתחילה מנתונים, צרכים והחלטות שונות. אנחנו בונים את הייעוץ לפי המקום שבו אתם נמצאים ומה שצריך לבדוק לפני שמתקדמים.",
-        link: "למידע נוסף",
+        detailLabel: "למידע נוסף",
         items: [
             {
                 title: "תכנון משכנתא חדשה",
@@ -100,7 +100,10 @@ export const mortgageContent = {
         heading: "בואו נבין מה נכון לבדוק",
         support:
             "השאירו פרטים ונחזור לשיחת מיפוי קצרה. נכיר את המצב, נענה על השאלות הראשונות ונבין יחד מה הצעד הבא.",
-        methods: ["שיחה טלפונית", "WhatsApp"],
+        methods: [
+            { label: "שיחה טלפונית", icon: "phone" },
+            { label: "WhatsApp", icon: "message" },
+        ],
         form: {
             title: "לקראת שיחת המיפוי",
             fullName: "שם מלא",
@@ -118,7 +121,13 @@ export const mortgageContent = {
         disclosure: "קונספט בדיוני לתיק עבודות. החברה והשירות אינם אמיתיים.",
         navigation: {
             title: "ניווט",
-            links: ["דף הבית", "אודות", "שירותים", "מאמרים", "יצירת קשר"],
+            links: [
+                { label: "דף הבית", href: "#top" },
+                { label: "אודות", href: "#about" },
+                { label: "שירותים", href: "#services" },
+                { label: "מאמרים", href: null },
+                { label: "יצירת קשר", href: "#contact" },
+            ],
         },
         services: {
             title: "שירותים",
@@ -126,7 +135,11 @@ export const mortgageContent = {
         },
         contact: {
             title: "יצירת קשר",
-            links: ["03-376-1320", "WhatsApp", "hello@ikar-mashkanta.co.il"],
+            links: [
+                { label: "03-376-1320", icon: "phone" },
+                { label: "WhatsApp", icon: "message" },
+                { label: "hello@ikar-mashkanta.co.il", icon: "email" },
+            ],
         },
         legal: ["מדיניות פרטיות", "הצהרת נגישות", "תנאי שימוש"],
         copyright: "© 2026 עיקר משכנתאות",
@@ -134,3 +147,7 @@ export const mortgageContent = {
 } as const;
 
 export type ServiceIconName = (typeof mortgageContent.services.items)[number]["icon"];
+export type ContactIconName =
+    | (typeof mortgageContent.contact.methods)[number]["icon"]
+    | (typeof mortgageContent.footer.contact.links)[number]["icon"];
+export type ContactFormContent = typeof mortgageContent.contact.form;

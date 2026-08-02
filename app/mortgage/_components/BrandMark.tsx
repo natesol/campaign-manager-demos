@@ -5,6 +5,7 @@ type BrandMarkProps = {
 export function BrandMark({ compact = false }: BrandMarkProps) {
     return (
         <span
+            aria-hidden="true"
             className={
                 compact ? "mortgage-brand-mark mortgage-brand-mark--compact" : "mortgage-brand-mark"
             }
