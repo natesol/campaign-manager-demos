@@ -8,8 +8,3 @@
  * previews this campaign. The page keeps the default Rubik display face, which
  * already matches the approved v3 hero's rounded bold Hebrew.
  */
-
-.skincare-hero-visual {
-    -webkit-mask-image: radial-gradient(ellipse 82% 78% at center, #000 68%, transparent 100%);
-    mask-image: radial-gradient(ellipse 82% 78% at center, #000 68%, transparent 100%);
-}

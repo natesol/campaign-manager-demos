@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { Sparkles } from "lucide-react";
 
-import heroTrio from "../_assets/seasonal-skincare_asset-01_hero-trio_v2.png";
+import heroTrio from "../_assets/seasonal-skincare_asset-01_hero-trio_v3-transparent.png";
 import { hero } from "../content";
 
 /*
@@ -46,7 +46,7 @@ export function Hero() {
                             priority
                             draggable={false}
                             sizes="(min-width: 1280px) 44rem, (min-width: 1024px) 56vw, 92vw"
-                            className="skincare-hero-visual h-auto w-full select-none"
+                            className="h-auto w-full select-none"
                         />
                     </span>
                 </div>
