@@ -41,11 +41,11 @@ const flavors: Flavor[] = [
         lead: "עשירה, קטיפתית, בלתי נשכחת.",
         body: "עוגייה חמאתית רכה במילוי קרם פיסטוק אמיתי, עם פיסטוקים קלויים קצוצים וקמצוץ מלח ים.",
         features: ["100% פיסטוק אמיתי", "חמאה איכותית", "קמצוץ מלח ים"],
-        accent: "text-drop-pistachio",
-        accentRule: "bg-drop-pistachio/50",
-        accentBorder: "border-drop-pistachio/50",
-        disc: "bg-drop-pistachio/25",
-        ground: "from-drop-paper to-drop-pistachio-tint",
+        accent: "text-campaign-cookies-pistachio",
+        accentRule: "bg-campaign-cookies-pistachio/50",
+        accentBorder: "border-campaign-cookies-pistachio/50",
+        disc: "bg-campaign-cookies-pistachio/25",
+        ground: "from-campaign-cookies-paper to-campaign-cookies-pistachio-tint",
     },
     {
         id: "raspberry",
@@ -56,11 +56,11 @@ const flavors: Flavor[] = [
         lead: "פריכות, מתיקות עדינה וחמיצות פטל טבעית.",
         body: "עוגיית חמאה רכה במילוי פטל אמיתי ושוקולד לבן, עם פיסות פטל שלמות שמעניקות ביס מלא חיים.",
         features: ["פטל אמיתי", "שוקולד לבן איכותי", "קמצוץ מלח ים"],
-        accent: "text-drop-raspberry",
-        accentRule: "bg-drop-raspberry/50",
-        accentBorder: "border-drop-raspberry/50",
-        disc: "bg-drop-raspberry/20",
-        ground: "from-drop-pistachio-tint to-drop-raspberry-tint",
+        accent: "text-campaign-cookies-accent",
+        accentRule: "bg-campaign-cookies-accent/50",
+        accentBorder: "border-campaign-cookies-accent/50",
+        disc: "bg-campaign-cookies-accent/20",
+        ground: "from-campaign-cookies-pistachio-tint to-campaign-cookies-raspberry-tint",
     },
     {
         id: "cocoa",
@@ -71,11 +71,11 @@ const flavors: Flavor[] = [
         lead: "עמוק, עשיר ומאוזן להפליא.",
         body: "עוגיית קקאו רכה עם שוקולד מריר מעולה וקמצוץ מלח ים שמדגיש כל ביס.",
         features: ["קקאו איכותי", "שוקולד מריר", "קמצוץ מלח ים"],
-        accent: "text-drop-cocoa",
-        accentRule: "bg-drop-cocoa/40",
-        accentBorder: "border-drop-cocoa/40",
-        disc: "bg-drop-cocoa/25",
-        ground: "from-drop-raspberry-tint to-drop-cocoa-tint",
+        accent: "text-campaign-cookies-ink",
+        accentRule: "bg-campaign-cookies-ink/40",
+        accentBorder: "border-campaign-cookies-ink/40",
+        disc: "bg-campaign-cookies-ink/25",
+        ground: "from-campaign-cookies-raspberry-tint to-campaign-cookies-cocoa-tint",
     },
 ];
 
@@ -110,16 +110,16 @@ function Plate({ tone, height }: { tone: string; height: string }) {
     return <span className={`block w-full rounded-md ${tone} ${height}`} />;
 }
 
-function Glyph({ tone = "border-drop-cocoa/40" }: { tone?: string }) {
+function Glyph({ tone = "border-campaign-cookies-ink/40" }: { tone?: string }) {
     return <span className={`block size-9 shrink-0 rounded-full border ${tone}`} />;
 }
 
 function TrioGlyph() {
     return (
         <span className="flex items-center justify-center gap-1.5">
-            <Disc tone="bg-drop-pistachio/40" size="size-3" />
-            <Disc tone="bg-drop-paper" size="size-3" />
-            <Disc tone="bg-drop-raspberry/40" size="size-3" />
+            <Disc tone="bg-campaign-cookies-pistachio/40" size="size-3" />
+            <Disc tone="bg-campaign-cookies-paper" size="size-3" />
+            <Disc tone="bg-campaign-cookies-accent/40" size="size-3" />
         </span>
     );
 }
@@ -138,16 +138,16 @@ function SiteHeader() {
                 <a href="#pistachio" className="underline-offset-4 hover:underline">
                     הטעמים
                 </a>
-                <span className="text-drop-cocoa/30">/</span>
+                <span className="text-campaign-cookies-ink/30">/</span>
                 <a href="#story" className="underline-offset-4 hover:underline">
                     הסיפור
                 </a>
-                <span className="text-drop-cocoa/30">/</span>
+                <span className="text-campaign-cookies-ink/30">/</span>
                 <a href="#drop" className="underline-offset-4 hover:underline">
                     שאלות
                 </a>
             </nav>
-            <p className="text-drop-cocoa/70 text-sm tabular-nums">03.09 — 10:00</p>
+            <p className="text-campaign-cookies-ink/70 text-sm tabular-nums">03.09 — 10:00</p>
         </header>
     );
 }
@@ -175,7 +175,7 @@ function HeroFlavor({
     return (
         <a
             href={`#${flavor.id}`}
-            className={`group flex items-start gap-3 outline-offset-4 focus-visible:outline-2 focus-visible:outline-drop-cocoa ${row}`}
+            className={`group flex items-start gap-3 outline-offset-4 focus-visible:outline-2 focus-visible:outline-campaign-cookies-ink ${row}`}
         >
             <span className="transition-transform duration-700 group-hover:-translate-y-3">
                 <Disc tone={flavor.disc} size={size} />
@@ -189,7 +189,7 @@ function HeroFlavor({
                     {flavor.number}
                 </span>
                 <span className="font-bold text-sm leading-snug">{flavor.name}</span>
-                <span className="text-drop-cocoa/60 text-sm leading-snug">
+                <span className="text-campaign-cookies-ink/60 text-sm leading-snug">
                     {flavor.note[0]}
                     <br />
                     {flavor.note[1]}
@@ -207,12 +207,12 @@ function Hero() {
                 שלושה
                 <br />
                 טעמים
-                <span className="mt-4 block text-4xl text-drop-pistachio sm:text-6xl">
+                <span className="mt-4 block text-4xl text-campaign-cookies-pistachio sm:text-6xl">
                     מהדורה אחת.
                 </span>
             </h1>
 
-            <p className="max-w-sm text-balance text-center text-base text-drop-cocoa/70 sm:absolute sm:inset-x-0 sm:top-[58%] sm:mx-auto">
+            <p className="max-w-sm text-balance text-center text-base text-campaign-cookies-ink/70 sm:absolute sm:inset-x-0 sm:top-[58%] sm:mx-auto">
                 שלושה טעמים בלתי נשכחים במהדורה אחת. בחרו את האהובה עליכם.
             </p>
 
@@ -250,9 +250,11 @@ function FlavorChapter({ flavor, index }: { flavor: Flavor; index: number }) {
                         <br />
                         {flavor.nameLines[1]}
                     </h2>
-                    <p className="text-pretty text-drop-cocoa/85 text-xl">{flavor.lead}</p>
+                    <p className="text-pretty text-campaign-cookies-ink/85 text-xl">
+                        {flavor.lead}
+                    </p>
                     <span className={`block h-px w-16 ${flavor.accentRule}`} />
-                    <p className="max-w-md text-pretty text-base text-drop-cocoa/75">
+                    <p className="max-w-md text-pretty text-base text-campaign-cookies-ink/75">
                         {flavor.body}
                     </p>
                     <ul className="mt-2 flex flex-col gap-5">
@@ -280,21 +282,21 @@ function StorySection() {
         <section
             id="story"
             aria-labelledby="story-heading"
-            className="scroll-mt-24 bg-drop-cocoa-tint py-24 sm:py-36"
+            className="scroll-mt-24 bg-campaign-cookies-cocoa-tint py-24 sm:py-36"
         >
             <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-14 px-6 text-center sm:px-10">
                 <TrioGlyph />
                 <div className="flex flex-col gap-5">
                     <h2 id="story-heading" className="font-bold font-display text-4xl sm:text-5xl">
                         שלושה טעמים.
-                        <span className="block text-drop-pistachio">מהדורה אחת.</span>
+                        <span className="block text-campaign-cookies-pistachio">מהדורה אחת.</span>
                     </h2>
-                    <p className="mx-auto max-w-xl text-pretty text-base text-drop-cocoa/75">
+                    <p className="mx-auto max-w-xl text-pretty text-base text-campaign-cookies-ink/75">
                         שלוש קלאסיקות, שלושה רגעי אושר, במהדורה מוגבלת למי שאוהבים טעם אמיתי.
                     </p>
                 </div>
                 <div className="w-full max-w-3xl">
-                    <Plate tone="bg-drop-paper" height="h-64 sm:h-96" />
+                    <Plate tone="bg-campaign-cookies-paper" height="h-64 sm:h-96" />
                 </div>
             </div>
         </section>
@@ -306,7 +308,7 @@ function DropDetails() {
         <section
             id="drop"
             aria-labelledby="drop-heading"
-            className="scroll-mt-24 bg-drop-paper py-24 sm:py-36"
+            className="scroll-mt-24 bg-campaign-cookies-paper py-24 sm:py-36"
         >
             <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12 px-6 text-center sm:px-10">
                 <Glyph />
@@ -314,7 +316,7 @@ function DropDetails() {
                     <h2 id="drop-heading" className="font-bold font-display text-4xl sm:text-5xl">
                         מתי ואיפה?
                     </h2>
-                    <p className="text-pretty text-base text-drop-cocoa/75">
+                    <p className="text-pretty text-base text-campaign-cookies-ink/75">
                         מהדורה מוגבלת.
                         <br />
                         מגיעים — ונעלמים.
@@ -326,18 +328,20 @@ function DropDetails() {
                         <div
                             key={detail.label}
                             className={`flex flex-col items-center gap-3 sm:px-8 ${
-                                index > 0 ? "sm:border-drop-raspberry/35 sm:border-e" : ""
+                                index > 0 ? "sm:border-campaign-cookies-accent/35 sm:border-e" : ""
                             }`}
                         >
                             <Glyph />
-                            <dt className="font-bold text-base text-drop-pistachio">
+                            <dt className="font-bold text-base text-campaign-cookies-pistachio">
                                 {detail.label}
                             </dt>
                             <dd className="flex flex-col gap-1">
                                 <span className="font-bold font-display text-2xl tabular-nums">
                                     {detail.value}
                                 </span>
-                                <span className="text-drop-cocoa/70 text-sm">{detail.caption}</span>
+                                <span className="text-campaign-cookies-ink/70 text-sm">
+                                    {detail.caption}
+                                </span>
                             </dd>
                         </div>
                     ))}
@@ -345,7 +349,7 @@ function DropDetails() {
 
                 <div className="flex flex-col items-center gap-4">
                     <TrioGlyph />
-                    <p className="text-drop-cocoa/70 text-sm">
+                    <p className="text-campaign-cookies-ink/70 text-sm">
                         הכמות מוגבלת מאוד — כל עוד יש, זה שלנו.
                     </p>
                 </div>
@@ -359,21 +363,21 @@ function ReminderSection() {
         <section
             id="reminder"
             aria-labelledby="reminder-heading"
-            className="scroll-mt-24 bg-drop-paper pb-24 sm:pb-36"
+            className="scroll-mt-24 bg-campaign-cookies-paper pb-24 sm:pb-36"
         >
             <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-8 px-6 text-center sm:px-10">
                 <Glyph />
                 <h2 id="reminder-heading" className="font-bold font-display text-4xl sm:text-5xl">
                     אל תישארו
-                    <span className="block text-drop-raspberry">מחוץ לדרופ.</span>
+                    <span className="block text-campaign-cookies-accent">מחוץ לדרופ.</span>
                 </h2>
-                <p className="text-pretty text-base text-drop-cocoa/75">
+                <p className="text-pretty text-base text-campaign-cookies-ink/75">
                     הירשמו עכשיו וקבלו תזכורת לפני שהמהדורה המוגבלת נפתחת.
                 </p>
 
                 <ReminderForm />
 
-                <p className="text-drop-cocoa/60 text-sm">
+                <p className="text-campaign-cookies-ink/60 text-sm">
                     לא נשלח ספאם, וניתן לבטל את ההרשמה בכל עת.
                 </p>
             </div>
@@ -383,27 +387,27 @@ function ReminderSection() {
 
 function BrandStory() {
     return (
-        <section className="bg-drop-paper pb-24 sm:pb-36">
+        <section className="bg-campaign-cookies-paper pb-24 sm:pb-36">
             <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-8 px-6 text-center sm:px-10">
                 <div className="w-full max-w-2xl">
-                    <Plate tone="bg-drop-cocoa-tint" height="h-64 sm:h-80" />
+                    <Plate tone="bg-campaign-cookies-cocoa-tint" height="h-64 sm:h-80" />
                 </div>
                 <h2 className="font-bold font-display text-3xl sm:text-4xl">
                     שלושה טעמים.
-                    <span className="block text-drop-pistachio">מהדורה אחת.</span>
+                    <span className="block text-campaign-cookies-pistachio">מהדורה אחת.</span>
                 </h2>
                 <span className="flex items-center gap-6">
-                    <Glyph tone="border-drop-pistachio/50" />
-                    <Glyph tone="border-drop-cocoa/40" />
-                    <Glyph tone="border-drop-raspberry/50" />
+                    <Glyph tone="border-campaign-cookies-pistachio/50" />
+                    <Glyph tone="border-campaign-cookies-ink/40" />
+                    <Glyph tone="border-campaign-cookies-accent/50" />
                 </span>
-                <p className="text-pretty text-base text-drop-cocoa/75">
+                <p className="text-pretty text-base text-campaign-cookies-ink/75">
                     אנחנו מאמינים בפשטות טובה, בחומרי גלם משובחים, וברגעים הקטנים שהופכים יום רגיל
                     לחגיגה קטנה. <strong className="font-bold">תודה שאתם חלק מהמסע שלנו.</strong>
                 </p>
                 <div className="flex flex-col gap-2">
                     <p className="font-bold font-display text-3xl">קרמב.</p>
-                    <p className="text-drop-cocoa/70 text-sm">מאפים. אנשים. תשוקה.</p>
+                    <p className="text-campaign-cookies-ink/70 text-sm">מאפים. אנשים. תשוקה.</p>
                 </div>
             </div>
         </section>
@@ -412,7 +416,7 @@ function BrandStory() {
 
 function SiteFooter() {
     return (
-        <footer className="border-drop-cocoa/15 border-t bg-drop-paper">
+        <footer className="border-campaign-cookies-ink/15 border-t bg-campaign-cookies-paper">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-16 sm:px-10">
                 <div className="grid gap-10 sm:grid-cols-4">
                     {footerColumns.map((column) => (
@@ -423,7 +427,7 @@ function SiteFooter() {
                                     <li key={link}>
                                         <a
                                             href="#drop"
-                                            className="text-drop-cocoa/70 text-sm underline-offset-4 hover:underline"
+                                            className="text-campaign-cookies-ink/70 text-sm underline-offset-4 hover:underline"
                                         >
                                             {link}
                                         </a>
@@ -434,7 +438,7 @@ function SiteFooter() {
                     ))}
                     <div className="flex flex-col gap-4">
                         <p className="font-bold font-display text-2xl">קרמב.</p>
-                        <p className="text-drop-cocoa/70 text-sm">
+                        <p className="text-campaign-cookies-ink/70 text-sm">
                             מאפייה ישראלית של אנשים שאוהבים לאפות בשבילכם.
                         </p>
                         <span className="flex gap-3">
@@ -445,11 +449,11 @@ function SiteFooter() {
                     </div>
                 </div>
 
-                <dl className="grid gap-8 border-drop-cocoa/15 border-t pt-10 sm:grid-cols-3">
+                <dl className="grid gap-8 border-campaign-cookies-ink/15 border-t pt-10 sm:grid-cols-3">
                     <div className="flex flex-col items-center gap-2 text-center">
                         <Glyph />
                         <dt className="font-bold text-base">דברו איתנו</dt>
-                        <dd className="text-drop-cocoa/70 text-sm">
+                        <dd className="text-campaign-cookies-ink/70 text-sm">
                             ימים א׳—ה׳, 9:00—17:00
                             <br />
                             03-1234567
@@ -458,7 +462,7 @@ function SiteFooter() {
                     <div className="flex flex-col items-center gap-2 text-center">
                         <Glyph />
                         <dt className="font-bold text-base">כתבו לנו</dt>
-                        <dd className="text-drop-cocoa/70 text-sm">
+                        <dd className="text-campaign-cookies-ink/70 text-sm">
                             נשמח לשמוע מכם
                             <br />
                             hello@krembo.co.il
@@ -467,7 +471,7 @@ function SiteFooter() {
                     <div className="flex flex-col items-center gap-2 text-center">
                         <Glyph />
                         <dt className="font-bold text-base">צריך עזרה?</dt>
-                        <dd className="text-drop-cocoa/70 text-sm">
+                        <dd className="text-campaign-cookies-ink/70 text-sm">
                             אנחנו כאן בשבילכם
                             <br />
                             צרו איתנו קשר
@@ -475,12 +479,12 @@ function SiteFooter() {
                     </div>
                 </dl>
 
-                <div className="flex flex-col items-center gap-3 border-drop-cocoa/15 border-t pt-8 text-center">
+                <div className="flex flex-col items-center gap-3 border-campaign-cookies-ink/15 border-t pt-8 text-center">
                     <TrioGlyph />
-                    <p className="text-drop-cocoa/60 text-sm">
+                    <p className="text-campaign-cookies-ink/60 text-sm">
                         © קרמב. כל הזכויות שמורות. · תנאי שימוש · מדיניות פרטיות · הצהרת נגישות
                     </p>
-                    <p className="text-drop-cocoa/55 text-sm">
+                    <p className="text-campaign-cookies-ink/55 text-sm">
                         קמפיין בדיוני שנוצר לצורך תיק עבודות. המותג, המוצרים ופרטי הקשר אינם
                         אמיתיים.
                     </p>
@@ -501,7 +505,7 @@ export default function CookiesRoute() {
     }));
 
     return (
-        <div className="flex flex-1 flex-col bg-drop-paper text-drop-cocoa">
+        <div className="flex flex-1 flex-col bg-campaign-cookies-paper text-campaign-cookies-ink">
             <FlavorRail flavors={railFlavors} />
             <SiteHeader />
             <Hero />

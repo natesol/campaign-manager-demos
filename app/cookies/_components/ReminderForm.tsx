@@ -20,14 +20,14 @@ export function ReminderForm() {
 
     if (submitted) {
         return (
-            <output className="flex w-full flex-col items-center gap-3 rounded-md border border-drop-pistachio/50 bg-drop-pistachio/10 px-6 py-8 text-center">
-                <p className="font-bold font-display text-2xl text-drop-pistachio">
+            <output className="flex w-full flex-col items-center gap-3 rounded-md border border-campaign-cookies-pistachio/50 bg-campaign-cookies-pistachio/10 px-6 py-8 text-center">
+                <p className="font-bold font-display text-2xl text-campaign-cookies-pistachio">
                     נרשמתם לתזכורת.
                 </p>
-                <p className="text-base text-drop-cocoa/80">
+                <p className="text-base text-campaign-cookies-ink/80">
                     נזכיר לכם ב־03.09 בבוקר, רגע לפני שהמהדורה נפתחת.
                 </p>
-                <p className="text-drop-cocoa/60 text-sm">
+                <p className="text-campaign-cookies-ink/60 text-sm">
                     זהו עמוד הדגמה — הכתובת {email ? `“${email}” ` : ""}לא נשלחה ולא נשמרה בשום
                     מקום.
                 </p>
@@ -37,7 +37,7 @@ export function ReminderForm() {
                         setSubmitted(false);
                         setEmail("");
                     }}
-                    className="text-drop-cocoa/70 text-sm underline underline-offset-4 hover:text-drop-cocoa"
+                    className="text-campaign-cookies-ink/70 text-sm underline underline-offset-4 hover:text-campaign-cookies-ink"
                 >
                     להרשמה נוספת
                 </button>
@@ -48,7 +48,7 @@ export function ReminderForm() {
     return (
         <form
             onSubmit={handleSubmit}
-            className="flex w-full flex-col gap-3 rounded-md border border-drop-cocoa/20 p-3 sm:flex-row sm:items-center"
+            className="flex w-full flex-col gap-3 rounded-md border border-campaign-cookies-ink/20 p-3 sm:flex-row sm:items-center"
         >
             <label htmlFor="reminder-email" className="sr-only">
                 כתובת האימייל שלך
@@ -62,11 +62,11 @@ export function ReminderForm() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="כתובת האימייל שלך"
-                className="flex-1 rounded-md bg-transparent px-4 py-3 text-base outline-none placeholder:text-drop-cocoa/50 focus-visible:outline-2 focus-visible:outline-drop-cocoa"
+                className="flex-1 rounded-md bg-transparent px-4 py-3 text-base outline-none placeholder:text-campaign-cookies-ink/50 focus-visible:outline-2 focus-visible:outline-campaign-cookies-ink"
             />
             <button
                 type="submit"
-                className="rounded-md bg-drop-pistachio px-6 py-3 font-medium text-base text-drop-paper transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-drop-cocoa focus-visible:outline-offset-2"
+                className="rounded-md bg-campaign-cookies-pistachio px-6 py-3 font-medium text-base text-campaign-cookies-paper transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-campaign-cookies-ink focus-visible:outline-offset-2"
             >
                 שלחו לי תזכורת
             </button>

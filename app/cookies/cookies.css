@@ -10,14 +10,14 @@
  * palette — every neutral there is cool — so they are brand values, set directly
  * from the approved mockups.
  *
- * The drop paper, cocoa and raspberry stay in globals.css rather than moving
- * here, because the home page previews this campaign and needs them too.
+ * The campaign's four identity colors stay in styles/campaigns/cookies.css
+ * rather than moving here, because the home page previews this campaign.
  */
 @theme inline {
-    --color-drop-pistachio: #6d7c3c;
+    --color-campaign-cookies-pistachio: #6d7c3c;
 
     /* Flavor chapter grounds. Each chapter sits on its own tint of the same warmth. */
-    --color-drop-pistachio-tint: #eef2e1;
-    --color-drop-raspberry-tint: #fbe9ee;
-    --color-drop-cocoa-tint: #f2ebe0;
+    --color-campaign-cookies-pistachio-tint: #eef2e1;
+    --color-campaign-cookies-raspberry-tint: #fbe9ee;
+    --color-campaign-cookies-cocoa-tint: #f2ebe0;
 }
