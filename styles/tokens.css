@@ -55,5 +55,11 @@
     /* Both families carry Hebrew subsets; a Latin-only family cannot serve as
        --font-sans here, because every page is Hebrew. */
     --font-sans: var(--font-assistant), system-ui, sans-serif;
-    --font-display: var(--font-rubik), system-ui, sans-serif;
+    /* Resolved through a second variable, the same indirection the color roles
+       use, so a campaign scope can bring its own display face. */
+    --font-display: var(--display-font);
+}
+
+:root {
+    --display-font: var(--font-rubik), system-ui, sans-serif;
 }

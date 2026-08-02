@@ -8,7 +8,7 @@ import { type Demo, demos } from "./demos";
 // The numeral is the one place a campaign's accent appears on this page, so the
 // saturated color only ever carries large type.
 const accent: Record<Demo["theme"], string> = {
-    cookies: "text-campaign-cookies-accent",
+    cookies: "text-campaign-cookies-raspberry",
     skincare: "text-campaign-skincare-accent",
     mortgage: "text-campaign-mortgage-accent",
 };

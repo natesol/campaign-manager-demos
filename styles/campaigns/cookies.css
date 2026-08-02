@@ -2,18 +2,20 @@
  * Cookies campaign — palette and theme.
  *
  * A page opts in with data-campaign="cookies" on its root element, and is then
- * written entirely in shadcn's role utilities. Every campaign declares the same
- * four identity colors and overwrites the same roles, so there is one system to
- * learn, not one per campaign.
+ * written in shadcn's role utilities plus the flavor colors below. paper, ink
+ * and band play the identity part every campaign declares; the flavor trio is
+ * this campaign's own, each named by the cookie it colors. The page's base
+ * brown (ink) and the chocolate flavor are separate colors on purpose.
  */
 
 @theme inline {
-    /* Identity. Every campaign declares exactly these four.
-       Cream has no equivalent in Tailwind's palette — every neutral there is
-       cool — so it is set directly, from the approved mockups. */
-    --color-campaign-cookies-paper: #f7f2e8;
-    --color-campaign-cookies-ink: var(--color-stone-800);
-    --color-campaign-cookies-accent: var(--color-pink-600);
+    /* All set directly: Tailwind has no warm ivory and no chocolate, and the
+       raspberry pink is fixed by the approved concept record. */
+    --color-campaign-cookies-paper: #f8efe4;
+    --color-campaign-cookies-ink: #3f2a18;
+    --color-campaign-cookies-pistachio: #6d7c3c;
+    --color-campaign-cookies-raspberry: oklch(59.2% 0.249 0.584);
+    --color-campaign-cookies-chocolate: #5b3a22;
     --color-campaign-cookies-band: color-mix(
         in oklab,
         var(--color-campaign-cookies-paper) var(--campaign-band-tint-paper),
@@ -45,12 +47,12 @@
         var(--color-campaign-cookies-paper)
     );
 
-    /* The accent is darkened toward the ink before it carries a label. At full
-       strength a small label on it is too low-contrast to read comfortably. */
+    /* The raspberry is darkened toward the ink before it carries a label. At
+       full strength a small label on it is too low-contrast to read comfortably. */
     --primary: color-mix(
         in oklab,
         var(--color-campaign-cookies-ink) 25%,
-        var(--color-campaign-cookies-accent)
+        var(--color-campaign-cookies-raspberry)
     );
     --primary-foreground: var(--color-campaign-cookies-paper);
     --secondary: color-mix(
@@ -81,5 +83,5 @@
         var(--color-campaign-cookies-ink) 20%,
         var(--color-campaign-cookies-paper)
     );
-    --ring: var(--color-campaign-cookies-accent);
+    --ring: var(--color-campaign-cookies-raspberry);
 }

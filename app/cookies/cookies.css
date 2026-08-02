@@ -4,20 +4,47 @@
  * Cookie-drop page styles.
  *
  * Everything shared lives in globals.css, imported above. Only what this page
- * alone uses belongs here.
- *
- * The chapter tints and the olive have no equivalent anywhere in Tailwind's
- * palette — every neutral there is cool — so they are brand values, set directly
- * from the approved mockups.
- *
- * The campaign's four identity colors stay in styles/campaigns/cookies.css
- * rather than moving here, because the home page previews this campaign.
+ * alone uses belongs here. The campaign's identity and flavor colors stay in
+ * styles/campaigns/cookies.css, because the home page previews this campaign.
  */
-@theme inline {
-    --color-campaign-cookies-pistachio: #6d7c3c;
 
-    /* Flavor chapter grounds. Each chapter sits on its own tint of the same warmth. */
-    --color-campaign-cookies-pistachio-tint: #eef2e1;
-    --color-campaign-cookies-raspberry-tint: #fbe9ee;
-    --color-campaign-cookies-cocoa-tint: #f2ebe0;
+[data-campaign="cookies"] {
+    /* The approved display face is a heavy, sharp Hebrew sans; Secular One is
+       the closest free cut. The next/font variable is set on the campaign root
+       in page.tsx, and the font-display utility resolves through --display-font. */
+    --display-font: var(--font-secular-one), var(--font-rubik), system-ui, sans-serif;
+    /* Secular One ships a single weight; without this, font-bold on a display
+       heading would render a smeared synthetic bold instead. */
+    font-synthesis-weight: none;
+
+    /* Chapter ground tints, one warmth in three directions. Plain variables:
+       only the ground rules below consume them, never a utility. */
+    --campaign-cookies-pistachio-tint: #eef2e1;
+    --campaign-cookies-raspberry-tint: #fbe9ee;
+    --campaign-cookies-cocoa-tint: #f2ebe0;
+}
+
+/* Each flavor chapter paints its own ground: a plateau across most of the
+   section that fades to the page paper at both ends, so chapters never share
+   an edge and the page never divides into hard color bands. */
+[data-flavor] {
+    background-image: linear-gradient(
+        to bottom,
+        transparent,
+        var(--chapter-tint) 9%,
+        var(--chapter-tint) 91%,
+        transparent
+    );
+}
+
+[data-flavor="pistachio"] {
+    --chapter-tint: var(--campaign-cookies-pistachio-tint);
+}
+
+[data-flavor="raspberry"] {
+    --chapter-tint: var(--campaign-cookies-raspberry-tint);
+}
+
+[data-flavor="cocoa"] {
+    --chapter-tint: var(--campaign-cookies-cocoa-tint);
 }
