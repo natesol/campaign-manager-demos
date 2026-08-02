@@ -57,7 +57,7 @@ export function Testimonials() {
                     <Sparkles
                         aria-hidden
                         strokeWidth={1.5}
-                        className="absolute -start-9 -top-3 size-6 text-campaign-skincare-coral"
+                        className="absolute -start-2 -top-3 size-6 text-campaign-skincare-coral sm:-start-9"
                     />
                     <h2 className="font-bold font-display text-[clamp(2rem,4vw,3rem)] leading-tight">
                         {testimonials.headingLines[0]}
@@ -66,11 +66,20 @@ export function Testimonials() {
                     </h2>
                 </div>
 
-                <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className="w-full">
-                    <CarouselContent>
-                        {testimonials.reviews.map((review) => (
-                            <CarouselItem key={review.name} className="sm:basis-1/2 lg:basis-1/3">
-                                <article className="flex h-full flex-col gap-4 rounded-3xl border border-campaign-skincare-lavender/70 p-8">
+                <Carousel
+                    setApi={setApi}
+                    opts={{ align: "start", loop: true, duration: 28 }}
+                    aria-label="חוות דעת לקוחות"
+                    className="w-full"
+                >
+                    <CarouselContent className="cursor-grab items-stretch pb-2 active:cursor-grabbing">
+                        {testimonials.reviews.map((review, index) => (
+                            <CarouselItem
+                                key={review.name}
+                                aria-label={`${index + 1} מתוך ${testimonials.reviews.length}`}
+                                className="flex basis-[88%] xs:basis-[72%] sm:basis-1/2 lg:basis-1/3"
+                            >
+                                <article className="flex min-h-80 w-full flex-col gap-4 rounded-3xl border border-campaign-skincare-lavender/55 bg-background/85 p-8 shadow-[0_1rem_3rem_-2rem_color-mix(in_oklab,var(--color-campaign-skincare-ink)_35%,transparent)]">
                                     <Stars />
                                     <span
                                         aria-hidden="true"
@@ -78,7 +87,7 @@ export function Testimonials() {
                                     >
                                         ”
                                     </span>
-                                    <blockquote className="text-pretty text-base">
+                                    <blockquote className="text-pretty text-base leading-relaxed">
                                         {review.quote}
                                     </blockquote>
                                     <span className="mt-auto flex flex-col gap-3 pt-2">
@@ -98,9 +107,9 @@ export function Testimonials() {
                         ))}
                     </CarouselContent>
 
-                    <div className="mt-10 flex items-center justify-center gap-6">
-                        <CarouselPrevious className="size-11 border-foreground bg-transparent hover:bg-accent" />
-                        <span className="flex items-center gap-2">
+                    <div className="mx-auto mt-9 flex w-fit items-center justify-center gap-4 rounded-full border border-campaign-skincare-lavender/45 bg-background/80 px-3 py-2 shadow-sm backdrop-blur-sm">
+                        <CarouselPrevious className="size-10 border-border bg-background transition-[background-color,border-color,transform] duration-200 hover:-translate-y-px hover:border-campaign-skincare-lavender hover:bg-accent active:translate-y-0 motion-reduce:transform-none" />
+                        <span className="flex items-center gap-2.5 px-1">
                             {testimonials.reviews.map((review, index) => (
                                 <button
                                     key={review.name}
@@ -108,15 +117,15 @@ export function Testimonials() {
                                     aria-label={`חוות דעת ${index + 1}`}
                                     aria-current={index === current || undefined}
                                     onClick={() => api?.scrollTo(index)}
-                                    className={`h-2 rounded-full transition-all duration-300 ${
+                                    className={`h-2.5 rounded-full transition-[width,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 motion-reduce:transition-none ${
                                         index === current
-                                            ? "w-6 bg-campaign-skincare-coral"
-                                            : "w-2 bg-foreground/20 hover:bg-foreground/40"
+                                            ? "w-7 bg-campaign-skincare-coral"
+                                            : "w-2.5 bg-foreground/20 hover:bg-foreground/45"
                                     }`}
                                 />
                             ))}
                         </span>
-                        <CarouselNext className="size-11 border-foreground bg-transparent hover:bg-accent" />
+                        <CarouselNext className="size-10 border-border bg-background transition-[background-color,border-color,transform] duration-200 hover:-translate-y-px hover:border-campaign-skincare-lavender hover:bg-accent active:translate-y-0 motion-reduce:transform-none" />
                     </div>
                 </Carousel>
 

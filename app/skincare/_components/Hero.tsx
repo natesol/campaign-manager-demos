@@ -37,21 +37,19 @@ export function Hero() {
                         {hero.support}
                     </p>
                 </div>
-                {/* The product stage is itself the shortcut to the products. */}
-                <a
-                    href="#products"
-                    className="flex justify-center transition-transform duration-500 hover:-translate-y-2"
-                >
-                    <span className="block w-full max-w-80 origin-bottom scale-110 lg:scale-150">
+                {/* The product stage is the hero's dominant visual, not a disguised control. */}
+                <div className="relative flex justify-center lg:-ms-12 lg:-me-8">
+                    <span className="block w-[118%] max-w-[44rem] shrink-0 sm:w-[112%]">
                         <Image
                             src={heroTrio}
                             alt="שלושת מוצרי שגרת הקיץ על במת זכוכית"
                             priority
-                            sizes="(min-width: 1024px) 30rem, 80vw"
-                            className="h-auto w-full"
+                            draggable={false}
+                            sizes="(min-width: 1280px) 44rem, (min-width: 1024px) 56vw, 92vw"
+                            className="skincare-hero-visual h-auto w-full select-none"
                         />
                     </span>
-                </a>
+                </div>
             </div>
 
             {/* The interaction cue: a circular control and a fine vertical line
@@ -59,7 +57,7 @@ export function Hero() {
             <div className="flex flex-col items-center">
                 <a
                     href="#routine"
-                    className="flex size-20 items-center justify-center rounded-full border border-border p-2 text-center text-xs leading-tight transition-colors hover:bg-accent"
+                    className="flex size-20 items-center justify-center rounded-full border border-border p-2 text-center text-xs leading-tight transition-[background-color,border-color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-campaign-skincare-lavender hover:bg-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 active:translate-y-0 motion-reduce:transform-none"
                 >
                     {hero.cue}
                 </a>

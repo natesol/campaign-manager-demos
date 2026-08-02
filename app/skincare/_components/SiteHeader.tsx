@@ -15,7 +15,7 @@ export function SiteHeader() {
                     <a
                         key={item.href}
                         href={item.href}
-                        className="underline-offset-4 hover:underline"
+                        className="rounded-sm underline-offset-4 transition-colors duration-200 hover:text-campaign-skincare-coral hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35"
                     >
                         {item.label}
                     </a>
@@ -23,7 +23,7 @@ export function SiteHeader() {
             </nav>
             <Link
                 href="/"
-                className="col-start-2 flex items-center gap-2 font-bold font-display text-xl"
+                className="col-start-2 flex items-center gap-2 rounded-sm font-bold font-display text-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35"
             >
                 {brand}
                 <Flower
@@ -33,13 +33,11 @@ export function SiteHeader() {
                 />
             </Link>
             {/* On phones the hero cue and closing CTA carry the action. */}
-            <Pill
-                href={primaryCta.href}
-                size="sm"
-                className="hidden justify-self-end whitespace-nowrap sm:inline-flex"
-            >
-                {primaryCta.label}
-            </Pill>
+            <div className="hidden justify-self-end sm:block">
+                <Pill href={primaryCta.href} size="sm" className="whitespace-nowrap">
+                    {primaryCta.label}
+                </Pill>
+            </div>
         </header>
     );
 }

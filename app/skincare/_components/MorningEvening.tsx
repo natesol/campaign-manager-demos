@@ -33,10 +33,10 @@ function MosaicCard({
         /* The cards are the mosaic's clickable stops, all leading to the products. */
         <a
             href="#products"
-            className={`flex min-h-52 flex-col items-center justify-center gap-3 bg-accent p-5 text-center transition-colors hover:bg-campaign-skincare-lavender/25 ${span}`}
+            className={`group flex min-h-52 flex-col items-center justify-center gap-3 bg-accent p-5 text-center transition-[background-color,box-shadow] duration-200 ease-out hover:bg-campaign-skincare-lavender/25 hover:shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-campaign-skincare-lavender)_45%,transparent)] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 focus-visible:ring-inset ${span}`}
         >
             <span
-                className={`flex size-11 items-center justify-center rounded-full border ${accent}`}
+                className={`flex size-11 items-center justify-center rounded-full border transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-focus-visible:-translate-y-0.5 motion-reduce:transform-none ${accent}`}
             >
                 <card.icon aria-hidden strokeWidth={1.5} className="size-5" />
             </span>
@@ -71,7 +71,10 @@ export function MorningEvening() {
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[auto_15rem_15rem_15rem]">
                     {/* Heading block: a short first row on the start side; the tall
                         cleanser shot spans this row and the next. */}
-                    <ScrollReveal className="flex flex-col justify-center gap-3 pb-6 sm:col-span-2 lg:col-span-7 lg:pe-16 lg:pb-0">
+                    <ScrollReveal
+                        motion="soft"
+                        className="flex flex-col justify-center gap-3 pb-6 sm:col-span-2 lg:col-span-7 lg:pe-16 lg:pb-0"
+                    >
                         <p className="flex items-center gap-2 text-campaign-skincare-coral text-sm">
                             {routine.eyebrow}
                             <Sparkles aria-hidden strokeWidth={1.5} className="size-4" />

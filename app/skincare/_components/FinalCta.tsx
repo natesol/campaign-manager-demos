@@ -14,13 +14,16 @@ export function FinalCta() {
     return (
         <section id="closing" className="py-16 lg:py-24">
             <div className="mx-auto flex w-full max-w-5xl flex-col gap-14 px-6 sm:px-10">
-                <ScrollReveal className="flex flex-col items-center gap-6 text-center">
+                <ScrollReveal
+                    motion="soft"
+                    className="flex flex-col items-center gap-6 text-center"
+                >
                     <h2 className="relative font-bold font-display text-[clamp(1.9rem,3.5vw,2.75rem)] leading-tight">
                         {finalCta.heading}
                         <Sparkles
                             aria-hidden
                             strokeWidth={1.5}
-                            className="absolute -start-9 -top-5 size-6 text-campaign-skincare-coral"
+                            className="absolute -start-2 -top-4 size-6 text-campaign-skincare-coral sm:-start-9 sm:-top-5"
                         />
                     </h2>
                     <p className="text-lg text-muted-foreground">{finalCta.support}</p>

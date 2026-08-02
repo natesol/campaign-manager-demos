@@ -29,7 +29,7 @@ export function ProductSequence() {
                     <Sparkles
                         aria-hidden
                         strokeWidth={1.5}
-                        className="absolute -end-8 -top-2 size-6 text-campaign-skincare-coral"
+                        className="absolute -end-2 -top-2 size-6 text-campaign-skincare-coral sm:-end-8"
                     />
                     <h2 className="font-bold font-display text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
                         {sequence.headingLines[0]}
@@ -51,7 +51,8 @@ export function ProductSequence() {
                                     {product.step}
                                 </span>
                                 <ScrollReveal
-                                    delay={index * 120}
+                                    delay={index * 80}
+                                    motion="soft"
                                     className="flex w-full flex-col items-center gap-5 text-center"
                                 >
                                     <span className="relative block aspect-square w-full overflow-hidden rounded-lg bg-accent">

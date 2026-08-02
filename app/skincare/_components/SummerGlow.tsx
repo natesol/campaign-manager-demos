@@ -17,7 +17,10 @@ export function SummerGlow() {
     return (
         <section id="glow" className="bg-accent">
             <div className="grid items-stretch lg:grid-cols-2">
-                <ScrollReveal className="flex flex-col justify-center gap-6 px-6 py-16 sm:px-10 lg:mx-auto lg:w-full lg:max-w-2xl lg:py-24 lg:ps-16">
+                <ScrollReveal
+                    motion="soft"
+                    className="flex flex-col justify-center gap-6 px-6 py-16 sm:px-10 lg:mx-auto lg:w-full lg:max-w-2xl lg:py-24 lg:ps-16"
+                >
                     <h2 className="relative max-w-md font-bold font-display text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
                         {glow.headingLines[0]}
                         <br />
@@ -39,7 +42,8 @@ export function SummerGlow() {
                 </ScrollReveal>
 
                 <ScrollReveal
-                    delay={120}
+                    delay={80}
+                    motion="soft"
                     className="relative min-h-80 overflow-hidden bg-campaign-skincare-lavender/40 lg:min-h-[32rem]"
                 >
                     <Image

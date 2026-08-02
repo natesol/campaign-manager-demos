@@ -38,7 +38,7 @@ export function SiteFooter() {
                                 <li key={item.label}>
                                     <a
                                         href={item.href}
-                                        className="underline-offset-4 hover:underline"
+                                        className="rounded-sm underline-offset-4 transition-colors duration-200 hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35"
                                     >
                                         {item.label}
                                     </a>
@@ -52,7 +52,10 @@ export function SiteFooter() {
                         <ul className="flex flex-col gap-2 text-base text-muted-foreground">
                             {footer.service.items.map((item) => (
                                 <li key={item}>
-                                    <a href="#hero" className="underline-offset-4 hover:underline">
+                                    <a
+                                        href="#hero"
+                                        className="rounded-sm underline-offset-4 transition-colors duration-200 hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35"
+                                    >
                                         {item}
                                     </a>
                                 </li>
@@ -83,7 +86,7 @@ export function SiteFooter() {
                             <a
                                 href="#hero"
                                 aria-label={social.name}
-                                className="flex size-11 items-center justify-center rounded-full bg-accent transition-colors hover:bg-campaign-skincare-lavender/30"
+                                className="flex size-11 items-center justify-center rounded-full bg-accent transition-[background-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 hover:bg-campaign-skincare-lavender/30 hover:shadow-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 active:translate-y-0 motion-reduce:transform-none"
                             >
                                 <social.icon aria-hidden strokeWidth={1.5} className="size-5" />
                             </a>
