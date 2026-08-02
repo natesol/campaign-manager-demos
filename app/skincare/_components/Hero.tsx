@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { Sparkles } from "lucide-react";
 
-import heroTrio from "../_assets/seasonal-skincare_asset-01_hero-trio_v3-transparent.png";
+import heroTrio from "../_assets/seasonal-skincare_asset-01_hero-trio_v3-transparent.webp";
 import { hero } from "../content";
 
 /*

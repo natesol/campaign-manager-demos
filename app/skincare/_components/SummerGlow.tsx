@@ -4,7 +4,7 @@ import { Sparkles } from "lucide-react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 
-import gelRibbonImage from "../_assets/seasonal-skincare_asset-11_feature-gel-ribbon_v1.png";
+import gelRibbonImage from "../_assets/seasonal-skincare_asset-11_feature-gel-ribbon_v1.webp";
 import { glow } from "../content";
 import { Pill } from "./Pill";
 

@@ -4,12 +4,12 @@ import { Sparkles } from "lucide-react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 
-import cleanserImage from "../_assets/seasonal-skincare_asset-02_grid-cleansing-water_v2.png";
-import promenadeImage from "../_assets/seasonal-skincare_asset-03_grid-summer-promenade_v1.png";
-import moisturizerImage from "../_assets/seasonal-skincare_asset-04_grid-moisturizer_v1.png";
-import waterImage from "../_assets/seasonal-skincare_asset-05_grid-water-ripple_v1.png";
-import modelSpfImage from "../_assets/seasonal-skincare_asset-06_grid-model-spf_v1.png";
-import spfCapImage from "../_assets/seasonal-skincare_asset-07_grid-spf-water-closeup_v1.png";
+import cleanserImage from "../_assets/seasonal-skincare_asset-02_grid-cleansing-water_v2.webp";
+import promenadeImage from "../_assets/seasonal-skincare_asset-03_grid-summer-promenade_v1.webp";
+import moisturizerImage from "../_assets/seasonal-skincare_asset-04_grid-moisturizer_v1.webp";
+import waterImage from "../_assets/seasonal-skincare_asset-05_grid-water-ripple_v1.webp";
+import modelSpfImage from "../_assets/seasonal-skincare_asset-06_grid-model-spf_v1.webp";
+import spfCapImage from "../_assets/seasonal-skincare_asset-07_grid-spf-water-closeup_v1.webp";
 import { routine } from "../content";
 
 /*

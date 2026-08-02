@@ -4,9 +4,9 @@ import { Sparkles } from "lucide-react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 
-import cleanserImage from "../_assets/seasonal-skincare_asset-08_routine-cleansing_v1.png";
-import moisturizerImage from "../_assets/seasonal-skincare_asset-09_routine-moisturizer_v1.png";
-import sunscreenImage from "../_assets/seasonal-skincare_asset-10_routine-spf_v1.png";
+import cleanserImage from "../_assets/seasonal-skincare_asset-08_routine-cleansing_v1.webp";
+import moisturizerImage from "../_assets/seasonal-skincare_asset-09_routine-moisturizer_v1.webp";
+import sunscreenImage from "../_assets/seasonal-skincare_asset-10_routine-spf_v1.webp";
 import { products, sequence } from "../content";
 import { Pill } from "./Pill";
 
