@@ -1,34 +1,24 @@
 /*
- * The role vocabulary — the only color names a page or component may use.
+ * The color roles. This file names them; schemes/ and campaigns/ give them values.
  *
- * This file names the roles and sets none of their values. Every theme in
- * themes/ does that.
+ * The names are shadcn's, plus the three additions marked below. Keeping them
+ * exact is what lets a registry component drop in unedited.
  *
- * The set is shadcn's, unchanged, plus two additions marked below. Keeping
- * shadcn's names exactly is what lets a registry component drop in and work: it
- * already speaks these, so it never needs editing.
+ * Each role points at a plain variable rather than a value, because `inline`
+ * bakes a literal into every utility it generates. A role defined directly here
+ * could never be re-themed; pointing at var(--background) means anything that
+ * sets that variable retypes everything under it.
  *
- * Build every page out of these. A brand color never belongs in markup:
- * `bg-background` on a campaign page resolves to that campaign's paper, while a
- * campaign-specific class hard-wires the page to one palette and has to be
- * rewritten when the palette changes.
- *
- * WHY THE INDIRECTION. Each role points at a plain variable rather than a value.
- * `inline` bakes a literal into every utility it generates, so a role defined
- * directly here could never change at runtime. Pointing at var(--background)
- * instead means anything that sets that variable retypes everything beneath it.
- * That is how every theme works, and why they nest: a campaign theme inside a
- * dark document overrides only the roles it names.
- *
- * TWO PAIRS THAT READ ALIKE AND ARE NOT:
- *   muted  is a muted SURFACE   / muted-foreground  is muted TEXT
- *   accent is the hover GROUND  / accent-foreground is the ink on it
+ * Two pairs that read alike and are not:
+ *   muted  is a muted surface  / muted-foreground  is muted text
+ *   accent is the hover ground / accent-foreground is the ink on it
  */
 @theme inline {
-    /* The ground behind everything, outside every theme. A page that sets no
-       background of its own lands on this. */
-    --color-canvas: var(--color-slate-50);
-    --color-canvas-foreground: var(--color-slate-900);
+    /* The ground behind everything, and the only role no scheme touches. The
+       campaign pages have no dark mode and never will, so the document body
+       cannot follow the light/dark toggle. These match the light scheme. */
+    --color-canvas: var(--color-gray-50);
+    --color-canvas-foreground: var(--color-zinc-900);
 
     /* Surfaces and the ink on them. */
     --color-background: var(--background);
@@ -54,13 +44,10 @@
     --color-input: var(--input);
     --color-ring: var(--ring);
 
-    /* The additions. shadcn stops at one muted text step and one rule weight;
-       editorial layouts need a quieter text step below muted, a rule strong
-       enough to read as a drawn line rather than a seam, and a text step that
-       EMPHASIZES — the tinted line inside a heading, the eyebrow above it.
-       Emphasis and subtle may share a value in one scheme and must not in
-       another, which is exactly why they are separate roles. Every theme sets
-       all three, so they behave exactly like the roles above. */
+    /* The additions. shadcn stops at one muted text step and one rule weight.
+       subtle is a quieter text step below muted, emphasis is a tinted one above
+       it, and border-strong is a rule heavy enough to read as a drawn line.
+       Every scheme sets all three, so they behave like the roles above. */
     --color-subtle-foreground: var(--subtle-foreground);
     --color-emphasis-foreground: var(--emphasis-foreground);
     --color-border-strong: var(--border-strong);

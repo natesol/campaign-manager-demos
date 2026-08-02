@@ -1,6 +1,6 @@
 /* Element defaults. Imported last, so @apply here sees every token above. */
 @layer base {
-    /* Clicking a hero cookie scrolls to its chapter, unless the user asks for less motion. */
+    /* In-page anchors glide rather than jump, unless the visitor asks for less motion. */
     html {
         scroll-behavior: smooth;
     }
@@ -15,9 +15,8 @@
         @apply border-border outline-ring/50;
     }
 
-    /* The ground is the canvas, not the themed background: only the home page
-       carries a color scheme, and the skincare and mortgage routes have no
-       ground of their own, so a themed body would darken them along with it. */
+    /* The canvas, not the themed background: only the home page carries a color
+       scheme, so a themed body would drag the campaign pages into dark with it. */
     body {
         @apply bg-canvas text-canvas-foreground;
     }

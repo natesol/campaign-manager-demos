@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Assistant, Rubik } from "next/font/google";
 import "@/styles/globals.css";
-import { ThemeProvider } from "./_components/ThemeProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 // shadcn's init adds Geist here as --font-sans. It carries no Hebrew, and every
 // page on this site is Hebrew, so the families below stay the sans and display
