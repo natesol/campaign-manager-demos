@@ -1,11 +1,12 @@
 import type { LucideIcon } from "lucide-react";
-import { Droplet, Heart, Leaf, Moon, Shield, Sun } from "lucide-react";
+import { Droplet, Flower, Leaf, Mail, MapPin, Moon, Phone, Shield, Sun, Waves } from "lucide-react";
 
 /*
- * The campaign copy. The headline, support, product-family line, product
- * captions, CTA, closing lines, and disclosure are approved copy from the
- * concept record (docs/demos/2-seasonal-skincare/v1/) and must not be reworded
- * without a new approval. The section leads follow the v3 hero's language.
+ * The campaign copy, following the user's final full-page design. The hero
+ * lines, product names, and English descriptors carry over from the approved
+ * concept record; the section copy follows the final design, with generated
+ * Hebrew normalized. The reviews and the purchase CTA are fictional and stay
+ * by explicit user decision over the older record.
  *
  * שגרת טיפוח is a fixed phrase; neither שגרה nor טיפוח stands alone for it.
  */
@@ -20,7 +21,7 @@ export const navigation = [
 export const primaryCta = { label: "להכיר את שגרת הטיפוח", href: "#routine" };
 
 export const hero = {
-    /* Coral periods, as in the approved v3 hero. */
+    /* Coral periods, as in the approved hero. */
     headline: [
         { text: "הקיץ הגיע", dot: true },
         { text: "שגרת הטיפוח", dot: false },
@@ -28,6 +29,31 @@ export const hero = {
     ],
     support: "ניקוי ולחות בבוקר ובערב, והגנה מהשמש במהלך היום.",
     cue: "לשגרת הטיפוח",
+};
+
+/* The morning-and-evening mosaic: three copy cards woven between six image
+   tiles. The tile entries become real photography later. */
+export const routine = {
+    eyebrow: "שגרת טיפוח",
+    heading: "בוקר וערב",
+    support: "שגרת טיפוח מדויקת שמתאימה לקצב הקיץ – קלה, יעילה, ונותנת לעור בדיוק מה שהוא צריך.",
+    cards: {
+        morning: {
+            icon: Sun as LucideIcon,
+            title: "בוקר",
+            body: "ניקוי, לחות, הגנה. שלושה שלבים פשוטים שעובדים יחד להגנה גבוהה לאורך כל היום.",
+        },
+        evening: {
+            icon: Moon as LucideIcon,
+            title: "ערב",
+            body: "ניקוי ולחות. שני שלבים הכרחיים להתחדשות של הלילה.",
+        },
+        protection: {
+            icon: Shield as LucideIcon,
+            title: "הגנה יומיומית",
+            body: "קרם הגנה SPF 50 קליל עם ספקטרום רחב שומר על העור מפני קרני UVA/UVB לאורך כל היום.",
+        },
+    },
 };
 
 export type Product = {
@@ -47,7 +73,7 @@ export const products: Product[] = [
         label: "ניקוי",
         name: "ג'ל ניקוי",
         descriptor: "CLEANSING GEL",
-        caption: "פותח את הבוקר וסוגר את היום.",
+        caption: "מנקה בעדינות ומרענן את העור, מכין את העור להמשך היום.",
     },
     {
         id: "moisturizer",
@@ -55,7 +81,7 @@ export const products: Product[] = [
         label: "לחות",
         name: "קרם לחות",
         descriptor: "MOISTURIZER",
-        caption: "מגיע אחרי הניקוי, בבוקר ובערב.",
+        caption: "מספקת לחות ואיזון לעור רך, גמיש וזוהר.",
     },
     {
         id: "sunscreen",
@@ -63,81 +89,89 @@ export const products: Product[] = [
         label: "הגנה",
         name: "קרם הגנה SPF 50",
         descriptor: "SPF 50",
-        caption: "השלב האחרון לפני שיוצאים.",
+        caption: "הגנה רחבת טווח UVA/UVB לשמירה על העור לאורך כל היום.",
     },
 ];
 
-export const summer = {
-    heading: "עור קליל, מוגן וזוהר כל הקיץ",
-    body: [
-        "השמש חזקה יותר, הימים ארוכים יותר, והעור זקוק לטיפוח שמותאם לעונה.",
-        "שגרת הטיפוח שלנו משלבת ניקוי עדין, לחות מאוזנת והגנה גבוהה מהשמש, לעור בריא, רענן וחיוני.",
-    ],
-    cta: { label: "לכל המוצרים", href: "#products" },
-};
-
-export const routine = {
-    heading: "בוקר וערב",
-    support: "שגרת טיפוח אחת שמשתנה עם היום.",
-    morning: {
-        icon: Sun as LucideIcon,
-        title: "בוקר",
-        body: "ניקוי, לחות והגנה. שלושה שלבים שעובדים יחד לאורך כל היום.",
-        items: ["ג'ל ניקוי", "קרם לחות", "קרם הגנה SPF 50"],
-    },
-    evening: {
-        icon: Moon as LucideIcon,
-        title: "ערב",
-        body: "ניקוי ולחות. שני שלבים שמרגיעים ומחדשים את העור בלילה.",
-        items: ["ג'ל ניקוי", "קרם לחות"],
-    },
-};
-
 export const sequence = {
-    heading: { text: "שלושה מוצרים לשגרת טיפוח אחת", dot: true },
+    headingLines: ["שגרת בוקר פשוטה,", "תוצאות לאורך כל היום"],
+    cta: { label: "לשגרת הטיפוח המלאה", href: "#routine" },
 };
 
-export const formulas = {
-    heading: "פורמולות קלילות לתוצאות מרשימות",
-    features: [
+export const testimonials = {
+    headingLines: ["אלפי לקוחות", "כבר מרגישים את ההבדל"],
+    reviews: [
         {
+            quote: "מוצרי הקיץ האהובים עליי. לא שומניים, קלילים ומכינים את העור לקיץ.",
+            name: "נועה, 29",
+            skin: "עור רגיל",
+            icon: Waves as LucideIcon,
+        },
+        {
+            quote: "השילוב של ניקוי עדין, לחות והגנה יוצר תחושה נינוחה כל היום.",
+            name: "מיכל, 34",
+            skin: "עור מעורב",
             icon: Droplet as LucideIcon,
-            title: "לחות לאורך כל היום",
-            caption: "מרכיבים פעילים לשמירה על לחות, רכות וזוהר.",
         },
         {
-            icon: Shield as LucideIcon,
-            title: "הגנה מתקדמת",
-            caption: "הגנה רחבת טווח SPF 50 מפני קרני UVA/UVB.",
-        },
-        {
+            quote: "העור שלי נראה הרבה יותר בריא. המרקם קל, הניקיון לא מייבש וההגנה מושלמת לימים חמים.",
+            name: "רוני, 26",
+            skin: "עור רגיש",
             icon: Leaf as LucideIcon,
-            title: "קליל ולא דביק",
-            caption: "נמרח בקלות, נספג במהירות ומתאים לשימוש יומיומי.",
         },
         {
-            icon: Heart as LucideIcon,
-            title: "מתאים לכל סוגי העור",
-            caption: "פורמולות עדינות, בלי רכיבים מיותרים.",
+            quote: "הפכתי את שגרת הטיפוח לחלק מהבוקר שלי. שלושה שלבים וזהו – פשוט וקל.",
+            name: "דנה, 31",
+            skin: "עור יבש",
+            icon: Flower as LucideIcon,
+        },
+        {
+            quote: "קרם ההגנה הכי נעים שהשתמשתי בו. קליל, נספג מהר ולא משאיר תחושה דביקה.",
+            name: "שיר, 27",
+            skin: "עור שמן",
+            icon: Sun as LucideIcon,
         },
     ],
+    cta: { label: "לקריאת חוות דעת נוספות", href: "#hero" },
 };
 
-export const moment = {
-    heading: { text: "מהבוקר עד הערב, בדיוק לעונה", dot: true },
-    support: "שלושת המוצרים עובדים יחד ומשתנים עם היום.",
+export const glow = {
+    headingLines: ["עור קליל,", "מוגן וזוהר", "כל הקיץ"],
+    body: "הקיץ קורא לשגרת טיפוח חכמה וקלה: ניקוי עדין, לחות מאוזנת והגנה יעילה מהשמש. כך תשמרי על עור רענן, נוח ומואר – בכל יום ובכל מזג אוויר.",
+    cta: { label: "לגלות את כל המוצרים", href: "#products" },
 };
 
-export const closing = {
-    heading: { text: "שלושה מוצרים, מהבוקר עד הערב", dot: true },
-    support: "ג'ל ניקוי וקרם לחות לבוקר ולערב. קרם הגנה SPF 50 לפני שיוצאים.",
+export const finalCta = {
+    heading: "מוכנה לקבל עור זוהר, בריא ומוגן?",
+    support: "הצטרפי לאלפי נשים שכבר מרגישות את ההבדל.",
+    /* A demonstrative dead control, by explicit user decision. */
+    cta: { label: "לרכישה עכשיו", href: "#hero" },
 };
 
 export const footer = {
-    nav: [
-        { label: "שגרת הטיפוח", href: "#hero" },
-        { label: "המוצרים", href: "#products" },
-        { label: "בוקר וערב", href: "#routine" },
-    ],
+    brandLine: "טיפוח חכם. עור שמרגיש טוב. כל יום.",
+    nav: {
+        title: "ניווט",
+        items: [
+            { label: "המוצרים שלנו", href: "#products" },
+            { label: "שגרת הטיפוח", href: "#routine" },
+            { label: "אודות", href: "#hero" },
+            { label: "שאלות נפוצות", href: "#hero" },
+            { label: "צור קשר", href: "#hero" },
+        ],
+    },
+    service: {
+        title: "שירות לקוחות",
+        items: ["משלוחים והחזרות", "תנאי שימוש", "מדיניות פרטיות"],
+    },
+    contact: {
+        title: "צרי קשר",
+        items: [
+            { icon: Mail as LucideIcon, value: "info@skincare.co.il", ltr: true },
+            { icon: Phone as LucideIcon, value: "03-1234567", ltr: true },
+            { icon: MapPin as LucideIcon, value: "תל אביב, ישראל", ltr: false },
+        ],
+    },
+    rights: "© בדיוק לעונה. כל הזכויות שמורות.",
     disclosure: "קונספט בדיוני לתיק עבודות. המותג והמוצרים אינם אמיתיים.",
 };

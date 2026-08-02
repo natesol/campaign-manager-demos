@@ -1,45 +1,107 @@
-import { Flower } from "lucide-react";
+import { AtSign, Camera, Flower, Music } from "lucide-react";
 
 import { brand, footer } from "../content";
 
-/* The compact deep-indigo footer: mark, navigation, and the required
-   fictional-portfolio disclosure. It closes the page without a new concept. */
+/*
+ * The final design's light four-column footer: brand, navigation, customer
+ * service, contact, then socials and the rights line. The disclosure stays —
+ * the stage rules require it on the page regardless of design generation.
+ */
+
+/* Stand-ins for Instagram, Facebook and TikTok, which this lucide version does not carry. */
+const socials = [
+    { name: "אינסטגרם", icon: Camera },
+    { name: "פייסבוק", icon: AtSign },
+    { name: "טיקטוק", icon: Music },
+];
+
 export function SiteFooter() {
     return (
-        <footer className="bg-foreground text-background">
-            <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-6 py-14 text-center sm:px-10">
-                <p className="flex items-center gap-2 font-bold font-display text-2xl">
-                    {brand}
-                    <Flower
-                        aria-hidden
-                        strokeWidth={2}
-                        className="size-5 text-campaign-skincare-coral"
-                    />
-                </p>
-                <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-base">
-                    {footer.nav.map((item, index) => (
-                        <span key={item.label} className="flex items-center gap-4">
-                            {index > 0 && (
-                                <span aria-hidden="true" className="text-background/40">
-                                    |
-                                </span>
-                            )}
+        <footer>
+            <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 pt-4 pb-12 sm:px-10">
+                <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+                    <div className="flex flex-col gap-3">
+                        <p className="flex items-center gap-2 font-bold font-display text-xl">
+                            <Flower
+                                aria-hidden
+                                strokeWidth={2}
+                                className="size-5 text-campaign-skincare-coral"
+                            />
+                            {brand}
+                        </p>
+                        <p className="text-base text-muted-foreground">{footer.brandLine}</p>
+                    </div>
+
+                    <div className="flex flex-col gap-4">
+                        <p className="font-bold text-base">{footer.nav.title}</p>
+                        <ul className="flex flex-col gap-2 text-base text-muted-foreground">
+                            {footer.nav.items.map((item) => (
+                                <li key={item.label}>
+                                    <a
+                                        href={item.href}
+                                        className="underline-offset-4 hover:underline"
+                                    >
+                                        {item.label}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="flex flex-col gap-4">
+                        <p className="font-bold text-base">{footer.service.title}</p>
+                        <ul className="flex flex-col gap-2 text-base text-muted-foreground">
+                            {footer.service.items.map((item) => (
+                                <li key={item}>
+                                    <a href="#hero" className="underline-offset-4 hover:underline">
+                                        {item}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="flex flex-col gap-4">
+                        <p className="font-bold text-base">{footer.contact.title}</p>
+                        <ul className="flex flex-col gap-3 text-base text-muted-foreground">
+                            {footer.contact.items.map((item) => (
+                                <li key={item.value} className="flex items-center gap-3">
+                                    <item.icon
+                                        aria-hidden
+                                        strokeWidth={1.5}
+                                        className="size-4 shrink-0"
+                                    />
+                                    {item.ltr ? <span dir="ltr">{item.value}</span> : item.value}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
+                <ul className="flex justify-center gap-4">
+                    {socials.map((social) => (
+                        <li key={social.name}>
                             <a
-                                href={item.href}
-                                className="text-background/85 underline-offset-4 hover:underline"
+                                href="#hero"
+                                aria-label={social.name}
+                                className="flex size-11 items-center justify-center rounded-full bg-accent transition-colors hover:bg-campaign-skincare-lavender/30"
                             >
-                                {item.label}
+                                <social.icon aria-hidden strokeWidth={1.5} className="size-5" />
                             </a>
-                        </span>
+                        </li>
                     ))}
-                </nav>
-                <p className="flex items-center gap-2 border-background/20 border-t pt-6 text-background/70 text-sm">
-                    <span
-                        aria-hidden="true"
-                        className="size-1.5 rounded-full bg-campaign-skincare-coral"
-                    />
-                    {footer.disclosure}
-                </p>
+                </ul>
+
+                <div className="flex flex-col items-center gap-2 text-center text-sm text-subtle-foreground">
+                    <p>{footer.rights}</p>
+                    <p className="flex items-center gap-2">
+                        <span
+                            aria-hidden="true"
+                            className="size-1.5 rounded-full bg-campaign-skincare-coral"
+                        />
+                        {footer.disclosure}
+                    </p>
+                </div>
             </div>
         </footer>
     );

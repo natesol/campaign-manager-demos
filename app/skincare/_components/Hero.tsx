@@ -35,11 +35,15 @@ export function Hero() {
                         {hero.support}
                     </p>
                 </div>
-                <div className="flex justify-center">
+                {/* The product stage is itself the shortcut to the products. */}
+                <a
+                    href="#products"
+                    className="flex justify-center transition-transform duration-500 hover:-translate-y-2"
+                >
                     <span className="block origin-bottom scale-110 lg:scale-150">
                         <Trio />
                     </span>
-                </div>
+                </a>
             </div>
 
             {/* The interaction cue: a circular control and a fine vertical line

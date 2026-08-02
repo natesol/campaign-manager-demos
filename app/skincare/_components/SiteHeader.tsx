@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Flower } from "lucide-react";
 
 import { brand, navigation, primaryCta } from "../content";
+import { Pill } from "./Pill";
 
 /* The approved header: navigation on the right, the campaign mark dead center,
    the action on the left, all on one compact baseline. */
@@ -32,12 +33,13 @@ export function SiteHeader() {
                 />
             </Link>
             {/* On phones the hero cue and closing CTA carry the action. */}
-            <a
+            <Pill
                 href={primaryCta.href}
-                className="hidden justify-self-end whitespace-nowrap rounded-full border border-foreground/30 px-5 py-2.5 text-sm transition-colors hover:bg-accent sm:block"
+                size="sm"
+                className="hidden justify-self-end whitespace-nowrap sm:inline-flex"
             >
                 {primaryCta.label}
-            </a>
+            </Pill>
         </header>
     );
 }
