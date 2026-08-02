@@ -1,7 +1,10 @@
+import Image from "next/image";
+
 import { Sparkles } from "lucide-react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 
+import gelRibbonImage from "../_assets/seasonal-skincare_asset-11_feature-gel-ribbon_v1.png";
 import { glow } from "../content";
 import { Pill } from "./Pill";
 
@@ -35,15 +38,17 @@ export function SummerGlow() {
                     </Pill>
                 </ScrollReveal>
 
-                {/* Placeholder for the flowing gel-texture photograph, flush to
-                    the page edge, square-cornered. */}
                 <ScrollReveal
                     delay={120}
-                    className="relative min-h-80 bg-campaign-skincare-lavender/40 lg:min-h-[32rem]"
+                    className="relative min-h-80 overflow-hidden bg-campaign-skincare-lavender/40 lg:min-h-[32rem]"
                 >
-                    <span className="absolute start-[38%] top-[12%] block h-3/4 w-1/3 -rotate-12 rounded-[45%] bg-white/50" />
-                    <span className="absolute start-[15%] top-[18%] size-7 rounded-full border border-white/70 bg-white/50" />
-                    <span className="absolute end-[18%] bottom-[14%] size-5 rounded-full border border-white/70 bg-white/50" />
+                    <Image
+                        src={gelRibbonImage}
+                        alt="מרקם ג'ל שקוף בתנועה זורמת"
+                        fill
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="object-cover"
+                    />
                 </ScrollReveal>
             </div>
         </section>

@@ -1,16 +1,23 @@
+import Image, { type StaticImageData } from "next/image";
+
 import { Sparkles } from "lucide-react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 
+import cleanserImage from "../_assets/seasonal-skincare_asset-02_grid-cleansing-water_v2.png";
+import promenadeImage from "../_assets/seasonal-skincare_asset-03_grid-summer-promenade_v1.png";
+import moisturizerImage from "../_assets/seasonal-skincare_asset-04_grid-moisturizer_v1.png";
+import waterImage from "../_assets/seasonal-skincare_asset-05_grid-water-ripple_v1.png";
+import modelSpfImage from "../_assets/seasonal-skincare_asset-06_grid-model-spf_v1.png";
+import spfCapImage from "../_assets/seasonal-skincare_asset-07_grid-spf-water-closeup_v1.png";
 import { routine } from "../content";
 
 /*
  * The campaign's organizing idea as the final design's editorial mosaic. The
  * grid is not equal thirds: the cleanser shot holds a wide column spanning the
  * heading row and the row below it, the copy cards are the narrow tiles, and
- * every row splits the twelve columns differently. Tiles and cards are square,
- * as in the design, with one uniform gap throughout. Each flat tile carries a
- * note naming the shot it awaits.
+ * every row splits the twelve columns differently. One uniform gap binds the
+ * photographs and copy cards into a single editorial composition.
  */
 
 function MosaicCard({
@@ -39,9 +46,22 @@ function MosaicCard({
     );
 }
 
-/* A flat stand-in for one photograph of the mosaic. */
-function MosaicTile({ tone, span }: { tone: string; span: string }) {
-    return <div className={`min-h-52 ${tone} ${span}`} />;
+function MosaicTile({
+    src,
+    alt,
+    span,
+    sizes,
+}: {
+    src: StaticImageData;
+    alt: string;
+    span: string;
+    sizes: string;
+}) {
+    return (
+        <div className={`relative min-h-52 overflow-hidden ${span}`}>
+            <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" />
+        </div>
+    );
 }
 
 export function MorningEvening() {
@@ -65,12 +85,19 @@ export function MorningEvening() {
                     </ScrollReveal>
                     {/* Cleansing-gel packshot, wet. */}
                     <MosaicTile
-                        tone="bg-campaign-skincare-lavender/40"
+                        src={cleanserImage}
+                        alt="ג'ל ניקוי רטוב לצד מים וזכוכית"
+                        sizes="(min-width: 1024px) 42vw, (min-width: 640px) 50vw, 100vw"
                         span="lg:col-span-5 lg:row-span-2"
                     />
 
                     {/* Summer lifestyle photograph. */}
-                    <MosaicTile tone="bg-campaign-skincare-lavender/20" span="lg:col-span-4" />
+                    <MosaicTile
+                        src={promenadeImage}
+                        alt="אישה צועדת בטיילת קיצית ליד הים"
+                        sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
+                        span="lg:col-span-4"
+                    />
                     <MosaicCard
                         card={routine.cards.morning}
                         accent="border-campaign-skincare-coral/60 text-campaign-skincare-coral"
@@ -78,9 +105,19 @@ export function MorningEvening() {
                     />
 
                     {/* Gel texture macro, the row's widest tile. */}
-                    <MosaicTile tone="bg-campaign-skincare-lavender/35" span="lg:col-span-5" />
+                    <MosaicTile
+                        src={waterImage}
+                        alt="מרקם מים וג'ל בגווני לילך"
+                        sizes="(min-width: 1024px) 42vw, (min-width: 640px) 50vw, 100vw"
+                        span="lg:col-span-5"
+                    />
                     {/* Moisturizer on its arch. */}
-                    <MosaicTile tone="bg-campaign-skincare-lavender/25" span="lg:col-span-4" />
+                    <MosaicTile
+                        src={moisturizerImage}
+                        alt="בקבוק לחות על רקע גאומטרי לילך"
+                        sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
+                        span="lg:col-span-4"
+                    />
                     <MosaicCard
                         card={routine.cards.evening}
                         accent="border-foreground/30 text-foreground"
@@ -88,14 +125,24 @@ export function MorningEvening() {
                     />
 
                     {/* Sunscreen cap macro. */}
-                    <MosaicTile tone="bg-campaign-skincare-lavender/30" span="lg:col-span-4" />
+                    <MosaicTile
+                        src={spfCapImage}
+                        alt="תקריב רטוב של מכסה קרם ההגנה"
+                        sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
+                        span="lg:col-span-4"
+                    />
                     <MosaicCard
                         card={routine.cards.protection}
                         accent="border-campaign-skincare-coral/60 text-campaign-skincare-coral"
                         span="lg:col-span-4"
                     />
                     {/* Model holding the tube. */}
-                    <MosaicTile tone="bg-campaign-skincare-lavender/20" span="lg:col-span-4" />
+                    <MosaicTile
+                        src={modelSpfImage}
+                        alt="אישה מחזיקה קרם הגנה לצד פניה"
+                        sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
+                        span="lg:col-span-4"
+                    />
                 </div>
             </div>
         </section>

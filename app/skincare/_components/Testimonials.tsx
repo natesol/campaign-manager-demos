@@ -17,10 +17,8 @@ import { testimonials } from "../content";
 import { Pill } from "./Pill";
 
 /*
- * The reviews on the shadcn Embla carousel: one card per view on phones, three
- * on desktop, looping, with arrows and dots. Fictional reviews for the
- * fictional brand, kept by explicit user decision; the footer disclosure
- * covers the fiction.
+ * The reviews use the shadcn Embla carousel: one card per view on phones,
+ * three on desktop, looping, with arrows and dots.
  */
 
 function Stars() {

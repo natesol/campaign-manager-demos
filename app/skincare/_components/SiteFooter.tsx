@@ -4,8 +4,7 @@ import { brand, footer } from "../content";
 
 /*
  * The final design's light four-column footer: brand, navigation, customer
- * service, contact, then socials and the rights line. The disclosure stays —
- * the stage rules require it on the page regardless of design generation.
+ * service, contact, then socials and the rights line.
  */
 
 /* Stand-ins for Instagram, Facebook and TikTok, which this lucide version does not carry. */
@@ -92,16 +91,7 @@ export function SiteFooter() {
                     ))}
                 </ul>
 
-                <div className="flex flex-col items-center gap-2 text-center text-sm text-subtle-foreground">
-                    <p>{footer.rights}</p>
-                    <p className="flex items-center gap-2">
-                        <span
-                            aria-hidden="true"
-                            className="size-1.5 rounded-full bg-campaign-skincare-coral"
-                        />
-                        {footer.disclosure}
-                    </p>
-                </div>
+                <p className="text-center text-sm text-subtle-foreground">{footer.rights}</p>
             </div>
         </footer>
     );

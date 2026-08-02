@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 import { Sparkles } from "lucide-react";
 
+import heroTrio from "../_assets/seasonal-skincare_asset-01_hero-trio_v2.png";
 import { hero } from "../content";
-import { Trio } from "./placeholders";
 
 /*
  * The approved v3 hero: copy on the start side, the unified trio on its
@@ -40,8 +42,14 @@ export function Hero() {
                     href="#products"
                     className="flex justify-center transition-transform duration-500 hover:-translate-y-2"
                 >
-                    <span className="block origin-bottom scale-110 lg:scale-150">
-                        <Trio />
+                    <span className="block w-full max-w-80 origin-bottom scale-110 lg:scale-150">
+                        <Image
+                            src={heroTrio}
+                            alt="שלושת מוצרי שגרת הקיץ על במת זכוכית"
+                            priority
+                            sizes="(min-width: 1024px) 30rem, 80vw"
+                            className="h-auto w-full"
+                        />
                     </span>
                 </a>
             </div>

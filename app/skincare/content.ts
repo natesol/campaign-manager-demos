@@ -2,13 +2,8 @@ import type { LucideIcon } from "lucide-react";
 import { Droplet, Flower, Leaf, Mail, MapPin, Moon, Phone, Shield, Sun, Waves } from "lucide-react";
 
 /*
- * The campaign copy, following the user's final full-page design. The hero
- * lines, product names, and English descriptors carry over from the approved
- * concept record; the section copy follows the final design, with generated
- * Hebrew normalized. The reviews and the purchase CTA are fictional and stay
- * by explicit user decision over the older record.
- *
- * שגרת טיפוח is a fixed phrase; neither שגרה nor טיפוח stands alone for it.
+ * The campaign copy follows the approved full-page design. שגרת טיפוח is a
+ * fixed phrase; neither שגרה nor טיפוח stands alone for it.
  */
 
 export const brand = "בדיוק לעונה";
@@ -31,8 +26,7 @@ export const hero = {
     cue: "לשגרת הטיפוח",
 };
 
-/* The morning-and-evening mosaic: three copy cards woven between six image
-   tiles. The tile entries become real photography later. */
+/* The morning-and-evening mosaic: three copy cards woven between six images. */
 export const routine = {
     eyebrow: "שגרת טיפוח",
     heading: "בוקר וערב",
@@ -173,5 +167,4 @@ export const footer = {
         ],
     },
     rights: "© בדיוק לעונה. כל הזכויות שמורות.",
-    disclosure: "קונספט בדיוני לתיק עבודות. המותג והמוצרים אינם אמיתיים.",
 };

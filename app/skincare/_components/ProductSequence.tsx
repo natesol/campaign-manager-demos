@@ -1,10 +1,20 @@
+import Image from "next/image";
+
 import { Sparkles } from "lucide-react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 
+import cleanserImage from "../_assets/seasonal-skincare_asset-08_routine-cleansing_v1.png";
+import moisturizerImage from "../_assets/seasonal-skincare_asset-09_routine-moisturizer_v1.png";
+import sunscreenImage from "../_assets/seasonal-skincare_asset-10_routine-spf_v1.png";
 import { products, sequence } from "../content";
 import { Pill } from "./Pill";
-import { PumpBottle, Tube } from "./placeholders";
+
+const productImages = {
+    cleanser: cleanserImage,
+    moisturizer: moisturizerImage,
+    sunscreen: sunscreenImage,
+};
 
 /*
  * The connected product sequence: one dashed path, three numbered stops read
@@ -44,8 +54,14 @@ export function ProductSequence() {
                                     delay={index * 120}
                                     className="flex w-full flex-col items-center gap-5 text-center"
                                 >
-                                    <span className="flex aspect-square w-full items-end justify-center rounded-lg bg-accent pb-8">
-                                        {product.id === "moisturizer" ? <PumpBottle /> : <Tube />}
+                                    <span className="relative block aspect-square w-full overflow-hidden rounded-lg bg-accent">
+                                        <Image
+                                            src={productImages[product.id]}
+                                            alt={product.name}
+                                            fill
+                                            sizes="(min-width: 640px) 33vw, 80vw"
+                                            className="object-cover"
+                                        />
                                     </span>
                                     <span className="flex flex-col items-center gap-2">
                                         <span className="font-bold font-display text-2xl">
