@@ -6,8 +6,15 @@
  * so the scheme follows the toggle rather than the visitor's operating system —
  * and every dark: variant a registry component ships with stays inert until the
  * class is set.
+ *
+ * A campaign is excluded from it entirely. Each one overwrites the roles with its
+ * own palette and has no dark scheme, so the class must not reach inside it: it
+ * only changes what the roles mean, and cannot stop a registry component's own
+ * dark: utilities from firing on top of them. Both halves are needed, one for a
+ * campaign's own element and one for everything under it, because a portalled
+ * popup carries data-campaign itself rather than sitting inside the page.
  */
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *):not([data-campaign], [data-campaign] *));
 
 .dark {
     --background: var(--color-zinc-950);
