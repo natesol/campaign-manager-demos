@@ -25,10 +25,13 @@
 }
 
 /* Three states on the Tailwind breakpoints: base is mobile, md is tablet, lg is
-   desktop. Tablet: the gutter tracks the px-1 / md:px-3 on the panel wrappers so
-   the bleed math stays exact, and the bar swaps to the desktop menu and stick. */
+   desktop. Tablet: the frame padding steps up from the base so the bar and the
+   hero content clear the sides, short of the desktop one; the gutter tracks the
+   px-1 / md:px-3 on the panel wrappers so the bleed math stays exact, and the bar
+   swaps to the desktop menu and stick. */
 @media (width >= 48rem) {
     [data-campaign="mortgage"] {
+        --page-pad: 2.25rem;
         --page-gutter: 0.75rem;
         --header-stick: 0.75rem;
     }

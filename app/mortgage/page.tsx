@@ -61,7 +61,7 @@ const sectionWrap = "pt-20 lg:pt-28";
 const sectionShell = "mortgage-container";
 const sectionEyebrow = "font-semibold text-campaign-mortgage-accent text-base";
 const sectionTitle = "font-display text-2xl font-bold tracking-tight lg:text-3xl";
-const sectionCopy = "max-w-2xl text-base text-muted-foreground";
+const sectionCopy = "max-w-2xl text-base text-muted-foreground md:max-w-xl lg:max-w-2xl";
 
 function AccentLastWord({ text }: { text: string }) {
     const breakAt = text.lastIndexOf(" ");
@@ -181,7 +181,7 @@ export default function MortgageRoute() {
             <main>
                 <div className="px-1 pt-3 md:px-3">
                     <section
-                        className="mortgage-panel relative flex items-center overflow-hidden rounded-3xl bg-primary pt-40 pb-16 text-primary-foreground md:rounded-4xl md:py-48 lg:rounded-[3.5rem]"
+                        className="mortgage-panel relative flex items-center overflow-hidden rounded-3xl bg-primary pt-40 pb-16 text-primary-foreground md:rounded-[2.8rem] md:py-48 lg:rounded-[3.5rem]"
                         id="hero"
                         aria-labelledby="mortgage-hero-title"
                     >
@@ -358,7 +358,7 @@ export default function MortgageRoute() {
                                 >
                                     {position.heading}
                                 </h2>
-                                <p className="mt-5 max-w-2xl text-base text-primary-foreground/75">
+                                <p className="mt-5 max-w-2xl text-base text-primary-foreground/75 md:max-w-xl lg:max-w-2xl">
                                     {position.support}
                                 </p>
                             </div>
@@ -388,7 +388,7 @@ export default function MortgageRoute() {
 
                 <div className={sectionWrap}>
                     <section className={sectionShell} id="team" aria-labelledby="team-title">
-                        <div className="max-w-2xl text-start">
+                        <div className="max-w-2xl text-start md:max-w-xl lg:max-w-2xl">
                             <p className={sectionEyebrow}>{team.label}</p>
                             <h2 className={sectionTitle} id="team-title">
                                 {team.heading}
@@ -403,13 +403,13 @@ export default function MortgageRoute() {
                                 hold separately: 1.1fr and .66fr of the old three, so the
                                 proportions and the group beside it stay put. */}
                             <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none md:col-span-2 md:flex-row lg:col-span-1">
-                                <div className="relative min-h-80 bg-muted md:w-[62.5%] md:shrink-0 lg:min-h-96 lg:w-2/5">
+                                <div className="relative min-h-80 bg-muted md:w-[62.5%] md:shrink-0 lg:w-2/5">
                                     <Image
                                         src={teamYael}
                                         alt={`דיוקן של ${team.featured.name}`}
                                         fill
                                         sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 50vw, 30vw"
-                                        className="object-cover object-top"
+                                        className="object-cover object-top md:object-[50%_34%]"
                                     />
                                 </div>
                                 <div className="flex flex-col justify-center p-5 text-start">
@@ -434,13 +434,13 @@ export default function MortgageRoute() {
                                         className="group overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none"
                                         key={person.name}
                                     >
-                                        <div className="relative min-h-72 overflow-hidden bg-muted lg:min-h-36">
+                                        <div className="relative min-h-72 overflow-hidden bg-muted md:min-h-40 lg:min-h-36">
                                             <Image
                                                 src={supportingTeamImages[index]}
                                                 alt={`דיוקן של ${person.name}`}
                                                 fill
                                                 sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 30vw, 14vw"
-                                                className="object-cover object-top lg:scale-110 lg:object-[50%_25%]"
+                                                className="object-cover object-top md:scale-105 md:object-[50%_25%] lg:scale-110 lg:object-[50%_25%]"
                                             />
                                         </div>
                                         <div className="min-h-40 p-5">
@@ -475,18 +475,18 @@ export default function MortgageRoute() {
                             <h2 className={sectionTitle} id="contact-title">
                                 {contact.heading}
                             </h2>
-                            <p className="mt-5 max-w-2xl text-base text-muted-foreground">
+                            <p className="mt-5 max-w-2xl text-base text-muted-foreground md:max-w-xl lg:max-w-2xl">
                                 {contact.support}
                             </p>
 
-                            <div className="mt-8">
+                            <div className="mt-8 md:flex md:items-center lg:block">
                                 {contact.methods.map((method) => {
                                     const Icon = contactIcons[method.icon];
                                     const isExternal = method.href.startsWith("http");
 
                                     return (
                                         <a
-                                            className="group flex min-h-20 items-center gap-5 rounded-sm border-border border-b border-dashed transition-colors last:border-b-0 hover:text-campaign-mortgage-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
+                                            className="group flex min-h-20 items-center gap-5 rounded-sm border-border border-b border-dashed transition-colors last:border-b-0 hover:text-campaign-mortgage-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40 md:border-e md:border-b-0 md:px-8 md:last:border-e-0 md:last:pe-0 md:first:ps-0 lg:border-e-0 lg:border-b lg:px-0 lg:last:border-b-0"
                                             href={method.href}
                                             key={method.label}
                                             target={isExternal ? "_blank" : undefined}
