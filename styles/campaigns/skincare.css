@@ -7,14 +7,19 @@
  * are this campaign's own, named by what they color.
  */
 
+/* 
+    --color-campaign-skincare-ink: #2e3178;
+    --color-campaign-skincare-coral: #ee8566;
+ */
+
 @theme inline {
     /* All set directly, from the approved v3 hero: an almost-white ground with
        a faint lavender cast, deep cobalt-indigo typography, the periwinkle
        lavender of the packaging, and the controlled coral accent. */
     --color-campaign-skincare-paper: #fbfafd;
-    --color-campaign-skincare-ink: #2e3178;
+    --color-campaign-skincare-ink: #262a72;
     --color-campaign-skincare-lavender: #b7b1e3;
-    --color-campaign-skincare-coral: #ee8566;
+    --color-campaign-skincare-coral: #f17b68;
     --color-campaign-skincare-band: color-mix(
         in oklab,
         var(--color-campaign-skincare-lavender) var(--campaign-band-tint-accent),
