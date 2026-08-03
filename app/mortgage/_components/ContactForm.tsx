@@ -2,9 +2,16 @@
 
 import { type FormEvent, useEffect, useRef, useState } from "react";
 
-import { ArrowLeft, ChevronDown, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ShieldCheck } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
 import type { ContactFormContent } from "../content";
@@ -110,30 +117,47 @@ export function ContactForm({ form }: { form: ContactFormContent }) {
 
             <label className="mb-6 grid gap-2 font-semibold" htmlFor="mortgage-stage">
                 <span className="px-1">{form.stage}</span>
-                {/* The native indicator is drawn against the border whatever the padding
-                    is, so it is dropped for one we can set on the same line as the text. */}
-                <div className="relative">
-                    <select
-                        className={cn(fieldClassName, "cursor-pointer appearance-none pe-12")}
+                {/* A rendered listbox rather than the native control: Chrome draws the
+                    native popup at its own width, and nothing in CSS reaches it. This one
+                    takes the trigger's width from --anchor-width. */}
+                <Select name="stage" required>
+                    <SelectTrigger
+                        className={cn(
+                            fieldClassName,
+                            "cursor-pointer ps-5 pe-5 data-[size=default]:h-14 data-placeholder:text-muted-foreground",
+                        )}
                         id="mortgage-stage"
-                        name="stage"
-                        defaultValue=""
-                        required
                     >
-                        <option value="" disabled>
-                            {form.placeholder}
-                        </option>
+                        <SelectValue placeholder={form.placeholder} />
+                    </SelectTrigger>
+                    {/* Dropped below the trigger and aligned to it, rather than the
+                        component's default of parking the selected row on top of it.
+                        The popup is portalled to the body, outside the campaign element
+                        the palette is scoped to, so it carries the campaign back with it.
+                        The campaign overrides the roles unconditionally, which is what
+                        keeps the page itself light under the .dark class next-themes puts
+                        on the document; a portal escapes that element but not the class,
+                        so without this the popup alone goes dark. */}
+                    <SelectContent
+                        align="start"
+                        alignItemWithTrigger={false}
+                        className="rounded-3xl border border-input p-2 shadow-foreground/5 shadow-lg ring-0"
+                        data-campaign="mortgage"
+                        sideOffset={8}
+                    >
                         {form.options.map((option) => (
-                            <option key={option} value={option}>
+                            <SelectItem
+                                /* ps-3 plus the popup's p-2 puts the row text on the
+                                   trigger text's line; pe-8 clears the check indicator. */
+                                className="min-h-11 rounded-2xl ps-3 pe-8 text-base [&_svg]:text-campaign-mortgage-accent"
+                                key={option}
+                                value={option}
+                            >
                                 {option}
-                            </option>
+                            </SelectItem>
                         ))}
-                    </select>
-                    <ChevronDown
-                        aria-hidden="true"
-                        className="pointer-events-none absolute end-5 top-1/2 size-5 -translate-y-1/2 text-muted-foreground"
-                    />
-                </div>
+                    </SelectContent>
+                </Select>
             </label>
 
             <button
