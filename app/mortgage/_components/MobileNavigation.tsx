@@ -51,16 +51,14 @@ export function MobileNavigation({ items }: MobileNavigationProps) {
     }
 
     return (
-        <div className="relative md:hidden" ref={menuRef}>
+        <div className="md:hidden" ref={menuRef}>
             <Button
                 type="button"
-                variant={isOpen ? "default" : "secondary"}
+                variant="ghost"
                 size="icon-lg"
-                className={cn(
-                    "size-12 rounded-full",
-                    isOpen &&
-                        "bg-campaign-mortgage-accent text-white hover:bg-campaign-mortgage-accent/85",
-                )}
+                /* The ghost variant already paints aria-expanded exactly as it paints
+                   hover, so the open state needs nothing of its own. */
+                className="size-11 rounded-full"
                 ref={triggerRef}
                 aria-controls="mortgage-mobile-navigation"
                 aria-expanded={isOpen}
@@ -76,7 +74,7 @@ export function MobileNavigation({ items }: MobileNavigationProps) {
             <nav
                 id="mortgage-mobile-navigation"
                 aria-label="ניווט ראשי בנייד"
-                className="absolute end-0 top-full z-50 mt-3 grid w-52 overflow-hidden rounded-2xl border border-border bg-popover p-2 text-popover-foreground shadow-lg"
+                className="mortgage-header-surface absolute inset-x-0 top-full z-50 mt-1 grid overflow-hidden rounded-4xl rounded-t-sm bg-background p-2 text-foreground"
                 hidden={!isOpen}
             >
                 {items.map((item) => (

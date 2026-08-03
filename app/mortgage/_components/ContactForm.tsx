@@ -2,7 +2,7 @@
 
 import { type FormEvent, useEffect, useRef, useState } from "react";
 
-import { ShieldCheck } from "lucide-react";
+import { ArrowLeft, ChevronDown, ShieldCheck } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,10 +10,10 @@ import { cn } from "@/lib/utils";
 import type { ContactFormContent } from "../content";
 
 const fieldClassName =
-    "h-16 w-full rounded-2xl border border-input bg-background px-5 text-base text-foreground outline-none transition-[border-color,box-shadow] placeholder:text-muted-foreground hover:border-campaign-mortgage-accent focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/20 user-invalid:border-destructive";
+    "h-14 w-full rounded-3xl border border-input bg-background px-5 text-base text-foreground outline-none transition-[border-color,box-shadow] placeholder:text-muted-foreground hover:border-campaign-mortgage-accent focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/20 user-invalid:border-destructive";
 
 const formShellClassName =
-    "min-h-[39rem] rounded-4xl bg-muted p-6 sm:p-10 md:min-h-[43rem] lg:p-14";
+    "min-h-[36rem] rounded-3xl bg-accent p-6 md:p-9 lg:min-h-[40rem] lg:p-12";
 
 export function ContactForm({ form }: { form: ContactFormContent }) {
     const [submitted, setSubmitted] = useState(false);
@@ -40,7 +40,7 @@ export function ContactForm({ form }: { form: ContactFormContent }) {
             <div
                 className={cn(
                     formShellClassName,
-                    "flex flex-col items-center justify-center gap-7 text-center",
+                    "flex flex-col items-start justify-center gap-6 text-start",
                 )}
                 ref={statusRef}
                 role="status"
@@ -48,15 +48,15 @@ export function ContactForm({ form }: { form: ContactFormContent }) {
             >
                 <ShieldCheck
                     aria-hidden="true"
-                    className="size-14 text-campaign-mortgage-accent"
+                    className="size-12 text-campaign-mortgage-accent"
                     strokeWidth={1.5}
                 />
-                <p className="max-w-md font-display font-semibold text-2xl text-foreground">
+                <p className="max-w-md font-display font-semibold text-foreground text-xl">
                     {form.success}
                 </p>
                 <button
                     type="button"
-                    className={cn(buttonVariants({ variant: "outline" }), "h-12 rounded-full px-7")}
+                    className={cn(buttonVariants({ variant: "outline" }), "h-11 rounded-3xl px-6")}
                     onClick={() => setSubmitted(false)}
                 >
                     {form.reset}
@@ -74,12 +74,12 @@ export function ContactForm({ form }: { form: ContactFormContent }) {
             <h3
                 ref={formTitleRef}
                 tabIndex={-1}
-                className="mb-7 text-center font-display font-semibold text-2xl text-foreground outline-none"
+                className="mb-6 text-start font-display font-semibold text-foreground text-xl outline-none"
             >
                 {form.title}
             </h3>
 
-            <label className="mb-5 grid gap-2 font-semibold" htmlFor="mortgage-full-name">
+            <label className="mb-4 grid gap-2 font-semibold" htmlFor="mortgage-full-name">
                 <span className="px-1">{form.fullName}</span>
                 <input
                     className={fieldClassName}
@@ -92,7 +92,7 @@ export function ContactForm({ form }: { form: ContactFormContent }) {
                 />
             </label>
 
-            <label className="mb-5 grid gap-2 font-semibold" htmlFor="mortgage-phone">
+            <label className="mb-4 grid gap-2 font-semibold" htmlFor="mortgage-phone">
                 <span className="px-1">{form.phone}</span>
                 <input
                     className={fieldClassName}
@@ -108,38 +108,50 @@ export function ContactForm({ form }: { form: ContactFormContent }) {
                 />
             </label>
 
-            <label className="mb-7 grid gap-2 font-semibold" htmlFor="mortgage-stage">
+            <label className="mb-6 grid gap-2 font-semibold" htmlFor="mortgage-stage">
                 <span className="px-1">{form.stage}</span>
-                <select
-                    className={fieldClassName}
-                    id="mortgage-stage"
-                    name="stage"
-                    defaultValue=""
-                    required
-                >
-                    <option value="" disabled>
-                        {form.placeholder}
-                    </option>
-                    {form.options.map((option) => (
-                        <option key={option} value={option}>
-                            {option}
+                {/* The native indicator is drawn against the border whatever the padding
+                    is, so it is dropped for one we can set on the same line as the text. */}
+                <div className="relative">
+                    <select
+                        className={cn(fieldClassName, "cursor-pointer appearance-none pe-12")}
+                        id="mortgage-stage"
+                        name="stage"
+                        defaultValue=""
+                        required
+                    >
+                        <option value="" disabled>
+                            {form.placeholder}
                         </option>
-                    ))}
-                </select>
+                        {form.options.map((option) => (
+                            <option key={option} value={option}>
+                                {option}
+                            </option>
+                        ))}
+                    </select>
+                    <ChevronDown
+                        aria-hidden="true"
+                        className="pointer-events-none absolute end-5 top-1/2 size-5 -translate-y-1/2 text-muted-foreground"
+                    />
+                </div>
             </label>
 
             <button
                 type="submit"
                 className={cn(
                     buttonVariants({ size: "lg" }),
-                    "h-16 rounded-2xl bg-campaign-mortgage-accent text-base text-white transition-[background-color,box-shadow,transform] hover:-translate-y-px hover:bg-campaign-mortgage-accent/85 hover:shadow-lg active:translate-y-0 motion-reduce:transform-none",
+                    "mortgage-cta group bg-campaign-mortgage-accent text-base text-white transition-[background-color,box-shadow] hover:bg-campaign-mortgage-accent/85 hover:shadow-lg",
                 )}
             >
-                {form.submit}
+                <span>{form.submit}</span>
+                <ArrowLeft
+                    aria-hidden
+                    className="size-5 transition-transform group-hover:-translate-x-1 motion-reduce:transform-none"
+                />
             </button>
 
             <p
-                className="mt-5 flex items-start justify-center gap-2 text-center text-muted-foreground text-sm"
+                className="mt-5 flex items-start justify-start gap-2 text-start text-muted-foreground text-sm"
                 id="mortgage-form-notice"
             >
                 <ShieldCheck

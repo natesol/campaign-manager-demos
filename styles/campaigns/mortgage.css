@@ -10,8 +10,12 @@
     --color-campaign-mortgage-ink: #062e26;
     --color-campaign-mortgage-deep: #032820;
     --color-campaign-mortgage-mint: #f3faf7;
-    --color-campaign-mortgage-mint-strong: #e6f5ef;
+    --color-campaign-mortgage-mint-strong: #f1f7f2;
     --color-campaign-mortgage-accent: var(--color-emerald-600);
+    /* The same brand green one step up, for use on the dark panels. 600 is tuned
+       against paper and goes muddy over the deep ground, where 500 holds the hue
+       and keeps its contrast. Named for where it belongs, not for the step. */
+    --color-campaign-mortgage-accent-on-dark: var(--color-emerald-500);
     --color-campaign-mortgage-band: color-mix(
         in oklab,
         var(--color-campaign-mortgage-accent) var(--campaign-band-tint-accent),

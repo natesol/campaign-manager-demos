@@ -2,24 +2,177 @@
 
 /* Mortgage-specific art direction only. Shared layout, type, surfaces, and controls live in Tailwind. */
 
+/* Page grid: a 90rem (1440px) frame and one shared content line.
+   Normal sections use .mortgage-container.
+   Bleeding panels (hero, position) sit --page-gutter in from the viewport
+   (their wrapper's px-3), so .mortgage-container-bleed sheds that gutter
+   and content lands on the exact same line at every width. */
+[data-campaign="mortgage"] {
+    --page-max: 80rem;
+    --page-pad: 1.25rem;
+    --page-gutter: 0.25rem;
+    --page-bleed: 5rem;
+    --header-height: 4.5rem;
+    --header-start: 2.25rem;
+    /* Stuck on mobile: the bar's gap above and beside it, one value. */
+    --header-stuck-pad: calc(var(--spacing) * 1.6);
+    --header-stick: var(--header-stuck-pad);
+    /* Stuck on desktop: the width the bar draws in to. */
+    --header-max-stuck: 70rem;
+    --panel-rim: 0.125rem;
+    /* Every transition on the page runs at one speed. */
+    --default-transition-duration: 120ms;
+}
+
+/* Three states on the Tailwind breakpoints: base is mobile, md is tablet, lg is
+   desktop. Tablet: the gutter tracks the px-1 / md:px-3 on the panel wrappers so
+   the bleed math stays exact, and the bar swaps to the desktop menu and stick. */
+@media (width >= 48rem) {
+    [data-campaign="mortgage"] {
+        --page-gutter: 0.75rem;
+        --header-stick: 0.75rem;
+    }
+}
+
+/* Desktop: the full frame padding and the lower-resting bar. */
+@media (width >= 64rem) {
+    [data-campaign="mortgage"] {
+        --page-pad: 3rem;
+        --header-start: 2.75rem;
+    }
+}
+
+.mortgage-container {
+    width: 100%;
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-inline: var(--page-pad);
+}
+
+.mortgage-container-bleed {
+    width: 100%;
+    max-width: calc(var(--page-max) - 2 * var(--page-gutter));
+    margin-inline: auto;
+    padding-inline: calc(var(--page-pad) - var(--page-gutter));
+}
+
+/* The bleeding panels themselves: the page frame plus --page-bleed on each side.
+   An inner highlight rim, an ink ring the same width just outside it, and a soft
+   ambient lift: the panels sit on the page rather than being cut out of it.
+   Values set directly, from the approved art direction. */
+.mortgage-panel {
+    width: 100%;
+    max-width: calc(var(--page-max) + 2 * var(--page-bleed));
+    margin-inline: auto;
+    border: var(--panel-rim) solid #ffffff14;
+    box-shadow:
+        0 0 0 var(--panel-rim) #032820,
+        0 0 1.5rem -0.125rem #11231f4f;
+}
+
+/* The bar rests --header-start down the page and sticks at --header-stick.
+   A zero-height layer keeps it out of the flow, so it overlays the hero; the
+   negative sticky offset is what makes it travel the difference between the two
+   before it catches. Padding (never margin) sets the resting inset, so nothing
+   collapses through the zero-height layer. */
+.mortgage-header {
+    position: sticky;
+    top: calc(var(--header-stick) - var(--header-start));
+    height: 0;
+}
+
+/* Spans the travel between the resting and the stuck position: once it has left
+   the viewport, the bar is stuck. Absolute, so it costs the page no space. */
+.mortgage-header-sentinel {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: calc(var(--header-start) - var(--header-stick));
+    pointer-events: none;
+}
+
+.mortgage-header-track {
+    padding-block-start: var(--header-start);
+    transition:
+        max-width var(--default-transition-duration, 120ms) ease,
+        padding-inline var(--default-transition-duration, 120ms) ease;
+}
+
+/* Once it catches, mobile stretches to the viewport edge and desktop draws in.
+   Driven by the observer rather than a scroll timeline, which Safari and Firefox
+   do not support. */
+.mortgage-header-track[data-stuck="true"] {
+    max-width: 100%;
+    padding-inline: var(--header-stuck-pad);
+}
+
+@media (width >= 48rem) {
+    .mortgage-header-track[data-stuck="true"] {
+        max-width: var(--header-max-stuck);
+        padding-inline: var(--page-pad);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mortgage-header-track {
+        transition: none;
+    }
+}
+
+/* The bar's surface, shared with the mobile menu that opens beneath it, so the two
+   read as one control. Values set directly, from the approved art direction. */
+.mortgage-header-surface {
+    box-shadow:
+        0 0 0.25rem 0.125rem #667d7805,
+        0 0 1.5rem -1rem #182522a3;
+}
+
+.mortgage-header-bar {
+    height: var(--header-height);
+}
+
+/* Only the open menu squares the bar's bottom, meeting the menu's flat top on a
+   clean seam. Sticking changes nothing here: closed stays round at any scroll. */
+.mortgage-header-bar:has([aria-expanded="true"]) {
+    border-end-start-radius: var(--radius-sm);
+    border-end-end-radius: var(--radius-sm);
+}
+
+/* In-page anchors stop below the stuck bar rather than under it. */
+[data-campaign="mortgage"] :target {
+    scroll-margin-block-start: calc(var(--header-height) + 2 * var(--header-stick));
+}
+
+/* One call-to-action shape for the page, shared by the hero and the form. Only the
+   ground colors differ between them, and those stay with each button.
+   Unlayered, so it wins over the utilities in buttonVariants. */
+.mortgage-cta {
+    height: 3.5rem;
+    gap: 0.25rem;
+    padding-inline: 1.5rem;
+    border-radius: 1.5rem;
+}
+
+/* Pulls the framing up and oversizes it. Its own box rather than the image, because
+   next/image refuses a height on a filled image, and rather than the media wrapper,
+   because the wash below has to stay on the panel rect. */
+.mortgage-hero-pull {
+    top: -5%;
+    height: 110%;
+}
+
+/* A wash rather than a mask: the photograph carries the whole panel, and the ink
+   only tints it, thickening toward the headline so the type stays legible. */
 .mortgage-hero-media::after {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(
-            90deg,
-            rgb(3 40 32 / 4%) 0%,
-            rgb(3 40 32 / 8%) 38%,
-            rgb(3 40 32 / 44%) 68%,
-            rgb(3 40 32 / 92%) 92%,
-            var(--primary) 100%
-        ),
-        linear-gradient(180deg, rgb(3 40 32 / 10%) 0%, transparent 42%, rgb(3 40 32 / 32%) 100%);
+        linear-gradient(#09231a4f 0%), linear-gradient(90deg, #03282026 35%, #02251ded 100%);
     content: "";
 }
 
 .mortgage-service-featured {
-    min-height: 21.375rem;
+    min-height: 19rem;
 }
 
 .mortgage-service-media {
@@ -56,7 +209,7 @@
 }
 
 .mortgage-brand-mark {
-    --mark-size: 3.25rem;
+    --mark-size: 2.75rem;
 
     position: relative;
     display: block;
@@ -66,7 +219,7 @@
 }
 
 .mortgage-brand-mark--compact {
-    --mark-size: 2.75rem;
+    --mark-size: 2.5rem;
 }
 
 .mortgage-brand-mark__stem,
@@ -104,17 +257,15 @@
 
 @media (width < 48rem) {
     .mortgage-brand-mark:not(.mortgage-brand-mark--compact) {
-        --mark-size: 2.375rem;
+        --mark-size: 2.25rem;
     }
 
+    /* The desktop wash reads sideways; portrait needs it bottom-up under the text,
+       still translucent so the photograph carries through. */
     .mortgage-hero-media::after {
-        background: linear-gradient(
-            0deg,
-            var(--primary) 0%,
-            rgb(3 40 32 / 94%) 18%,
-            rgb(3 40 32 / 62%) 62%,
-            rgb(3 40 32 / 44%) 100%
-        );
+        background:
+            linear-gradient(#09231a4f 0%),
+            linear-gradient(0deg, #02251ded 0%, #03282059 55%, #0328202e 100%);
     }
 
     .mortgage-service-featured {

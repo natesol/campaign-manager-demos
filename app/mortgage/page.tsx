@@ -1,6 +1,9 @@
+import type { ComponentType, SVGProps } from "react";
+
 import type { Metadata } from "next";
 import Image from "next/image";
 
+import { IconBrandFacebook, IconBrandWhatsapp } from "@tabler/icons-react";
 import {
     ArrowLeft,
     ChartPie,
@@ -9,7 +12,6 @@ import {
     Landmark,
     type LucideIcon,
     Mail,
-    MessageCircle,
     Phone,
     RefreshCw,
 } from "lucide-react";
@@ -17,7 +19,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-import heroArchitecture from "./_assets/mortgage-counseling_asset-01_hero-architecture_v1.png";
+import heroArchitecture from "./_assets/mortgage-counseling_asset-01_hero-architecture_v2.png";
 import servicesConsultation from "./_assets/mortgage-counseling_asset-02_services-consultation_v1.png";
 import processConsultation from "./_assets/mortgage-counseling_asset-03_process-consultation_v1.png";
 import companyPositionArchitecture from "./_assets/mortgage-counseling_asset-04_company-position-architecture_v1.png";
@@ -27,7 +29,7 @@ import teamMichal from "./_assets/mortgage-counseling_asset-07_team-michal-barak
 import teamOmer from "./_assets/mortgage-counseling_asset-08_team-omer-levi_v1.png";
 import { BrandMark } from "./_components/BrandMark";
 import { ContactForm } from "./_components/ContactForm";
-import { MobileNavigation } from "./_components/MobileNavigation";
+import { SiteHeader } from "./_components/SiteHeader";
 import { type ContactIconName, mortgageContent, type ServiceIconName } from "./content";
 import "./mortgage.css";
 
@@ -44,18 +46,22 @@ const serviceIcons: Record<ServiceIconName, LucideIcon> = {
     refresh: RefreshCw,
 };
 
-const contactIcons: Record<ContactIconName, LucideIcon> = {
+/* Two icon sets, because lucide dropped its brand marks: the generic glyphs stay
+   lucide, the brands come from tabler. Typed by what both render into. */
+const contactIcons: Record<ContactIconName, ComponentType<SVGProps<SVGSVGElement>>> = {
     phone: Phone,
-    message: MessageCircle,
+    whatsapp: IconBrandWhatsapp,
     email: Mail,
+    facebook: IconBrandFacebook,
 };
 
 const supportingTeamImages = [teamItai, teamMichal, teamOmer] as const;
 
-const sectionWrap = "px-5 pt-20 sm:px-8 lg:px-12 lg:pt-28";
-const sectionShell = "mx-auto w-full max-w-[91rem]";
-const sectionTitle = "font-display text-3xl font-[780] tracking-[-0.065em] lg:text-4xl";
-const sectionCopy = "max-w-2xl text-lg text-muted-foreground";
+const sectionWrap = "pt-20 lg:pt-28";
+const sectionShell = "mortgage-container";
+const sectionEyebrow = "font-semibold text-campaign-mortgage-accent text-base";
+const sectionTitle = "font-display text-2xl font-bold tracking-tight lg:text-3xl";
+const sectionCopy = "max-w-2xl text-base text-muted-foreground";
 
 function AccentLastWord({ text }: { text: string }) {
     const breakAt = text.lastIndexOf(" ");
@@ -90,10 +96,10 @@ function ServiceCard({ service }: { service: (typeof mortgageContent.services.it
     return (
         <article
             className={cn(
-                "group relative min-w-0 overflow-hidden rounded-3xl border border-border bg-card transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-xl motion-reduce:transform-none",
+                "group relative min-w-0 overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none",
                 service.featured
-                    ? "mortgage-service-featured flex bg-primary text-primary-foreground md:col-span-2"
-                    : "flex min-h-64 flex-col p-7",
+                    ? "mortgage-service-featured flex bg-primary text-primary-foreground hover:border-campaign-mortgage-accent-on-dark/35 md:col-span-2"
+                    : "flex min-h-56 flex-col p-6",
             )}
         >
             {service.featured ? (
@@ -119,13 +125,13 @@ function ServiceCard({ service }: { service: (typeof mortgageContent.services.it
             >
                 <div
                     className={cn(
-                        "grid size-14 shrink-0 place-items-center rounded-2xl bg-accent text-accent-foreground",
+                        "grid size-12 shrink-0 place-items-center rounded-xl bg-accent text-accent-foreground",
                         service.featured && "bg-primary-foreground/10 text-primary-foreground",
                     )}
                 >
-                    <Icon aria-hidden className="size-7" strokeWidth={1.8} />
+                    <Icon aria-hidden className="size-6" strokeWidth={1.8} />
                 </div>
-                <h3 className="mt-7 font-display font-semibold text-xl tracking-tight">
+                <h3 className="mt-5 font-display font-semibold text-lg tracking-tight">
                     {service.title}
                 </h3>
                 <p
@@ -168,87 +174,66 @@ export default function MortgageRoute() {
         <div
             className="relative flex flex-1 flex-col overflow-x-clip bg-background text-foreground"
             data-campaign="mortgage"
+            id="top"
         >
-            <header className="absolute inset-x-6 top-6 z-50 mx-auto flex h-[5rem] max-w-screen-2xl items-center justify-between rounded-full bg-background px-4 shadow-foreground/10 shadow-xl sm:inset-x-8 sm:px-6 lg:top-11 lg:px-10">
-                <a
-                    className="flex items-center gap-3 rounded-sm font-[750] font-display text-xl tracking-tight focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
-                    href="#top"
-                    aria-label={`${company}, דף הבית`}
-                >
-                    <BrandMark />
-                    <span>{company}</span>
-                </a>
-
-                <nav
-                    className="hidden items-center gap-8 font-medium text-sm md:flex lg:gap-14"
-                    aria-label="ניווט ראשי"
-                >
-                    {mortgageContent.navigation.map((item) => (
-                        <a
-                            className="relative rounded-sm py-3 transition-colors after:absolute after:inset-x-0 after:bottom-1 after:h-0.5 after:origin-center after:scale-x-0 after:bg-campaign-mortgage-accent after:transition-transform hover:text-campaign-mortgage-accent hover:after:scale-x-100 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40 focus-visible:after:scale-x-100"
-                            key={item.href}
-                            href={item.href}
-                        >
-                            {item.label}
-                        </a>
-                    ))}
-                </nav>
-
-                <MobileNavigation items={mortgageContent.navigation} />
-            </header>
+            <SiteHeader company={company} items={mortgageContent.navigation} />
 
             <main>
-                <div className="px-3 pt-3 md:px-4 md:pt-4">
+                <div className="px-1 pt-3 md:px-3">
                     <section
-                        className="relative mx-auto flex h-svh max-h-[46rem] min-h-[40rem] w-full max-w-[109rem] items-end overflow-hidden rounded-4xl bg-primary px-7 pt-28 pb-8 text-primary-foreground md:max-h-[51rem] md:items-center md:rounded-[3rem] md:px-16 md:pb-8 xl:max-h-[60rem] xl:rounded-[4.25rem] xl:px-24"
-                        id="top"
+                        className="mortgage-panel relative flex items-center overflow-hidden rounded-3xl bg-primary pt-40 pb-16 text-primary-foreground md:rounded-4xl md:py-48 lg:rounded-[3.5rem]"
+                        id="hero"
                         aria-labelledby="mortgage-hero-title"
                     >
-                        <div className="mortgage-hero-media absolute inset-y-0 end-0 w-full opacity-35 md:w-2/3 md:opacity-100 xl:w-[70%]">
-                            <Image
-                                src={heroArchitecture}
-                                alt="בית מודרני מואר בשעת ערב"
-                                fill
-                                priority
-                                sizes="(max-width: 48rem) 100vw, 70vw"
-                                className="object-cover brightness-75 saturate-100"
-                            />
+                        <div className="mortgage-hero-media absolute inset-0">
+                            <div className="mortgage-hero-pull absolute inset-x-0">
+                                <Image
+                                    src={heroArchitecture}
+                                    alt="בית מודרני מואר בשעת ערב"
+                                    fill
+                                    priority
+                                    sizes="100vw"
+                                    className="object-cover"
+                                />
+                            </div>
                         </div>
 
-                        <div className="relative z-10 w-full md:max-w-lg xl:max-w-xl">
-                            <h1
-                                className="font-[750] font-display text-4xl tracking-[-0.075em] md:text-5xl xl:text-6xl"
-                                id="mortgage-hero-title"
-                            >
-                                {hero.headline.map((line, index) => (
-                                    <span
-                                        className={cn(
-                                            "block",
-                                            index === hero.headline.length - 1 &&
-                                                "text-campaign-mortgage-accent",
-                                        )}
-                                        key={line}
-                                    >
-                                        {line}
-                                    </span>
-                                ))}
-                            </h1>
-                            <p className="mt-6 max-w-md text-lg text-primary-foreground/80 md:mt-8">
-                                {hero.support}
-                            </p>
-                            <a
-                                className={cn(
-                                    buttonVariants({ size: "lg" }),
-                                    "group mt-7 h-16 w-full max-w-sm gap-8 rounded-full bg-campaign-mortgage-accent px-7 text-base text-white transition-[background-color,box-shadow,transform] hover:-translate-y-0.5 hover:bg-campaign-mortgage-accent/85 hover:shadow-lg motion-reduce:transform-none",
-                                )}
-                                href="#contact"
-                            >
-                                <span>{hero.cta}</span>
-                                <ArrowLeft
-                                    aria-hidden
-                                    className="size-6 transition-transform group-hover:-translate-x-1 motion-reduce:transform-none"
-                                />
-                            </a>
+                        <div className="mortgage-container-bleed relative z-10">
+                            <div className="w-full md:max-w-lg lg:max-w-xl">
+                                <h1
+                                    className="font-bold font-display text-3xl tracking-tight md:text-4xl lg:text-5xl"
+                                    id="mortgage-hero-title"
+                                >
+                                    {hero.headline.map((line, index) => (
+                                        <span
+                                            className={cn(
+                                                "block",
+                                                index === hero.headline.length - 1 &&
+                                                    "text-campaign-mortgage-accent-on-dark",
+                                            )}
+                                            key={line}
+                                        >
+                                            {line}
+                                        </span>
+                                    ))}
+                                </h1>
+                                <p className="mt-5 max-w-80 text-base text-primary-foreground/80 md:mt-7">
+                                    {hero.support}
+                                </p>
+                                <a
+                                    className={cn(
+                                        buttonVariants({ size: "lg" }),
+                                        "mortgage-cta group mt-6 w-auto bg-campaign-mortgage-accent-on-dark text-base text-white transition-[background-color,box-shadow] hover:bg-campaign-mortgage-accent-on-dark/85 hover:shadow-lg",
+                                    )}
+                                    href="#contact"
+                                >
+                                    <span>{hero.cta}</span>
+                                    <ArrowLeft
+                                        aria-hidden
+                                        className="size-5 transition-transform group-hover:-translate-x-1 motion-reduce:transform-none"
+                                    />
+                                </a>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -257,20 +242,20 @@ export default function MortgageRoute() {
                     <section
                         className={cn(
                             sectionShell,
-                            "grid items-center gap-8 md:grid-cols-[11rem_minmax(0,1fr)] lg:gap-14",
+                            "flex flex-col items-center gap-5 md:flex-row md:gap-8",
                         )}
                         id="about"
                         aria-label={introduction.label}
                     >
-                        <p className="flex min-h-28 w-36 flex-col items-center justify-center gap-2 rounded-3xl bg-accent p-5 text-center font-bold text-accent-foreground text-lg md:w-auto">
+                        <p className="flex shrink-0 flex-col items-center justify-center gap-2 rounded-2xl bg-accent p-4 text-center font-semibold text-accent-foreground text-base">
                             {introduction.label}
                             <span aria-hidden className="h-px w-8 bg-campaign-mortgage-accent/70" />
                         </p>
-                        <p className="text-muted-foreground text-xl leading-relaxed tracking-tight sm:text-2xl lg:text-3xl">
+                        <p className="text-justify text-lg text-muted-foreground leading-relaxed tracking-tight md:text-xl">
                             <strong className="font-bold text-foreground">
                                 {introduction.opening}
                             </strong>{" "}
-                            {introduction.continuation}
+                            {introduction.continuation} {introduction.closing}
                         </p>
                     </section>
                 </div>
@@ -281,14 +266,17 @@ export default function MortgageRoute() {
                         id="services"
                         aria-labelledby="services-title"
                     >
-                        <div className="grid items-end gap-6 xl:grid-cols-2 xl:gap-24">
-                            <h2 className={sectionTitle} id="services-title">
-                                <AccentLastWord text={services.heading} />
-                            </h2>
+                        <div className="grid items-end gap-6 lg:grid-cols-2 lg:gap-24">
+                            <div>
+                                <p className={sectionEyebrow}>{services.label}</p>
+                                <h2 className={sectionTitle} id="services-title">
+                                    <AccentLastWord text={services.heading} />
+                                </h2>
+                            </div>
                             <p className={sectionCopy}>{services.introduction}</p>
                         </div>
 
-                        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                             {services.items.map((service) => (
                                 <ServiceCard key={service.title} service={service} />
                             ))}
@@ -298,11 +286,9 @@ export default function MortgageRoute() {
 
                 <div className={sectionWrap}>
                     <section className={sectionShell} id="process" aria-labelledby="process-title">
-                        <div className="grid items-start gap-6 xl:grid-cols-2 xl:gap-24">
+                        <div className="grid items-start gap-6 lg:grid-cols-2 lg:gap-24">
                             <div>
-                                <p className="mb-4 font-bold text-campaign-mortgage-accent text-sm">
-                                    {process.label}
-                                </p>
+                                <p className={sectionEyebrow}>{process.label}</p>
                                 <h2 className={sectionTitle} id="process-title">
                                     {process.heading}
                                 </h2>
@@ -310,23 +296,28 @@ export default function MortgageRoute() {
                             <p className={sectionCopy}>{process.introduction}</p>
                         </div>
 
-                        <div className="mt-12 grid items-center gap-10 xl:grid-cols-5 xl:gap-20">
-                            <ol className="m-0 list-none p-0 xl:col-span-2">
+                        <div className="mt-12 grid items-center gap-10 lg:grid-cols-5 lg:gap-20">
+                            <ol className="m-0 list-none p-0 lg:col-span-2">
                                 {process.steps.map((step, index) => (
                                     <li
-                                        className="flex min-h-28 items-center gap-5 border-border border-b last:border-b-0"
-                                        key={step}
+                                        className="flex items-baseline gap-5 border-border border-b py-6 last:border-b-0"
+                                        key={step.title}
                                     >
-                                        <span className="w-14 shrink-0 font-display font-semibold text-campaign-mortgage-accent text-lg">
+                                        <span className="w-12 shrink-0 font-display font-semibold text-base text-campaign-mortgage-accent">
                                             {String(index + 1).padStart(2, "0")}
                                         </span>
-                                        <h3 className="m-0 font-display font-semibold text-xl tracking-tight">
-                                            {step}
-                                        </h3>
+                                        <div>
+                                            <h3 className="m-0 font-display font-semibold text-lg tracking-tight">
+                                                {step.title}
+                                            </h3>
+                                            <p className="mt-2 text-muted-foreground text-sm">
+                                                {step.body}
+                                            </p>
+                                        </div>
                                     </li>
                                 ))}
                             </ol>
-                            <div className="relative min-h-80 overflow-hidden rounded-4xl bg-muted xl:col-span-3 xl:min-h-112">
+                            <div className="relative min-h-72 overflow-hidden rounded-3xl bg-muted lg:col-span-3 lg:min-h-96">
                                 <Image
                                     src={processConsultation}
                                     alt="יועץ משכנתאות בפגישה עם זוג"
@@ -339,9 +330,9 @@ export default function MortgageRoute() {
                     </section>
                 </div>
 
-                <div className="px-3 pt-20 lg:pt-28">
+                <div className="px-1 pt-20 md:px-3 lg:pt-28">
                     <section
-                        className="relative mx-auto grid max-w-[109rem] gap-10 overflow-hidden rounded-4xl bg-primary p-7 text-primary-foreground sm:p-12 xl:min-h-[38rem] xl:grid-cols-2 xl:gap-24 xl:rounded-[3.5rem] xl:p-24"
+                        className="mortgage-panel relative flex items-center overflow-hidden rounded-3xl bg-primary py-10 text-primary-foreground lg:min-h-[34rem] lg:rounded-[3rem] lg:py-20"
                         aria-labelledby="position-title"
                     >
                         <Image
@@ -356,79 +347,94 @@ export default function MortgageRoute() {
                             aria-hidden
                         />
                         <ArchitecturalLineArt />
-                        <div className="relative z-30">
-                            <p className="mb-4 font-bold text-campaign-mortgage-accent text-sm">
-                                {position.label}
-                            </p>
-                            <h2
-                                className="max-w-xl font-[780] font-display text-3xl leading-[1.12] tracking-tight xl:text-[4.25rem]"
-                                id="position-title"
-                            >
-                                {position.heading}
-                            </h2>
-                            <p className="mt-7 max-w-2xl text-lg text-primary-foreground/75">
-                                {position.support}
-                            </p>
-                        </div>
-                        <ol className="relative z-30 m-0 list-none p-0">
-                            {position.principles.map((principle, index) => (
-                                <li
-                                    className="flex min-h-28 items-center gap-5 border-primary-foreground/25 border-b last:border-b-0"
-                                    key={principle}
+                        <div className="mortgage-container-bleed relative z-30 grid gap-10 lg:grid-cols-2 lg:gap-24">
+                            <div>
+                                <p className="font-semibold text-base text-campaign-mortgage-accent-on-dark">
+                                    {position.label}
+                                </p>
+                                <h2
+                                    className="max-w-xl font-bold font-display text-2xl leading-tight tracking-tight lg:text-5xl"
+                                    id="position-title"
                                 >
-                                    <span className="w-14 shrink-0 font-display font-semibold text-campaign-mortgage-accent text-lg">
-                                        {String(index + 1).padStart(2, "0")}
-                                    </span>
-                                    <h3 className="font-display font-semibold text-xl tracking-tight">
-                                        {principle}
-                                    </h3>
-                                </li>
-                            ))}
-                        </ol>
+                                    {position.heading}
+                                </h2>
+                                <p className="mt-5 max-w-2xl text-base text-primary-foreground/75">
+                                    {position.support}
+                                </p>
+                            </div>
+                            <ol className="m-0 list-none p-0">
+                                {position.principles.map((principle, index) => (
+                                    <li
+                                        className="flex items-baseline gap-5 border-primary-foreground/25 border-b py-6 last:border-b-0"
+                                        key={principle.title}
+                                    >
+                                        <span className="w-12 shrink-0 font-display font-semibold text-base text-campaign-mortgage-accent-on-dark">
+                                            {String(index + 1).padStart(2, "0")}
+                                        </span>
+                                        <div>
+                                            <h3 className="font-display font-semibold text-lg tracking-tight">
+                                                {principle.title}
+                                            </h3>
+                                            <p className="mt-2 text-primary-foreground/70 text-sm">
+                                                {principle.body}
+                                            </p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ol>
+                        </div>
                     </section>
                 </div>
 
                 <div className={sectionWrap}>
                     <section className={sectionShell} id="team" aria-labelledby="team-title">
-                        <div className="mx-auto max-w-3xl text-center">
+                        <div className="max-w-2xl text-start">
+                            <p className={sectionEyebrow}>{team.label}</p>
                             <h2 className={sectionTitle} id="team-title">
                                 {team.heading}
                             </h2>
-                            <p className="mt-5 text-lg text-muted-foreground">
+                            <p className="mt-4 text-base text-muted-foreground">
                                 {team.introduction}
                             </p>
                         </div>
 
-                        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-[minmax(16rem,1.1fr)_minmax(14rem,.66fr)_minmax(0,1.55fr)]">
-                            <div className="relative min-h-96 overflow-hidden rounded-3xl bg-muted xl:min-h-128">
-                                <Image
-                                    src={teamYael}
-                                    alt={`דיוקן של ${team.featured.name}`}
-                                    fill
-                                    sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 50vw, 30vw"
-                                    className="object-cover object-top"
-                                />
-                            </div>
-                            <article className="flex flex-col justify-center p-5 text-center xl:p-2">
-                                <h3 className="font-display font-semibold text-2xl">
-                                    {team.featured.name}
-                                </h3>
-                                <p className="mt-2 font-semibold text-base text-campaign-mortgage-accent">
-                                    {team.featured.role}
-                                </p>
-                                <span
-                                    className="mx-auto my-7 h-px w-12 bg-campaign-mortgage-accent"
-                                    aria-hidden
-                                />
-                                <p className="text-muted-foreground text-sm">{team.featured.bio}</p>
+                        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-[minmax(31.5rem,1.76fr)_minmax(0,1.55fr)]">
+                            {/* One card over the two tracks the portrait and the text used to
+                                hold separately: 1.1fr and .66fr of the old three, so the
+                                proportions and the group beside it stay put. */}
+                            <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none md:col-span-2 md:flex-row lg:col-span-1">
+                                <div className="relative min-h-80 bg-muted md:w-[62.5%] md:shrink-0 lg:min-h-112">
+                                    <Image
+                                        src={teamYael}
+                                        alt={`דיוקן של ${team.featured.name}`}
+                                        fill
+                                        sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 50vw, 30vw"
+                                        className="object-cover object-top"
+                                    />
+                                </div>
+                                <div className="flex flex-col justify-center p-5 text-start">
+                                    <h3 className="font-display font-semibold text-xl">
+                                        {team.featured.name}
+                                    </h3>
+                                    <p className="mt-2 font-semibold text-campaign-mortgage-accent text-sm">
+                                        {team.featured.role}
+                                    </p>
+                                    <span
+                                        className="my-6 h-px w-12 bg-campaign-mortgage-accent"
+                                        aria-hidden
+                                    />
+                                    <p className="text-muted-foreground text-sm">
+                                        {team.featured.bio}
+                                    </p>
+                                </div>
                             </article>
-                            <div className="grid gap-4 md:col-span-2 md:grid-cols-3 xl:col-span-1">
+                            <div className="grid gap-4 md:col-span-2 md:grid-cols-3 lg:col-span-1">
                                 {team.people.map((person, index) => (
                                     <article
-                                        className="group overflow-hidden rounded-3xl border border-border bg-card transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-xl motion-reduce:transform-none"
+                                        className="group overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none"
                                         key={person.name}
                                     >
-                                        <div className="relative min-h-80 bg-muted xl:min-h-72">
+                                        <div className="relative min-h-72 bg-muted lg:min-h-64">
                                             <Image
                                                 src={supportingTeamImages[index]}
                                                 alt={`דיוקן של ${person.name}`}
@@ -437,8 +443,8 @@ export default function MortgageRoute() {
                                                 className="object-cover object-top"
                                             />
                                         </div>
-                                        <div className="min-h-48 p-5">
-                                            <h3 className="font-display font-semibold text-lg">
+                                        <div className="min-h-40 p-5">
+                                            <h3 className="font-display font-semibold text-base">
                                                 {person.name}
                                             </h3>
                                             <p className="mt-2 font-semibold text-campaign-mortgage-accent text-sm">
@@ -459,48 +465,47 @@ export default function MortgageRoute() {
                     <section
                         className={cn(
                             sectionShell,
-                            "grid items-center gap-12 xl:grid-cols-[.9fr_1fr] xl:gap-24",
+                            "grid items-start gap-12 lg:grid-cols-[.9fr_1fr] lg:gap-24",
                         )}
                         id="contact"
                         aria-labelledby="contact-title"
                     >
                         <div>
-                            <p className="mb-4 flex items-center gap-4 font-bold text-campaign-mortgage-accent text-sm">
-                                {contact.label}
-                                <span aria-hidden className="h-px w-10 bg-current" />
-                            </p>
+                            <p className={sectionEyebrow}>{contact.label}</p>
                             <h2 className={sectionTitle} id="contact-title">
                                 {contact.heading}
                             </h2>
-                            <p className="mt-7 max-w-2xl text-lg text-muted-foreground">
+                            <p className="mt-5 max-w-2xl text-base text-muted-foreground">
                                 {contact.support}
                             </p>
 
-                            <div className="mt-9">
+                            <div className="mt-8">
                                 {contact.methods.map((method) => {
                                     const Icon = contactIcons[method.icon];
+                                    const isExternal = method.href.startsWith("http");
 
                                     return (
-                                        <div
-                                            className="flex min-h-24 items-center gap-5 border-border border-b border-dashed last:border-b-0"
+                                        <a
+                                            className="group flex min-h-20 items-center gap-5 rounded-sm border-border border-b border-dashed transition-colors last:border-b-0 hover:text-campaign-mortgage-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
+                                            href={method.href}
                                             key={method.label}
+                                            target={isExternal ? "_blank" : undefined}
+                                            rel={isExternal ? "noreferrer" : undefined}
                                         >
-                                            <span className="grid size-16 shrink-0 place-items-center rounded-full bg-accent text-campaign-mortgage-accent">
+                                            <span className="grid size-14 shrink-0 place-items-center rounded-full bg-accent text-campaign-mortgage-accent transition-colors group-hover:bg-campaign-mortgage-accent group-hover:text-white">
                                                 <Icon
                                                     aria-hidden
-                                                    className="size-7"
+                                                    className="size-6"
                                                     strokeWidth={1.8}
                                                 />
                                             </span>
                                             <strong
-                                                className="font-semibold text-lg"
-                                                dir={
-                                                    method.label === "WhatsApp" ? "ltr" : undefined
-                                                }
+                                                className="font-semibold text-base"
+                                                dir={method.ltr ? "ltr" : undefined}
                                             >
                                                 {method.label}
                                             </strong>
-                                        </div>
+                                        </a>
                                     );
                                 })}
                             </div>
@@ -511,33 +516,31 @@ export default function MortgageRoute() {
                 </div>
             </main>
 
-            <footer className="mt-20 flex min-h-[37.5rem] flex-col bg-muted px-5 py-16 sm:px-8 lg:mt-28 lg:px-12 lg:pt-24">
+            <footer className="mt-16 flex min-h-[32rem] flex-col bg-muted py-14 lg:mt-24 lg:pt-20">
                 <div
                     className={cn(
                         sectionShell,
-                        "grid gap-10 md:grid-cols-2 xl:grid-cols-[1.35fr_.78fr_1fr_1fr] xl:gap-20",
+                        "grid gap-10 md:grid-cols-2 lg:grid-cols-[1.35fr_.78fr_1fr_1fr] lg:gap-20",
                     )}
                 >
                     <div>
                         <a
-                            className="flex items-center gap-3 rounded-sm font-[750] font-display text-2xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
+                            className="flex items-center gap-3 rounded-sm font-bold font-display text-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
                             href="#top"
                             aria-label={`${company}, דף הבית`}
                         >
                             <BrandMark compact />
                             <span>{company}</span>
                         </a>
-                        <p className="mt-5 max-w-sm text-base text-muted-foreground">
-                            {footer.line}
-                        </p>
+                        <p className="mt-4 max-w-sm text-muted-foreground text-sm">{footer.line}</p>
                     </div>
 
                     <div>
-                        <h2 className="flex items-center gap-4 font-bold text-campaign-mortgage-accent text-lg">
+                        <h2 className="flex items-center gap-4 font-semibold text-base text-campaign-mortgage-accent">
                             {footer.navigation.title}
                             <span aria-hidden className="h-px w-8 bg-current" />
                         </h2>
-                        <ul className="mt-6 space-y-3 text-base">
+                        <ul className="mt-5 space-y-3 text-sm">
                             {footer.navigation.links.map((item) => (
                                 <li key={item.label}>
                                     {item.href ? (
@@ -553,11 +556,11 @@ export default function MortgageRoute() {
                     </div>
 
                     <div>
-                        <h2 className="flex items-center gap-4 font-bold text-campaign-mortgage-accent text-lg">
+                        <h2 className="flex items-center gap-4 font-semibold text-base text-campaign-mortgage-accent">
                             {footer.services.title}
                             <span aria-hidden className="h-px w-8 bg-current" />
                         </h2>
-                        <ul className="mt-6 space-y-3 text-base text-muted-foreground">
+                        <ul className="mt-5 space-y-3 text-muted-foreground text-sm">
                             {footer.services.links.map((item) => (
                                 <li key={item}>{item}</li>
                             ))}
@@ -565,11 +568,11 @@ export default function MortgageRoute() {
                     </div>
 
                     <div>
-                        <h2 className="flex items-center gap-4 font-bold text-campaign-mortgage-accent text-lg">
+                        <h2 className="flex items-center gap-4 font-semibold text-base text-campaign-mortgage-accent">
                             {footer.contact.title}
                             <span aria-hidden className="h-px w-8 bg-current" />
                         </h2>
-                        <ul className="mt-6 space-y-4 text-base text-muted-foreground">
+                        <ul className="mt-5 space-y-4 text-muted-foreground text-sm">
                             {footer.contact.links.map((item) => {
                                 const Icon = contactIcons[item.icon];
 
@@ -577,7 +580,7 @@ export default function MortgageRoute() {
                                     <li className="flex items-center gap-3" key={item.label}>
                                         <Icon
                                             aria-hidden
-                                            className="size-5 text-campaign-mortgage-accent"
+                                            className="size-4 text-campaign-mortgage-accent"
                                             strokeWidth={1.8}
                                         />
                                         <span dir="ltr">{item.label}</span>
@@ -591,7 +594,7 @@ export default function MortgageRoute() {
                 <div
                     className={cn(
                         sectionShell,
-                        "mt-auto flex flex-col gap-6 border-border border-t pt-8 text-muted-foreground text-sm sm:flex-row sm:items-center sm:justify-between",
+                        "mt-auto flex flex-col gap-6 border-border border-t pt-8 text-muted-foreground text-sm md:flex-row md:items-center md:justify-between",
                     )}
                 >
                     <p>{footer.copyright}</p>

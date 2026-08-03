@@ -1,9 +1,13 @@
 export const mortgageContent = {
     company: "עיקר משכנתאות",
+    /* `href` is where the link goes, `section` is the element that marks it as the
+       one you are currently reading. They differ for the first item: it returns to
+       the true top of the page, while the hero is what puts it in view. */
     navigation: [
-        { label: "שירותים", href: "#services" },
-        { label: "אודות", href: "#about" },
-        { label: "יצירת קשר", href: "#contact" },
+        { label: "דף הבית", href: "#top", section: "hero" },
+        { label: "שירותים", href: "#services", section: "services" },
+        { label: "מי אנחנו", href: "#team", section: "team" },
+        { label: "יצירת קשר", href: "#contact", section: "contact" },
     ],
     hero: {
         headline: ["משכנתא", "לא לוקחים", "בערך."],
@@ -15,8 +19,10 @@ export const mortgageContent = {
         opening: "עיקר משכנתאות מלווה אנשים שנמצאים לפני משכנתא חדשה או רוצים לבחון משכנתא קיימת.",
         continuation:
             "מתחילים בהבנת המצב, הנתונים והשאלות הפתוחות, ורק אחר כך מחליטים כיצד נכון להתקדם.",
+        closing: "הכל מתחיל בשיחה קצרה, בלי התחייבות ובלי הבטחות מראש.",
     },
     services: {
+        label: "השירותים שלנו",
         heading: "איך אנחנו יכולים לעזור",
         introduction:
             "כל משכנתא מתחילה מנתונים, צרכים והחלטות שונות. אנחנו בונים את הייעוץ לפי המקום שבו אתם נמצאים ומה שצריך לבדוק לפני שמתקדמים.",
@@ -60,16 +66,43 @@ export const mortgageContent = {
         heading: "כך נראה תהליך הייעוץ",
         introduction:
             "שיחת המיפוי היא נקודת ההתחלה. עוברים על המצב הקיים, מבינים אילו נתונים כבר נמצאים בידיכם ואילו שאלות עדיין דורשות בדיקה. לאחר מכן מגדירים את דרך העבודה המתאימה, את המידע שצריך להשלים ואת הצעדים שכדאי לבחון לפני שמקבלים החלטה.",
-        steps: ["ממפים את המצב", "בודקים ובונים כיוון", "מתקדמים עם תכנית"],
+        steps: [
+            {
+                title: "ממפים את המצב",
+                body: "עוברים על ההכנסות, ההתחייבויות, ההון העצמי, הנכס והמשכנתא הקיימת, אם ישנה.",
+            },
+            {
+                title: "בודקים ובונים כיוון",
+                body: "מזהים נתונים חסרים, בוחנים אפשרויות ומבינים כיצד החלטות שונות עשויות להשפיע על ההחזר ועל התהליך.",
+            },
+            {
+                title: "מתקדמים עם תכנית",
+                body: "מגדירים אילו מסמכים להכין, מה לברר מול הבנקים ומהו הצעד הבא שנכון לבצע.",
+            },
+        ],
     },
     position: {
         label: "הגישה שלנו",
         heading: "בלי הבטחות. עם שאלות נכונות.",
         support:
             "לא מבטיחים ריבית, אישור או חיסכון לפני שמבינים את התמונה המלאה. מתחילים מהנתונים, מהצרכים ומההחלטות שעומדות בפניכם.",
-        principles: ["בודקים את הנתונים", "מסבירים את האפשרויות", "מגדירים את הצעד הבא"],
+        principles: [
+            {
+                title: "בודקים את הנתונים",
+                body: "עוברים על המידע הקיים ומזהים מה עדיין חסר לפני שמסיקים מסקנות.",
+            },
+            {
+                title: "מסבירים את האפשרויות",
+                body: "מציגים את המשמעות של כל אפשרות בשפה ברורה, בלי להחליט במקומכם.",
+            },
+            {
+                title: "מגדירים את הצעד הבא",
+                body: "מתקדמים רק לאחר שברור מה צריך להכין, לבדוק או לברר.",
+            },
+        ],
     },
     team: {
+        label: "מי אנחנו",
         heading: "האנשים שמלווים אתכם",
         introduction:
             "עיקר משכנתאות היא צוות קטן של יועצי משכנתאות ואנשי ליווי. בכל תהליך יש איש קשר שמכיר את התמונה, מרכז את השאלות ומסייע לשמור על רצף ברור עד להחלטה.",
@@ -97,13 +130,18 @@ export const mortgageContent = {
         ],
     },
     contact: {
-        label: "שיחת מיפוי",
+        label: "יצירת קשר",
         heading: "בואו נבין מה נכון לבדוק",
         support:
             "השאירו פרטים ונחזור לשיחת מיפוי קצרה. נכיר את המצב, נענה על השאלות הראשונות ונבין יחד מה הצעד הבא.",
+        /* Deliberately transparent placeholders. The company is fictional, so the
+           number is a dummy and the social links point at each service's own home
+           page rather than at invented accounts that would land on an error.
+           `ltr` marks the labels that must not be reordered by the bidi algorithm. */
         methods: [
-            { label: "שיחה טלפונית", icon: "phone" },
-            { label: "WhatsApp", icon: "message" },
+            { label: "שיחה טלפונית", icon: "phone", href: "tel:1234567890", ltr: false },
+            { label: "WhatsApp", icon: "whatsapp", href: "https://www.whatsapp.com", ltr: true },
+            { label: "Facebook", icon: "facebook", href: "https://www.facebook.com", ltr: true },
         ],
         form: {
             title: "לקראת שיחת המיפוי",
@@ -138,7 +176,7 @@ export const mortgageContent = {
             title: "יצירת קשר",
             links: [
                 { label: "03-376-1320", icon: "phone" },
-                { label: "WhatsApp", icon: "message" },
+                { label: "WhatsApp", icon: "whatsapp" },
                 { label: "hello@ikar-mashkanta.co.il", icon: "email" },
             ],
         },
@@ -147,6 +185,7 @@ export const mortgageContent = {
     },
 } as const;
 
+export type NavigationItem = (typeof mortgageContent.navigation)[number];
 export type ServiceIconName = (typeof mortgageContent.services.items)[number]["icon"];
 export type ContactIconName =
     | (typeof mortgageContent.contact.methods)[number]["icon"]
