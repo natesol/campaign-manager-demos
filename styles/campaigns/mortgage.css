@@ -6,8 +6,11 @@
  */
 
 @theme inline {
-    --color-campaign-mortgage-paper: var(--color-stone-100);
-    --color-campaign-mortgage-ink: var(--color-slate-800);
+    --color-campaign-mortgage-paper: #fffdfa;
+    --color-campaign-mortgage-ink: #062e26;
+    --color-campaign-mortgage-deep: #032820;
+    --color-campaign-mortgage-mint: #f3faf7;
+    --color-campaign-mortgage-mint-strong: #e6f5ef;
     --color-campaign-mortgage-accent: var(--color-emerald-600);
     --color-campaign-mortgage-band: color-mix(
         in oklab,
@@ -24,11 +27,7 @@
     --popover: var(--color-campaign-mortgage-paper);
     --popover-foreground: var(--color-campaign-mortgage-ink);
 
-    --muted: color-mix(
-        in oklab,
-        var(--color-campaign-mortgage-ink) 8%,
-        var(--color-campaign-mortgage-paper)
-    );
+    --muted: var(--color-campaign-mortgage-mint);
     --muted-foreground: color-mix(
         in oklab,
         var(--color-campaign-mortgage-ink) 75%,
@@ -40,28 +39,22 @@
         var(--color-campaign-mortgage-paper)
     );
 
-    --primary: color-mix(
+    --emphasis-foreground: color-mix(
         in oklab,
-        var(--color-campaign-mortgage-ink) 25%,
+        var(--color-campaign-mortgage-ink) 42%,
         var(--color-campaign-mortgage-accent)
     );
+
+    --primary: var(--color-campaign-mortgage-deep);
     --primary-foreground: var(--color-campaign-mortgage-paper);
-    --secondary: color-mix(
-        in oklab,
-        var(--color-campaign-mortgage-ink) 10%,
-        var(--color-campaign-mortgage-paper)
-    );
+    --secondary: var(--color-campaign-mortgage-mint);
     --secondary-foreground: var(--color-campaign-mortgage-ink);
-    --accent: color-mix(
-        in oklab,
-        var(--color-campaign-mortgage-ink) 6%,
-        var(--color-campaign-mortgage-paper)
-    );
+    --accent: var(--color-campaign-mortgage-mint-strong);
     --accent-foreground: var(--color-campaign-mortgage-ink);
 
     --border: color-mix(
         in oklab,
-        var(--color-campaign-mortgage-ink) 20%,
+        var(--color-campaign-mortgage-ink) 16%,
         var(--color-campaign-mortgage-paper)
     );
     --border-strong: color-mix(
@@ -71,7 +64,7 @@
     );
     --input: color-mix(
         in oklab,
-        var(--color-campaign-mortgage-ink) 20%,
+        var(--color-campaign-mortgage-ink) 48%,
         var(--color-campaign-mortgage-paper)
     );
     --ring: var(--color-campaign-mortgage-accent);
