@@ -177,7 +177,7 @@ export const mortgageContent = {
             links: [
                 { label: "03-376-1320", icon: "phone" },
                 { label: "WhatsApp", icon: "whatsapp" },
-                { label: "hello@ikar-mashkanta.co.il", icon: "email" },
+                { label: "ikar@mashkanta.co.il", icon: "email" },
             ],
         },
         legal: ["מדיניות פרטיות", "הצהרת נגישות", "תנאי שימוש"],
