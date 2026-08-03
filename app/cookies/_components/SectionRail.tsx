@@ -15,24 +15,44 @@ export function SectionRail() {
     const [activeId, setActiveId] = useState(sections[0].id);
 
     useEffect(() => {
-        const observed = sections
+        const sectionElements = sections
             .map((section) => document.getElementById(section.id))
             .filter((element): element is HTMLElement => element !== null);
 
-        if (observed.length === 0) return;
+        if (sectionElements.length === 0) return;
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                for (const entry of entries) {
-                    if (entry.isIntersecting) setActiveId(entry.target.id);
+        function updateActiveSection() {
+            const viewportCenter = window.innerHeight / 2;
+            let closest = sectionElements[0];
+            let closestDistance = Number.POSITIVE_INFINITY;
+
+            for (const element of sectionElements) {
+                const bounds = element.getBoundingClientRect();
+                const distance =
+                    bounds.top <= viewportCenter && bounds.bottom >= viewportCenter
+                        ? 0
+                        : Math.min(
+                              Math.abs(bounds.top - viewportCenter),
+                              Math.abs(bounds.bottom - viewportCenter),
+                          );
+
+                if (distance < closestDistance) {
+                    closest = element;
+                    closestDistance = distance;
                 }
-            },
-            /* Only fire while a section owns the middle band of the screen. */
-            { rootMargin: "-45% 0px -45% 0px" },
-        );
+            }
 
-        for (const element of observed) observer.observe(element);
-        return () => observer.disconnect();
+            setActiveId(closest.id);
+        }
+
+        updateActiveSection();
+        window.addEventListener("scroll", updateActiveSection, { passive: true });
+        window.addEventListener("resize", updateActiveSection);
+
+        return () => {
+            window.removeEventListener("scroll", updateActiveSection);
+            window.removeEventListener("resize", updateActiveSection);
+        };
     }, []);
 
     return (

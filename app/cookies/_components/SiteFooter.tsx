@@ -22,32 +22,40 @@ function DeadLink({ label }: { label: string }) {
 
 export function SiteFooter() {
     return (
-        <footer className="border-border border-t bg-accent">
-            <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-16 lg:px-10">
+        <footer className="bg-background">
+            <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-20 lg:gap-16 lg:px-10 lg:py-24">
                 <div className="flex flex-col justify-between gap-12 lg:flex-row lg:items-end">
                     <div className="flex flex-col gap-3">
-                        <p className="font-bold font-display text-5xl">
+                        <p className="font-display text-5xl">
                             קרמב<span className="text-campaign-cookies-raspberry">.</span>
                         </p>
                         <p className="text-lg text-muted-foreground">{footer.brandLine}</p>
                     </div>
-                    <ul className="flex flex-wrap items-start gap-x-12 gap-y-4">
-                        {trio.map((flavor) => (
-                            <li key={flavor.id} className="flex flex-col items-center gap-2">
-                                <flavor.icon
-                                    aria-hidden
-                                    strokeWidth={1.5}
-                                    className={`size-7 ${flavor.accent}`}
-                                />
-                                <a
-                                    href={`#${flavor.id}`}
-                                    className={`font-bold text-sm underline-offset-4 hover:underline ${flavor.accent}`}
-                                >
-                                    {flavor.name}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="relative">
+                        <span
+                            aria-hidden="true"
+                            className="absolute inset-x-8 top-4 h-px bg-linear-to-l from-campaign-cookies-pistachio via-campaign-cookies-raspberry to-campaign-cookies-chocolate"
+                        />
+                        <ul className="relative flex flex-wrap items-start gap-x-10 gap-y-5 sm:gap-x-14">
+                            {trio.map((flavor) => (
+                                <li key={flavor.id} className="flex flex-col items-center gap-2">
+                                    <span className="bg-background px-2">
+                                        <flavor.icon
+                                            aria-hidden
+                                            strokeWidth={1.5}
+                                            className={`size-7 ${flavor.accent}`}
+                                        />
+                                    </span>
+                                    <a
+                                        href={`#${flavor.id}`}
+                                        className={`font-bold text-sm underline-offset-4 hover:underline ${flavor.accent}`}
+                                    >
+                                        {flavor.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
 
                 <div className="grid gap-10 border-border border-t pt-12 sm:grid-cols-3">

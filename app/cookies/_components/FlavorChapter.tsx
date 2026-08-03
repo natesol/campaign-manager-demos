@@ -1,15 +1,17 @@
+import Image from "next/image";
+
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 import type { Flavor } from "../content";
-import { Disc } from "./placeholders";
 
 /*
  * One flavor, one chapter, one viewport at lg. The ground comes from the
  * [data-flavor] rules in cookies.css: each chapter's own tint, fading to the
  * page paper at both ends, so chapters never touch.
  *
- * copySide is the logical side of the text column: the approved rhythm is copy
- * end, then copy start, then copy end, so the journey never repeats a module.
+ * The asset itself carries the approved cookie crop, ingredients, bowl, and
+ * brush movement. Keeping those together prevents the layout from rebuilding
+ * or accidentally reversing the flavor-specific compositions.
  */
 export function FlavorChapter({ flavor, copySide }: { flavor: Flavor; copySide: "start" | "end" }) {
     const copy = (
@@ -17,7 +19,7 @@ export function FlavorChapter({ flavor, copySide }: { flavor: Flavor; copySide: 
            its product; the md order classes restore the mockup side, and the
            end column is pushed to the outer page margin as in the mockups. */
         <ScrollReveal
-            className={`flex max-w-xl flex-col gap-6 ${
+            className={`flex max-w-xl flex-col gap-5 lg:gap-6 ${
                 copySide === "end" ? "md:order-2 md:justify-self-end" : ""
             }`}
         >
@@ -50,20 +52,17 @@ export function FlavorChapter({ flavor, copySide }: { flavor: Flavor; copySide: 
     const product = (
         <ScrollReveal
             delay={120}
-            className={`relative isolate flex items-center justify-center py-10 ${
+            motion="soft"
+            className={`relative flex items-center justify-center ${
                 copySide === "end" ? "md:order-1" : ""
             }`}
         >
-            <span
-                className={`absolute inset-0 -z-10 m-auto h-32 w-[110%] -rotate-45 rounded-full ${flavor.brush}`}
+            <Image
+                src={flavor.sectionImage}
+                alt={flavor.imageAlt}
+                sizes="(max-width: 767px) 92vw, (max-width: 1279px) 50vw, 42rem"
+                className="h-auto w-full max-w-[42rem] select-none drop-shadow-[0_1.5rem_2rem_rgba(63,42,24,0.08)]"
             />
-            {/* Ingredient bowl at the outer top corner, opposite the copy. */}
-            <span
-                className={`absolute top-0 size-16 rounded-full ${flavor.disc} ${
-                    copySide === "end" ? "start-4" : "end-4"
-                }`}
-            />
-            <Disc tone={flavor.disc} size="size-60 sm:size-72 lg:size-96" />
         </ScrollReveal>
     );
     return (
@@ -71,9 +70,15 @@ export function FlavorChapter({ flavor, copySide }: { flavor: Flavor; copySide: 
             id={flavor.id}
             data-flavor={flavor.id}
             aria-labelledby={`${flavor.id}-heading`}
-            className="flex flex-col justify-center py-16 lg:min-h-svh lg:py-24"
+            className="flex scroll-mt-8 flex-col justify-center py-16 lg:min-h-svh lg:py-20"
         >
-            <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 md:grid-cols-2 md:gap-14 lg:gap-16 lg:px-10">
+            <div
+                className={`mx-auto grid w-full max-w-7xl items-center gap-10 px-6 md:gap-10 lg:gap-14 lg:px-10 ${
+                    copySide === "end"
+                        ? "md:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]"
+                        : "md:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]"
+                }`}
+            >
                 {copy}
                 {product}
             </div>

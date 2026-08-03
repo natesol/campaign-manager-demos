@@ -1,5 +1,14 @@
+import type { StaticImageData } from "next/image";
+
 import type { LucideIcon } from "lucide-react";
 import { Bean, Calendar, Candy, Cherry, Clock, Droplet, MapPin, Nut, Sparkles } from "lucide-react";
+
+import pistachioHeroImage from "./_assets/cookie-drop_asset-01_hero-pistachio_v1.webp";
+import raspberryHeroImage from "./_assets/cookie-drop_asset-02_hero-raspberry-white-chocolate_v1.webp";
+import cocoaHeroImage from "./_assets/cookie-drop_asset-03_hero-dark-chocolate-sea-salt_v1.webp";
+import pistachioSectionImage from "./_assets/cookie-drop_asset-04_section-pistachio_v1.webp";
+import raspberrySectionImage from "./_assets/cookie-drop_asset-05_section-raspberry-white-chocolate_v2.webp";
+import cocoaSectionImage from "./_assets/cookie-drop_asset-06_section-dark-chocolate-sea-salt_v2.webp";
 
 /*
  * Every Hebrew string here is approved copy from the concept record
@@ -19,11 +28,12 @@ export type Flavor = {
     body: string;
     icon: LucideIcon;
     features: { icon: LucideIcon; label: string }[];
+    heroImage: StaticImageData;
+    sectionImage: StaticImageData;
+    imageAlt: string;
     /* Palette classes are spelled out so Tailwind can see them statically. */
     accent: string;
     rule: string;
-    disc: string;
-    brush: string;
 };
 
 export const flavors: Flavor[] = [
@@ -40,10 +50,11 @@ export const flavors: Flavor[] = [
             { icon: Droplet, label: "קרם פיסטוק עדין" },
             { icon: Sparkles, label: "קמצוץ מלח ים" },
         ],
+        heroImage: pistachioHeroImage,
+        sectionImage: pistachioSectionImage,
+        imageAlt: "עוגיית קרם פיסטוק גדולה עם פיסטוקים קלויים ומשיחת פיסטוק",
         accent: "text-campaign-cookies-pistachio",
         rule: "bg-campaign-cookies-pistachio/50",
-        disc: "bg-campaign-cookies-pistachio/25",
-        brush: "bg-campaign-cookies-pistachio/15",
     },
     {
         id: "raspberry",
@@ -58,10 +69,11 @@ export const flavors: Flavor[] = [
             { icon: Candy, label: "שוקולד לבן" },
             { icon: Sparkles, label: "קמצוץ מלח ים" },
         ],
+        heroImage: raspberryHeroImage,
+        sectionImage: raspberrySectionImage,
+        imageAlt: "עוגיית פטל ושוקולד לבן גדולה עם פטל, שוקולד לבן ומשיחת פטל",
         accent: "text-campaign-cookies-raspberry",
         rule: "bg-campaign-cookies-raspberry/50",
-        disc: "bg-campaign-cookies-raspberry/20",
-        brush: "bg-campaign-cookies-raspberry/10",
     },
     {
         id: "cocoa",
@@ -76,10 +88,11 @@ export const flavors: Flavor[] = [
             { icon: Candy, label: "שוקולד מריר" },
             { icon: Sparkles, label: "קמצוץ מלח ים" },
         ],
+        heroImage: cocoaHeroImage,
+        sectionImage: cocoaSectionImage,
+        imageAlt: "עוגיית שוקולד מריר גדולה עם שוקולד, מלח ים ומשיחת קקאו",
         accent: "text-campaign-cookies-chocolate",
         rule: "bg-campaign-cookies-chocolate/50",
-        disc: "bg-campaign-cookies-chocolate/25",
-        brush: "bg-campaign-cookies-chocolate/10",
     },
 ];
 
@@ -87,11 +100,11 @@ export const [pistachio, raspberry, cocoa] = flavors;
 
 export const releaseMarker = "03.09 — 10:00";
 
-/* The header navigation; הדרופ closes the list and leads to the action. */
+/* Visual order in the RTL header: הדרופ / הטעמים / הסיפור. */
 export const navigation = [
+    { label: "הדרופ", href: "#hero" },
     { label: "הטעמים", href: "#flavors" },
     { label: "הסיפור", href: "#story" },
-    { label: "הדרופ", href: "#reminder" },
 ];
 
 /* The side rail's stops, in page order. */

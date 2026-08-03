@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { type KeyboardEvent, useRef, useState } from "react";
 
 import { Mail } from "lucide-react";
 
@@ -12,12 +12,18 @@ import { Mail } from "lucide-react";
  * and the result state says so, as the stage 1 constraints require.
  */
 export function ReminderForm() {
+    const inputRef = useRef<HTMLInputElement>(null);
     const [email, setEmail] = useState("");
     const [submitted, setSubmitted] = useState(false);
 
-    function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    function completeReminder() {
+        if (inputRef.current?.reportValidity()) setSubmitted(true);
+    }
+
+    function handleEmailKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+        if (event.key !== "Enter") return;
         event.preventDefault();
-        setSubmitted(true);
+        completeReminder();
     }
 
     if (submitted) {
@@ -48,19 +54,21 @@ export function ReminderForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex w-full max-w-xl flex-col gap-3 sm:flex-row">
+        <fieldset className="flex w-full max-w-xl flex-col gap-3 sm:flex-row">
+            <legend className="sr-only">הרשמה לתזכורת</legend>
             <label htmlFor="reminder-email" className="sr-only">
                 כתובת האימייל שלכם
             </label>
             <span className="relative flex-1">
                 <input
+                    ref={inputRef}
                     id="reminder-email"
                     type="email"
-                    name="email"
                     required
                     autoComplete="email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
+                    onKeyDown={handleEmailKeyDown}
                     placeholder="כתובת האימייל שלכם"
                     className="w-full rounded-lg border border-border bg-background px-5 py-4 pe-12 text-base outline-none placeholder:text-subtle-foreground focus-visible:outline-2 focus-visible:outline-foreground"
                 />
@@ -71,11 +79,12 @@ export function ReminderForm() {
                 />
             </span>
             <button
-                type="submit"
+                type="button"
+                onClick={completeReminder}
                 className="rounded-lg bg-campaign-cookies-pistachio px-7 py-4 font-bold text-background text-base transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-foreground focus-visible:outline-offset-2"
             >
                 שלחו לי תזכורת
             </button>
-        </form>
+        </fieldset>
     );
 }

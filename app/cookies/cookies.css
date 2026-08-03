@@ -9,12 +9,8 @@
  */
 
 [data-campaign="cookies"] {
-    /* The approved display face is a heavy, sharp Hebrew sans; Secular One is
-       the closest free cut. The next/font variable is set on the campaign root
-       in page.tsx, and the font-display utility resolves through --display-font. */
-    --display-font: var(--font-secular-one), var(--font-rubik), system-ui, sans-serif;
-    /* Secular One ships a single weight; without this, font-bold on a display
-       heading would render a smeared synthetic bold instead. */
+    /* The title face loads its real width axis through next/font. */
+    --display-font: var(--font-noto-sans-hebrew), var(--font-rubik), system-ui, sans-serif;
     font-synthesis-weight: none;
 
     /* Chapter ground tints, one warmth in three directions. Plain variables:
@@ -22,6 +18,11 @@
     --campaign-cookies-pistachio-tint: #eef2e1;
     --campaign-cookies-raspberry-tint: #fbe9ee;
     --campaign-cookies-cocoa-tint: #f2ebe0;
+}
+
+[data-campaign="cookies"] .font-display {
+    font-stretch: 75%;
+    font-weight: 700;
 }
 
 /* Each flavor chapter paints its own ground: a plateau across most of the

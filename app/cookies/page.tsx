@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Secular_One } from "next/font/google";
+import { Noto_Sans_Hebrew } from "next/font/google";
 
 import "./cookies.css";
 import { DropPayoff } from "./_components/DropPayoff";
@@ -12,10 +12,11 @@ import { SiteHeader } from "./_components/SiteHeader";
 import { cocoa, pistachio, raspberry } from "./content";
 
 /* The campaign's display face; cookies.css routes --display-font to it. */
-const secularOne = Secular_One({
-    variable: "--font-secular-one",
-    weight: "400",
+const notoSansHebrew = Noto_Sans_Hebrew({
+    variable: "--font-noto-sans-hebrew",
+    weight: "variable",
     subsets: ["hebrew", "latin"],
+    axes: ["wdth"],
 });
 
 export const metadata: Metadata = {
@@ -27,13 +28,12 @@ export default function CookiesRoute() {
         // overflow-x-clip: the rotated brush strokes reach past the viewport.
         <div
             data-campaign="cookies"
-            className={`${secularOne.variable} flex flex-1 flex-col overflow-x-clip bg-background text-foreground`}
+            className={`${notoSansHebrew.variable} flex flex-1 flex-col overflow-x-clip bg-background text-foreground`}
         >
             <SectionRail />
             <SiteHeader />
-            {/* The gaps here, and inside the flavors group, are the ivory
-                breathing room between the tinted sections; the hero adds its
-                own margin on top, so the opening gets double the air. */}
+            {/* Independent art-directed views become one continuous landing page
+                through the shared ivory ground and generous transition space. */}
             <main className="flex flex-col gap-12 lg:gap-20">
                 <Hero />
                 <div id="flavors" className="flex flex-col gap-12 lg:gap-20">

@@ -1,7 +1,10 @@
+import Image from "next/image";
+
 import { Bell, Lock } from "lucide-react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 
+import reminderStackImage from "../_assets/cookie-drop_asset-08_reminder-stack_v1.webp";
 import { ReminderForm } from "./ReminderForm";
 
 /*
@@ -13,12 +16,12 @@ export function Reminder() {
         <section
             id="reminder"
             aria-labelledby="reminder-heading"
-            className="flex flex-col justify-center py-16 lg:min-h-svh lg:py-24"
+            className="flex scroll-mt-8 flex-col justify-center py-16 lg:min-h-svh lg:py-20"
         >
             {/* The action comes first in the DOM, so phones reach the form before
                 the product shot; the md order classes restore the mockup side. */}
-            <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 md:grid-cols-2 md:gap-14 lg:gap-20 lg:px-10">
-                <ScrollReveal className="flex flex-col items-center gap-6 text-center md:order-2">
+            <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 md:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] md:gap-10 lg:gap-14 lg:px-10">
+                <ScrollReveal className="flex flex-col items-center gap-6 text-center md:order-2 md:items-start md:text-start">
                     <span className="flex items-center gap-3">
                         <span className="size-1.5 rounded-full bg-campaign-cookies-pistachio" />
                         <Bell aria-hidden strokeWidth={1.5} className="size-8" />
@@ -42,17 +45,13 @@ export function Reminder() {
                     </p>
                 </ScrollReveal>
 
-                {/* The stacked trio in front of its shipping box, top to bottom:
-                    pistachio, raspberry, chocolate. */}
-                <ScrollReveal delay={120} className="flex justify-center md:order-1">
-                    <div className="relative py-6 pe-16">
-                        <span className="absolute start-0 top-0 h-72 w-60 rounded-xl bg-foreground/10" />
-                        <div className="relative flex flex-col items-center">
-                            <span className="block size-44 rounded-full bg-campaign-cookies-pistachio/25" />
-                            <span className="-mt-16 block size-48 rounded-full bg-campaign-cookies-raspberry/20" />
-                            <span className="-mt-16 block size-52 rounded-full bg-campaign-cookies-chocolate/30" />
-                        </div>
-                    </div>
+                <ScrollReveal delay={120} motion="soft" className="flex justify-center md:order-1">
+                    <Image
+                        src={reminderStackImage}
+                        alt="שלוש עוגיות המהדורה המוגבלת לצד מארז קרמב"
+                        sizes="(max-width: 767px) 92vw, (max-width: 1279px) 52vw, 44rem"
+                        className="h-auto w-full max-w-[44rem] select-none drop-shadow-[0_1.5rem_2rem_rgba(63,42,24,0.08)]"
+                    />
                 </ScrollReveal>
             </div>
         </section>
