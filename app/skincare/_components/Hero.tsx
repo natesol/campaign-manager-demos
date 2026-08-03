@@ -2,24 +2,7 @@ import Image from "next/image";
 
 import heroTrio from "../_assets/seasonal-skincare_asset-01_hero-trio_v3-transparent.webp";
 import { hero } from "../content";
-
-function HeroAccentBurst() {
-    return (
-        <svg
-            aria-hidden="true"
-            viewBox="0 0 20 20"
-            className="pointer-events-none absolute -start-4 -top-2 size-5 overflow-visible text-campaign-skincare-coral"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeWidth="2"
-        >
-            <path d="M3 10V2" />
-            <path d="m7 12 6-6" />
-            <path d="M9 17h8" />
-        </svg>
-    );
-}
+import { AccentBurst } from "./AccentBurst";
 
 /*
  * The approved v3 hero: copy on the start side, the unified trio on its
@@ -41,7 +24,7 @@ export function Hero() {
                                     <>
                                         <span className="relative inline-block">
                                             הקיץ
-                                            <HeroAccentBurst />
+                                            <AccentBurst className="absolute -start-4 -top-2 size-5" />
                                         </span>{" "}
                                         הגיע
                                     </>
@@ -78,7 +61,7 @@ export function Hero() {
             <div className="flex flex-col items-center">
                 <a
                     href="#routine"
-                    className="flex size-20 items-center justify-center rounded-full border border-border p-2 text-center text-xs leading-tight transition-[background-color,border-color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-campaign-skincare-lavender hover:bg-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 active:translate-y-0 motion-reduce:transform-none"
+                    className="flex size-20 items-center justify-center rounded-full border border-border p-2 text-center text-xs leading-tight transition-colors duration-150 hover:border-campaign-skincare-coral hover:text-campaign-skincare-coral focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35"
                 >
                     {hero.cue}
                 </a>

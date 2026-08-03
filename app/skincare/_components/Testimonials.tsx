@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { Sparkles, Star } from "lucide-react";
+import { Star } from "lucide-react";
 
 import {
     Carousel,
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/carousel";
 
 import { testimonials } from "../content";
+import { AccentedFirstWord } from "./AccentBurst";
 import { Pill } from "./Pill";
 
 /*
@@ -52,15 +53,10 @@ export function Testimonials() {
 
     return (
         <section id="reviews" className="py-16 lg:py-24">
-            <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-6 sm:px-10">
-                <div className="relative text-center">
-                    <Sparkles
-                        aria-hidden
-                        strokeWidth={1.5}
-                        className="absolute -start-2 -top-3 size-6 text-campaign-skincare-coral sm:-start-9"
-                    />
+            <div className="flex w-full flex-col items-center gap-12">
+                <div className="px-6 text-center sm:px-10">
                     <h2 className="font-bold font-display text-[clamp(2rem,4vw,3rem)] leading-tight">
-                        {testimonials.headingLines[0]}
+                        <AccentedFirstWord text={testimonials.headingLines[0]} />
                         <br />
                         {testimonials.headingLines[1]}
                     </h2>

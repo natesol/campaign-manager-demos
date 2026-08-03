@@ -20,7 +20,7 @@ export function Pill({
     return (
         <a
             href={href}
-            className={`inline-flex items-center justify-center gap-3 rounded-full border border-foreground font-medium transition-[background-color,border-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-campaign-skincare-lavender hover:bg-accent hover:shadow-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 active:translate-y-0 motion-reduce:transform-none ${sizing} ${className}`}
+            className={`inline-flex items-center justify-center gap-3 rounded-full border border-foreground font-medium transition-colors duration-150 hover:border-campaign-skincare-coral hover:text-campaign-skincare-coral focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 ${sizing} ${className}`}
         >
             {children}
         </a>

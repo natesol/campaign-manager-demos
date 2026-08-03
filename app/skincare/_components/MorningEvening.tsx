@@ -1,7 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
 
-import { Sparkles } from "lucide-react";
-
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 import cleanserImage from "../_assets/seasonal-skincare_asset-02_grid-cleansing-water_v2.webp";
@@ -11,6 +9,7 @@ import waterImage from "../_assets/seasonal-skincare_asset-05_grid-water-ripple_
 import modelSpfImage from "../_assets/seasonal-skincare_asset-06_grid-model-spf_v1.webp";
 import spfCapImage from "../_assets/seasonal-skincare_asset-07_grid-spf-water-closeup_v1.webp";
 import { routine } from "../content";
+import { AccentedFirstWord } from "./AccentBurst";
 
 /*
  * The campaign's organizing idea as the final design's editorial mosaic. The
@@ -51,15 +50,17 @@ function MosaicTile({
     alt,
     span,
     sizes,
+    position = "object-center",
 }: {
     src: StaticImageData;
     alt: string;
     span: string;
     sizes: string;
+    position?: string;
 }) {
     return (
         <div className={`relative min-h-52 overflow-hidden ${span}`}>
-            <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" />
+            <Image src={src} alt={alt} fill sizes={sizes} className={`object-cover ${position}`} />
         </div>
     );
 }
@@ -75,12 +76,8 @@ export function MorningEvening() {
                         motion="soft"
                         className="flex flex-col justify-center gap-3 pb-6 sm:col-span-2 lg:col-span-7 lg:pe-16 lg:pb-0"
                     >
-                        <p className="flex items-center gap-2 text-campaign-skincare-coral text-sm">
-                            {routine.eyebrow}
-                            <Sparkles aria-hidden strokeWidth={1.5} className="size-4" />
-                        </p>
                         <h2 className="font-bold font-display text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
-                            {routine.heading}
+                            <AccentedFirstWord text={routine.heading} />
                         </h2>
                         <p className="max-w-md text-pretty text-lg text-muted-foreground">
                             {routine.support}
@@ -99,6 +96,7 @@ export function MorningEvening() {
                         src={promenadeImage}
                         alt="אישה צועדת בטיילת קיצית ליד הים"
                         sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
+                        position="object-top"
                         span="lg:col-span-4"
                     />
                     <MosaicCard
@@ -119,6 +117,7 @@ export function MorningEvening() {
                         src={moisturizerImage}
                         alt="בקבוק לחות על רקע גאומטרי לילך"
                         sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
+                        position="object-top"
                         span="lg:col-span-4"
                     />
                     <MosaicCard

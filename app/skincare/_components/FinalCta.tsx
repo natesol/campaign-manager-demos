@@ -1,8 +1,9 @@
-import { Flower, ShoppingBag, Sparkles } from "lucide-react";
+import { Flower, ShoppingBag } from "lucide-react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 import { finalCta } from "../content";
+import { AccentedFirstWord } from "./AccentBurst";
 import { Pill } from "./Pill";
 
 /*
@@ -18,13 +19,8 @@ export function FinalCta() {
                     motion="soft"
                     className="flex flex-col items-center gap-6 text-center"
                 >
-                    <h2 className="relative font-bold font-display text-[clamp(1.9rem,3.5vw,2.75rem)] leading-tight">
-                        {finalCta.heading}
-                        <Sparkles
-                            aria-hidden
-                            strokeWidth={1.5}
-                            className="absolute -start-2 -top-4 size-6 text-campaign-skincare-coral sm:-start-9 sm:-top-5"
-                        />
+                    <h2 className="font-bold font-display text-[clamp(1.9rem,3.5vw,2.75rem)] leading-tight">
+                        <AccentedFirstWord text={finalCta.heading} />
                     </h2>
                     <p className="text-lg text-muted-foreground">{finalCta.support}</p>
                     <Pill href={finalCta.cta.href}>
