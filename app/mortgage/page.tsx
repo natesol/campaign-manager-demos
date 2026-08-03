@@ -23,10 +23,10 @@ import heroArchitecture from "./_assets/mortgage-counseling_asset-01_hero-archit
 import servicesConsultation from "./_assets/mortgage-counseling_asset-02_services-consultation_v1.png";
 import processConsultation from "./_assets/mortgage-counseling_asset-03_process-consultation_v1.png";
 import companyPositionArchitecture from "./_assets/mortgage-counseling_asset-04_company-position-architecture_v1.png";
-import teamYael from "./_assets/mortgage-counseling_asset-05_team-yael-raz_v1.png";
-import teamItai from "./_assets/mortgage-counseling_asset-06_team-itai-shalev_v1.png";
-import teamMichal from "./_assets/mortgage-counseling_asset-07_team-michal-barak_v1.png";
-import teamOmer from "./_assets/mortgage-counseling_asset-08_team-omer-levi_v1.png";
+import teamYael from "./_assets/mortgage-counseling_asset-05_team-yael-raz_v2.png";
+import teamItai from "./_assets/mortgage-counseling_asset-06_team-itai-shalev_v2.png";
+import teamMichal from "./_assets/mortgage-counseling_asset-07_team-michal-barak_v2.png";
+import teamOmer from "./_assets/mortgage-counseling_asset-08_team-omer-levi_v2.png";
 import { BrandMark } from "./_components/BrandMark";
 import { ContactForm } from "./_components/ContactForm";
 import { SiteHeader } from "./_components/SiteHeader";
@@ -403,7 +403,7 @@ export default function MortgageRoute() {
                                 hold separately: 1.1fr and .66fr of the old three, so the
                                 proportions and the group beside it stay put. */}
                             <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none md:col-span-2 md:flex-row lg:col-span-1">
-                                <div className="relative min-h-80 bg-muted md:w-[62.5%] md:shrink-0 lg:min-h-112">
+                                <div className="relative min-h-80 bg-muted md:w-[62.5%] md:shrink-0 lg:min-h-96 lg:w-2/5">
                                     <Image
                                         src={teamYael}
                                         alt={`דיוקן של ${team.featured.name}`}
@@ -428,19 +428,19 @@ export default function MortgageRoute() {
                                     </p>
                                 </div>
                             </article>
-                            <div className="grid gap-4 md:col-span-2 md:grid-cols-3 lg:col-span-1">
+                            <div className="grid gap-4 md:col-span-2 md:grid-cols-3 lg:col-span-1 lg:grid-cols-2">
                                 {team.people.map((person, index) => (
                                     <article
                                         className="group overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none"
                                         key={person.name}
                                     >
-                                        <div className="relative min-h-72 bg-muted lg:min-h-64">
+                                        <div className="relative min-h-72 overflow-hidden bg-muted lg:min-h-36">
                                             <Image
                                                 src={supportingTeamImages[index]}
                                                 alt={`דיוקן של ${person.name}`}
                                                 fill
                                                 sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 30vw, 14vw"
-                                                className="object-cover object-top"
+                                                className="object-cover object-top lg:scale-110 lg:object-[50%_25%]"
                                             />
                                         </div>
                                         <div className="min-h-40 p-5">
