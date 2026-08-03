@@ -5,12 +5,20 @@ import { ArrowLeft } from "lucide-react";
 import { DemoPreview } from "./DemoPreview";
 import { type Demo, demos } from "./demos";
 
-// The numeral is the one place a campaign's accent appears on this page, so the
-// saturated color only ever carries large type.
+// The campaign's accent carries only large type: the numeral, and the same
+// slogan words the campaign's own page paints.
 const accent: Record<Demo["theme"], string> = {
     cookies: "text-campaign-cookies-raspberry",
     skincare: "text-campaign-skincare-coral",
     mortgage: "text-campaign-mortgage-accent",
+};
+
+// Hovering a band washes it with that campaign's band tint — the token that
+// exists exactly for these bands — instead of the page's neutral accent.
+const hoverBand: Record<Demo["theme"], string> = {
+    cookies: "hover:bg-campaign-cookies-band",
+    skincare: "hover:bg-campaign-skincare-band",
+    mortgage: "hover:bg-campaign-mortgage-band",
 };
 
 // The supporting lines sit back until the band is hovered. The campaign name and
@@ -27,7 +35,7 @@ export function PosterBands() {
                 <li key={demo.href} className="flow-root">
                     <Link
                         href={demo.href}
-                        className="group mx-auto my-8 flex w-full max-w-7xl flex-wrap items-center gap-6 px-4 py-5 transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-current focus-visible:-outline-offset-4 sm:px-6 lg:my-16 lg:gap-10 lg:px-8 lg:py-8"
+                        className={`group mx-auto my-8 flex w-full max-w-7xl flex-wrap items-center gap-6 px-4 py-5 transition-colors focus-visible:outline-2 focus-visible:outline-current focus-visible:-outline-offset-4 sm:px-6 lg:my-16 lg:gap-10 lg:px-8 lg:py-8 ${hoverBand[demo.theme]}`}
                     >
                         {/* Text asks for a readable column, the preview for one step
                             more, both from the container scale. Side by side while
@@ -51,7 +59,20 @@ export function PosterBands() {
                                     {demo.product}
                                 </p>
                                 <h2 className="whitespace-pre-line text-balance font-bold font-display text-3xl tracking-tight sm:text-4xl xl:text-5xl">
-                                    {demo.campaign}
+                                    {demo.campaign.map((segment, segmentIndex) =>
+                                        segment.accent ? (
+                                            <span
+                                                // biome-ignore lint/suspicious/noArrayIndexKey: segments are a fixed literal list
+                                                key={segmentIndex}
+                                                className={accent[demo.theme]}
+                                            >
+                                                {segment.text}
+                                            </span>
+                                        ) : (
+                                            // biome-ignore lint/suspicious/noArrayIndexKey: segments are a fixed literal list
+                                            <span key={segmentIndex}>{segment.text}</span>
+                                        ),
+                                    )}
                                 </h2>
                                 <p className="max-w-xl text-pretty text-base">{demo.description}</p>
                             </div>

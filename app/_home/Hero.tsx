@@ -1,5 +1,3 @@
-import { ThemeToggle } from "@/components/ThemeToggle";
-
 // One line at every width: the three points read as a single strapline, so they
 // never wrap or drop to a second row.
 const qualities = ["עברית מלאה ו-RTL", "מותאם לכל מסך", "אתרים סטטיים"];
@@ -12,17 +10,14 @@ export function Hero() {
         <header className="mx-auto mb-16 w-full max-w-7xl px-4 sm:mb-24 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between border-border border-b py-6 text-sm">
                 <p className="font-bold font-display">תיק עבודות</p>
-                <div className="flex items-center gap-5">
-                    <p>קמפיינים דיגיטליים / 2026</p>
-                    <ThemeToggle />
-                </div>
+                <p>קמפיינים דיגיטליים / 2026</p>
             </div>
 
             <div className="flex flex-col items-center gap-8 border-border border-b py-10 text-center lg:gap-10 lg:py-24">
                 <p className="font-bold text-base text-subtle-foreground tracking-eyebrow">
                     פרויקטים נבחרים
                 </p>
-                <h1 className="max-w-6xl text-balance font-bold font-display text-3xl tracking-tight sm:text-5xl lg:text-6xl">
+                <h1 className="max-w-6xl text-balance font-bold font-display text-4xl tracking-tight sm:text-5xl lg:text-6xl">
                     קמפיינים ודפי נחיתה{" "}
                     <span className="text-emphasis-foreground">שפשוט עובדים</span>
                 </h1>

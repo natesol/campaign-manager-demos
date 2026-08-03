@@ -1,3 +1,5 @@
+import { ThemeToggle } from "@/components/ThemeToggle";
+
 export function Footer() {
     return (
         // Mirrors the hero: margin and padding on the container, the rule on the
@@ -9,10 +11,11 @@ export function Footer() {
                     <br />
                     תחילת הרעיון.
                 </p>
-                <p className="max-w-2xl text-sm text-subtle-foreground">
+                <p className="max-w-xl text-sm text-subtle-foreground">
                     כל המותגים, המוצרים והשירותים המוצגים כאן בדיוניים ונוצרו לצורך תיק העבודות
                     בלבד. אין קשר ביניהם לבין חברות או מוצרים קיימים.
                 </p>
+                <ThemeToggle />
             </div>
         </footer>
     );

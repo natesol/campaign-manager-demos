@@ -1,32 +1,55 @@
+import Image, { type StaticImageData } from "next/image";
+
+import cookiesPreview from "../cookies/_assets/cookie-drop_asset-07_release-tray_v1.webp";
+import mortgagePreview from "../mortgage/_assets/mortgage-counseling_asset-01_hero-architecture_v1.png";
+import skincarePreview from "../skincare/_assets/seasonal-skincare_asset-01_hero-trio_v3-transparent.webp";
 import type { Demo } from "./demos";
 
-// Stands in for the campaign screenshot that has not been taken yet. It carries
-// the campaign's own paper so each band still reads as that campaign.
-const paper: Record<Demo["theme"], string> = {
-    cookies: "bg-campaign-cookies-paper",
-    skincare: "bg-campaign-skincare-paper",
-    mortgage: "bg-campaign-mortgage-paper",
+/*
+ * Each preview shows the campaign's own lead imagery on the campaign's paper.
+ * The imports reach into the campaign folders deliberately: the home page
+ * previews the campaigns, the same reason their identity colors are global.
+ * A renamed asset breaks the build loudly rather than silently emptying a band.
+ */
+const previews: Record<
+    Demo["theme"],
+    { src: StaticImageData; paper: string; fit: "cover" | "contain" }
+> = {
+    /* The reunited trio in its open release tray. */
+    cookies: { src: cookiesPreview, paper: "bg-campaign-cookies-paper", fit: "cover" },
+    /* The transparent product trio, staged on the campaign's near-white paper. */
+    skincare: { src: skincarePreview, paper: "bg-campaign-skincare-paper", fit: "contain" },
+    /* The hero architecture photograph. */
+    mortgage: { src: mortgagePreview, paper: "bg-campaign-mortgage-paper", fit: "cover" },
 };
 
+/* Decorative: the band's text already names and describes the campaign. */
 export function DemoPreview({ theme }: { theme: Demo["theme"] }) {
+    const preview = previews[theme];
     return (
         <div
             aria-hidden="true"
-            className={`relative isolate h-full w-full overflow-hidden ${paper[theme]}`}
+            className={`relative isolate h-full w-full overflow-hidden ${preview.paper}`}
         >
-            <div className="absolute inset-5 border border-border-strong/60 sm:inset-7">
-                <div className="absolute inset-x-0 top-0 flex items-center justify-between border-border-strong/60 border-b px-4 py-3 text-subtle-foreground text-xs">
-                    <span>PREVIEW</span>
-                    <span className="h-2 w-2 rounded-full bg-border-strong" />
+            {preview.fit === "cover" ? (
+                <Image
+                    src={preview.src}
+                    alt=""
+                    fill
+                    sizes="(min-width: 64rem) 40vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none"
+                />
+            ) : (
+                <div className="absolute inset-4 transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none sm:inset-6">
+                    <Image
+                        src={preview.src}
+                        alt=""
+                        fill
+                        sizes="(min-width: 64rem) 40vw, 100vw"
+                        className="object-contain"
+                    />
                 </div>
-                <div className="absolute inset-x-4 bottom-4 flex flex-col gap-2">
-                    <span className="h-2 w-2/3 rounded-full bg-border-strong/60" />
-                    <span className="h-2 w-2/5 rounded-full bg-border-strong/60" />
-                </div>
-            </div>
-            <span className="absolute inset-0 flex items-center justify-center pt-5 font-medium text-muted-foreground text-xs tracking-eyebrow">
-                תצוגה מקדימה בהמשך
-            </span>
+            )}
         </div>
     );
 }

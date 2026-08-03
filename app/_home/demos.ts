@@ -4,12 +4,13 @@ export type Demo = {
     company: string;
     sector: string;
     product: string;
-    campaign: string;
+    /* The campaign line, split where the campaign's own page paints its accent. */
+    campaign: { text: string; accent?: boolean }[];
     description: string;
 };
 
-// Cookies and skincare carry the copy from their approved concept records. The
-// mortgage campaign has no approved concept yet, so its copy is a placeholder.
+// Each entry carries its campaign's own approved identity and lead copy, kept
+// here as the home page's data rather than imported from pages still in motion.
 export const demos: Demo[] = [
     {
         href: "/cookies/",
@@ -17,9 +18,9 @@ export const demos: Demo[] = [
         company: "קרמב.",
         sector: "קמפיין עוגיות",
         product: "מהדורה מוגבלת",
-        campaign: "שלושה טעמים.\nמהדורה אחת.",
+        campaign: [{ text: "שלושה טעמים\n" }, { text: "דרופ אחד.", accent: true }],
         description:
-            "קרם פיסטוק, פטל ושוקולד לבן, ושוקולד מריר עם מלח ים. שלושה טעמים בלתי נשכחים במהדורה אחת.",
+            "קרם פיסטוק, פטל ושוקולד לבן ושוקולד מריר ומלח ים. שלושה טעמים במהדורה חד-פעמית ובכמות מוגבלת.",
     },
     {
         href: "/skincare/",
@@ -27,17 +28,21 @@ export const demos: Demo[] = [
         company: "בדיוק לעונה",
         sector: "קמפיין טיפוח לקיץ",
         product: "שגרת טיפוח לבוקר ולערב",
-        campaign: "הקיץ הגיע.\nשגרת הטיפוח מתחלפת.",
+        campaign: [
+            { text: "הקיץ הגיע" },
+            { text: ".", accent: true },
+            { text: "\nשגרת הטיפוח מתחלפת" },
+            { text: ".", accent: true },
+        ],
         description: "ניקוי ולחות בבוקר ובערב, והגנה מהשמש במהלך היום.",
     },
     {
         href: "/mortgage/",
         theme: "mortgage",
-        company: "קומה ראשונה",
+        company: "עיקר משכנתאות",
         sector: "ייעוץ משכנתאות",
-        product: "פגישת סדר",
-        campaign: "ייעוץ משכנתא",
-        description:
-            "עמוד להשארת פרטים לפני התחייבות ארוכה. השפה נשענת על אמון ובהירות, ומובילה לטופס רב-שלבי שנעים למלא גם בנייד.",
+        product: "שיחת מיפוי",
+        campaign: [{ text: "משכנתא\nלא לוקחים " }, { text: "בערך.", accent: true }],
+        description: "שיחת מיפוי קצרה כדי להבין איפה אתם עומדים ומה כדאי לבדוק בהמשך.",
     },
 ];
