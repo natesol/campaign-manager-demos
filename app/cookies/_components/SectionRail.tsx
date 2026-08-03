@@ -58,7 +58,11 @@ export function SectionRail() {
     return (
         <nav
             aria-label="מעבר בין מקטעי העמוד"
-            className="fixed start-6 top-1/2 z-20 hidden -translate-y-1/2 lg:block"
+            aria-hidden={activeId === "hero"}
+            inert={activeId === "hero"}
+            className={`fixed start-6 top-1/2 z-20 hidden -translate-y-1/2 transition-opacity duration-300 lg:block ${
+                activeId === "hero" ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
         >
             <ul className="flex flex-col gap-4">
                 {sections.map((section) => {

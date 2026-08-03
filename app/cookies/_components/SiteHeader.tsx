@@ -4,7 +4,7 @@ import { navigation, releaseMarker } from "../content";
 
 export function SiteHeader() {
     return (
-        <header className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-4 px-6 py-6 sm:flex-nowrap sm:px-10 sm:py-7">
+        <header className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-4 px-6 py-6 sm:flex-nowrap sm:px-10 sm:py-7 xl:absolute xl:inset-x-0 xl:top-0 xl:z-30 xl:max-w-none">
             <Link href="/" aria-label="קרמב, חזרה לעמוד הראשי" className="font-display text-3xl">
                 קרמב<span className="text-campaign-cookies-raspberry">.</span>
             </Link>
@@ -26,7 +26,7 @@ export function SiteHeader() {
                 ))}
             </nav>
             {/* dir: the bidi algorithm would otherwise swap the halves around the dash. */}
-            <p dir="ltr" className="text-muted-foreground text-sm tabular-nums">
+            <p dir="ltr" className="text-foreground/80 text-sm tabular-nums">
                 {releaseMarker}
             </p>
         </header>

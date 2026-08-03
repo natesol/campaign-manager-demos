@@ -37,13 +37,24 @@ function HeroFlavor({
             </span>
         </span>
     );
+    const connectorPath = labelSide === "start" ? "M 92 7 H 54 L 8 41" : "M 4 7 H 42 L 88 41";
+    const connectorDot = labelSide === "start" ? { cx: 8, cy: 41 } : { cx: 88, cy: 41 };
     const connector = (
-        <span
+        <svg
             aria-hidden="true"
-            className={`mt-9 hidden h-px w-12 shrink-0 bg-foreground/70 xl:block ${
-                labelSide === "start" ? "rotate-[22deg]" : "-rotate-[22deg]"
-            }`}
-        />
+            focusable="false"
+            viewBox="0 0 96 48"
+            className="mt-10 hidden h-12 w-24 shrink-0 overflow-visible text-foreground/75 xl:block"
+        >
+            <path
+                d={connectorPath}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.25"
+                strokeLinecap="square"
+            />
+            <circle cx={connectorDot.cx} cy={connectorDot.cy} r="3" fill="currentColor" />
+        </svg>
     );
     const cookie = (
         <span
@@ -63,7 +74,7 @@ function HeroFlavor({
         <a
             href={`#${flavor.id}`}
             aria-label={`לצפייה בטעם ${flavor.name}`}
-            className="group flex w-full max-w-sm items-center gap-5 outline-offset-8 focus-visible:outline-2 focus-visible:outline-foreground sm:w-auto sm:max-w-none sm:flex-col sm:gap-3 sm:text-center xl:flex-row xl:items-start xl:gap-2 xl:text-start"
+            className="group flex w-full max-w-sm items-center gap-5 outline-offset-8 focus-visible:outline-2 focus-visible:outline-foreground sm:w-auto sm:max-w-none sm:flex-col sm:gap-3 sm:text-center xl:flex-row xl:items-start xl:gap-0 xl:text-start"
         >
             {labelSide === "start" ? (
                 <>
@@ -87,11 +98,11 @@ export function Hero() {
         <section
             id="hero"
             aria-labelledby="hero-heading"
-            className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-6 pt-5 lg:mb-12 lg:px-10 xl:block xl:h-[49rem] xl:pt-0"
+            className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-6 pt-5 lg:mb-12 lg:px-10 xl:block xl:h-svh xl:max-w-none xl:px-0 xl:pt-0"
         >
             <h1
                 id="hero-heading"
-                className="z-10 text-balance text-center font-display text-[clamp(4.25rem,11vw,9rem)] leading-[0.9] xl:absolute xl:inset-x-0 xl:top-[7%]"
+                className="z-10 text-balance text-center font-display text-[clamp(4.25rem,min(9.75vw,15svh),7.75rem)] leading-[0.9] xl:absolute xl:inset-x-0 xl:top-[16%]"
             >
                 שלושה
                 <br />
@@ -101,29 +112,29 @@ export function Hero() {
             </h1>
 
             <div className="flex w-full flex-col items-center gap-8 sm:grid sm:grid-cols-3 sm:items-start sm:justify-items-center xl:contents">
-                <div className="xl:absolute xl:end-[-8%] xl:top-[9%]">
+                <div className="xl:absolute xl:end-[3%] xl:top-[18%]">
                     <HeroFlavor
                         flavor={pistachio}
-                        imageSize="w-32 sm:w-44 lg:w-52 xl:w-[21rem]"
-                        imageOffset="xl:mt-16"
-                        labelOffset="xl:-translate-x-10"
+                        imageSize="w-32 sm:w-44 lg:w-52 xl:w-[min(26rem,44svh,30vw)]"
+                        imageOffset="xl:mt-0"
+                        labelOffset="xl:-translate-x-40"
                         labelSide="start"
                     />
                 </div>
-                <div className="xl:absolute xl:start-[-8%] xl:top-[26%]">
+                <div className="xl:absolute xl:start-[3%] xl:top-[29%]">
                     <HeroFlavor
                         flavor={raspberry}
-                        imageSize="w-32 sm:w-44 lg:w-52 xl:w-[21rem]"
-                        imageOffset="xl:mt-14"
-                        labelOffset="xl:translate-x-10"
+                        imageSize="w-32 sm:w-44 lg:w-52 xl:w-[min(26rem,44svh,30vw)]"
+                        imageOffset="xl:mt-[2svh]"
+                        labelOffset="xl:translate-x-44"
                         labelSide="end"
                     />
                 </div>
-                <div className="xl:absolute xl:end-[31%] xl:top-[64%]">
+                <div className="xl:absolute xl:end-[27%] xl:top-[63%]">
                     <HeroFlavor
                         flavor={cocoa}
-                        imageSize="w-32 sm:w-44 lg:w-52 xl:w-[21rem]"
-                        imageOffset="xl:mt-7"
+                        imageSize="w-32 sm:w-44 lg:w-52 xl:w-[min(30rem,49svh,34vw)]"
+                        imageOffset="xl:-mt-[12svh]"
                         labelOffset=""
                         labelSide="start"
                     />
