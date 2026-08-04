@@ -13,8 +13,8 @@ import { Pill } from "./Pill";
  */
 export function FinalCta() {
     return (
-        <section id="closing" className="below-lg:py-16 py-24">
-            <div className="mx-auto flex w-full max-w-5xl flex-col gap-14 below-sm:px-6 px-10">
+        <section id="closing" className="mt-52 below-lg:pb-16 pb-24">
+            <div className="mx-auto flex w-full max-w-5xl flex-col gap-14 below-sm:px-6 px-16">
                 <ScrollReveal
                     motion="soft"
                     className="flex flex-col items-center gap-6 text-center"

@@ -13,6 +13,12 @@
     --skincare-motion-duration: 120ms;
 }
 
+.skincare-container {
+    margin-inline: auto;
+    width: 100%;
+    max-width: var(--breakpoint-2xl);
+}
+
 [data-campaign="skincare"] [data-scroll-reveal] {
     transition-duration: var(--skincare-motion-duration);
 }

@@ -16,8 +16,8 @@ const socials = [
 
 export function SiteFooter() {
     return (
-        <footer>
-            <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 below-sm:px-6 px-10 pt-4 pb-12">
+        <footer className="bg-accent">
+            <div className="skincare-container flex flex-col gap-12 below-sm:px-6 px-10 py-12">
                 <div className="grid below-lg:grid-cols-2 below-sm:grid-cols-1 grid-cols-4 gap-10">
                     <div className="flex flex-col gap-3">
                         <p className="flex items-center gap-2 font-display font-semibold text-xl">
@@ -48,7 +48,9 @@ export function SiteFooter() {
                     </div>
 
                     <div className="flex flex-col gap-4">
-                        <p className="font-display font-semibold text-base">{footer.service.title}</p>
+                        <p className="font-display font-semibold text-base">
+                            {footer.service.title}
+                        </p>
                         <ul className="flex flex-col gap-2 text-base text-muted-foreground">
                             {footer.service.items.map((item) => (
                                 <li key={item}>
@@ -64,7 +66,9 @@ export function SiteFooter() {
                     </div>
 
                     <div className="flex flex-col gap-4">
-                        <p className="font-display font-semibold text-base">{footer.contact.title}</p>
+                        <p className="font-display font-semibold text-base">
+                            {footer.contact.title}
+                        </p>
                         <ul className="flex flex-col gap-3 text-base text-muted-foreground">
                             {footer.contact.items.map((item) => (
                                 <li key={item.value} className="flex items-center gap-3">
@@ -94,7 +98,13 @@ export function SiteFooter() {
                     ))}
                 </ul>
 
-                <p className="text-center text-sm text-subtle-foreground">{footer.rights}</p>
+                <p className="text-center text-sm text-subtle-foreground">
+                    {footer.rights.map((line) => (
+                        <span key={line} className="block">
+                            {line}
+                        </span>
+                    ))}
+                </p>
             </div>
         </footer>
     );

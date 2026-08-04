@@ -13,7 +13,7 @@ export function Hero() {
     return (
         <section
             id="hero"
-            className="mx-auto flex below-lg:min-h-auto min-h-[calc(100svh-7rem)] w-full max-w-7xl flex-col below-lg:justify-start justify-center gap-16 below-sm:px-6 px-10 pt-8 pb-6"
+            className="skincare-container flex below-lg:min-h-auto min-h-[calc(100svh-7rem)] flex-col below-lg:justify-start justify-center gap-16 below-sm:px-6 px-16 pt-8 pb-6"
         >
             <div className="grid below-lg:grid-cols-1 grid-cols-2 items-center below-lg:gap-14 gap-10">
                 <div className="flex flex-col gap-6">

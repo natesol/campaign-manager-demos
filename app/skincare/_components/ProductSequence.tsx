@@ -22,8 +22,8 @@ const productImages = {
  */
 export function ProductSequence() {
     return (
-        <section id="products" className="below-lg:py-16 py-24">
-            <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-14 below-sm:px-6 px-10">
+        <section id="products" className="mt-52 below-lg:pb-16 pb-24">
+            <div className="skincare-container flex flex-col items-center gap-14 below-sm:px-6 px-16">
                 <div className="flex flex-col items-center gap-1 text-center">
                     <h2 className="font-display font-semibold text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
                         <AccentedFirstWord text={sequence.headingLines[0]} />
@@ -49,13 +49,13 @@ export function ProductSequence() {
                                     motion="soft"
                                     className="flex w-full flex-col items-center gap-5 text-center"
                                 >
-                                    <span className="relative block aspect-square w-full overflow-hidden rounded-lg bg-accent">
+                                    <span className="relative block aspect-square w-full overflow-hidden rounded-lg">
                                         <Image
                                             src={productImages[product.id]}
                                             alt={product.name}
                                             fill
                                             sizes="(min-width: 640px) 33vw, 80vw"
-                                            className="object-cover"
+                                            className="object-contain"
                                         />
                                     </span>
                                     <span className="flex flex-col items-center gap-2">

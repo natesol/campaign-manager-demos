@@ -15,10 +15,10 @@ import { Pill } from "./Pill";
 export function SummerGlow() {
     return (
         <section id="glow" className="bg-accent">
-            <div className="grid below-lg:grid-cols-1 grid-cols-2 items-stretch">
+            <div className="skincare-container grid below-lg:grid-cols-1 grid-cols-2 items-stretch below-sm:px-6 px-16">
                 <ScrollReveal
                     motion="soft"
-                    className="below-lg:mx-0 mx-auto flex w-full below-lg:max-w-none max-w-2xl flex-col justify-center gap-6 below-lg:px-10 below-sm:px-6 below-lg:py-16 py-24 ps-16 pe-10"
+                    className="flex w-full flex-col justify-center gap-6 below-lg:py-16 py-24"
                 >
                     <h2 className="max-w-md font-display font-semibold text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
                         <AccentedFirstWord text={glow.headingLines[0]} />

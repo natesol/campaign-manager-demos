@@ -9,7 +9,7 @@ import { Pill } from "./Pill";
    the action on the left, all on one compact baseline. */
 export function SiteHeader() {
     return (
-        <header className="mx-auto grid w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-6 below-sm:px-6 px-10 py-6">
+        <header className="skincare-container grid grid-cols-[1fr_auto_1fr] items-center gap-6 below-sm:px-6 px-10 py-6">
             <nav className="flex below-sm:hidden items-center gap-8 text-base">
                 {navigation.map((item) => (
                     <a

@@ -67,8 +67,8 @@ function MosaicTile({
 
 export function MorningEvening() {
     return (
-        <section id="routine" className="below-lg:py-16 py-24">
-            <div className="mx-auto w-full max-w-7xl below-sm:px-6 px-10">
+        <section id="routine" className="mt-52 below-lg:pb-16 pb-24">
+            <div className="skincare-container below-sm:px-6 px-16">
                 <div className="grid below-lg:grid-cols-2 below-sm:grid-cols-1 grid-cols-12 below-lg:grid-rows-none grid-rows-[auto_15rem_15rem_15rem] gap-4">
                     {/* Heading block: a short first row on the start side; the tall
                         cleanser shot spans this row and the next. */}
