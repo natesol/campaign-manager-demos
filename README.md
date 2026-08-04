@@ -17,8 +17,8 @@ No brand, product, or service shown here is real.
 Every page is Hebrew and right-to-left.
 `lang` and `dir` are set once on the document element in the root layout.
 
-All four routes are built and in the final steps of implementation.
-Campaign imagery is currently drawn in markup and CSS while asset production is under way.
+All four routes are built.
+Campaign imagery is produced asset files under each page's `_assets/`, with a few marks still drawn in CSS and SVG where that is the design.
 
 ## Local Development
 
@@ -59,4 +59,7 @@ Local builds leave the variable unset and therefore use an empty base path.
 
 ## Assets
 
-No third-party assets are in use.
+All campaign imagery was produced in-house for this project, in the parent repository's asset pipeline, and ships as webp (the skincare page also keeps its png masters alongside).
+No third-party imagery is in use.
+
+Beyond imagery: fonts load through `next/font` from Google Fonts, and icons come from the `lucide-react` and `@tabler/icons-react` packages, each under its own license.

@@ -86,7 +86,7 @@ export function SiteHeader({ company, items }: SiteHeaderProps) {
             <header className="mortgage-header z-50">
                 <div className="mortgage-container mortgage-header-track" data-stuck={isStuck}>
                     {/* relative: the mobile menu below measures itself against this bar. */}
-                    <div className="mortgage-header-bar mortgage-header-surface relative flex items-center justify-between rounded-4xl bg-background px-4 text-foreground md:px-6">
+                    <div className="mortgage-header-bar mortgage-header-surface relative flex items-center justify-between rounded-4xl bg-background below-md:px-4 px-6 text-foreground">
                         <Link
                             className="flex items-center gap-3 rounded-sm font-bold font-display text-lg tracking-tight focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
                             href="/"
@@ -97,7 +97,7 @@ export function SiteHeader({ company, items }: SiteHeaderProps) {
                         </Link>
 
                         <nav
-                            className="hidden items-center gap-8 pe-5 font-medium text-sm md:flex lg:gap-12"
+                            className="flex below-md:hidden items-center below-lg:gap-8 gap-12 pe-5 font-medium text-sm"
                             aria-label="ניווט ראשי"
                         >
                             {items.map((item) => {

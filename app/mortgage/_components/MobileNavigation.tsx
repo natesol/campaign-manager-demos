@@ -7,11 +7,12 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+import type { NavigationItem } from "../content";
+
 type MobileNavigationProps = {
-    items: readonly {
-        label: string;
-        href: string;
-    }[];
+    /* The mobile menu needs no scroll-spy, so it takes the navigation items
+       without their `section`. */
+    items: readonly Pick<NavigationItem, "label" | "href">[];
 };
 
 export function MobileNavigation({ items }: MobileNavigationProps) {
@@ -51,7 +52,7 @@ export function MobileNavigation({ items }: MobileNavigationProps) {
     }
 
     return (
-        <div className="md:hidden" ref={menuRef}>
+        <div className="below-md:block hidden" ref={menuRef}>
             <Button
                 type="button"
                 variant="ghost"

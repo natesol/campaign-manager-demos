@@ -1,5 +1,15 @@
+import heroArchitecture from "./_assets/mortgage-counseling_asset-01_hero-architecture_v2.webp";
+import servicesConsultation from "./_assets/mortgage-counseling_asset-02_services-consultation_v1.webp";
+import processConsultation from "./_assets/mortgage-counseling_asset-03_process-consultation_v1.webp";
+import companyPositionArchitecture from "./_assets/mortgage-counseling_asset-04_company-position-architecture_v1.webp";
+import teamYael from "./_assets/mortgage-counseling_asset-05_team-yael-raz_v2.webp";
+import teamItai from "./_assets/mortgage-counseling_asset-06_team-itai-shalev_v2.webp";
+import teamMichal from "./_assets/mortgage-counseling_asset-07_team-michal-barak_v2.webp";
+import teamOmer from "./_assets/mortgage-counseling_asset-08_team-omer-levi_v2.webp";
+
 export const mortgageContent = {
     company: "עיקר משכנתאות",
+    tagline: "לא בערך",
     /* `href` is where the link goes, `section` is the element that marks it as the
        one you are currently reading. They differ for the first item: it returns to
        the true top of the page, while the hero is what puts it in view. */
@@ -13,6 +23,8 @@ export const mortgageContent = {
         headline: ["משכנתא", "לא לוקחים", "בערך."],
         support: "שיחת מיפוי קצרה כדי להבין איפה אתם עומדים ומה כדאי לבדוק בהמשך.",
         cta: "קובעים שיחת מיפוי",
+        image: heroArchitecture,
+        imageAlt: "בית מודרני מואר בשעת ערב",
     },
     introduction: {
         label: "על החברה",
@@ -28,6 +40,9 @@ export const mortgageContent = {
             "כל משכנתא מתחילה מנתונים, צרכים והחלטות שונות. אנחנו בונים את הייעוץ לפי המקום שבו אתם נמצאים ומה שצריך לבדוק לפני שמתקדמים.",
         detailLabel: "למידע נוסף",
         detailStatus: "בקרוב",
+        /* The featured card carries the photograph; it is decorative there, so it
+           brings no alt of its own. */
+        featuredImage: servicesConsultation,
         items: [
             {
                 title: "תכנון משכנתא חדשה",
@@ -66,6 +81,8 @@ export const mortgageContent = {
         heading: "כך נראה תהליך הייעוץ",
         introduction:
             "שיחת המיפוי היא נקודת ההתחלה. עוברים על המצב הקיים, מבינים אילו נתונים כבר נמצאים בידיכם ואילו שאלות עדיין דורשות בדיקה. לאחר מכן מגדירים את דרך העבודה המתאימה, את המידע שצריך להשלים ואת הצעדים שכדאי לבחון לפני שמקבלים החלטה.",
+        image: processConsultation,
+        imageAlt: "יועץ משכנתאות בפגישה עם זוג",
         steps: [
             {
                 title: "ממפים את המצב",
@@ -86,6 +103,8 @@ export const mortgageContent = {
         heading: "בלי הבטחות. עם שאלות נכונות.",
         support:
             "לא מבטיחים ריבית, אישור או חיסכון לפני שמבינים את התמונה המלאה. מתחילים מהנתונים, מהצרכים ומההחלטות שעומדות בפניכם.",
+        /* Decorative ground under the overlay wash; no alt. */
+        image: companyPositionArchitecture,
         principles: [
             {
                 title: "בודקים את הנתונים",
@@ -110,22 +129,26 @@ export const mortgageContent = {
             name: "יעל רז",
             role: "מנהלת הייעוץ",
             bio: "מובילה את שיחות המיפוי, עוברת עם הלקוחות על התמונה הכלכלית ומגדירה את דרך העבודה.",
+            image: teamYael,
         },
         people: [
             {
                 name: "איתי שלו",
                 role: "יועץ משכנתאות",
                 bio: "עוסק בבדיקת הנתונים, בבניית חלופות ובהכנת הלקוחות להתנהלות מול הבנקים.",
+                image: teamItai,
             },
             {
                 name: "מיכל ברק",
                 role: "יועצת משכנתאות",
                 bio: "מלווה משכנתאות חדשות ובדיקות של משכנתאות קיימות, ומרכזת את השאלות שעולות בתהליך.",
+                image: teamMichal,
             },
             {
                 name: "עומר לוי",
                 role: "קשרי לקוחות",
                 bio: "מתאם את הפגישות, מרכז את המסמכים ושומר על תקשורת רציפה לאורך הייעוץ.",
+                image: teamOmer,
             },
         ],
     },
@@ -158,10 +181,6 @@ export const mortgageContent = {
     },
     footer: {
         line: "ייעוץ משכנתאות שמתחיל בתמונה המלאה.",
-        /* The studio's own voice, not the campaign's: the page is a portfolio piece
-           and says so, borrowing the hero's word to do it. Two lines, so the turn
-           lands on its own. */
-        disclaimer: ["עיקר משכנתאות היא חברה בדיונית.", "את האתר, לעומת זאת, בנינו באמת."],
         navigation: {
             title: "ניווט",
             links: [
@@ -172,20 +191,26 @@ export const mortgageContent = {
                 { label: "יצירת קשר", href: "#contact" },
             ],
         },
+        /* `items`, not `links`: these two groups render as plain entries, without
+           an href to their name. */
         services: {
             title: "שירותים",
-            links: ["משכנתא חדשה", "מחזור משכנתא", "איחוד הלוואות", "בדיקת משכנתא קיימת"],
+            items: ["משכנתא חדשה", "מחזור משכנתא", "איחוד הלוואות", "בדיקת משכנתא קיימת"],
         },
         contact: {
             title: "יצירת קשר",
-            links: [
+            items: [
                 { label: "03-376-1320", icon: "phone" },
                 { label: "WhatsApp", icon: "whatsapp" },
                 { label: "ikar@mashkanta.co.il", icon: "email" },
             ],
         },
-        legal: ["מדיניות פרטיות", "הצהרת נגישות", "תנאי שימוש"],
         copyright: "© 2026 שקד שלמה",
+        /* The studio's own voice, not the campaign's: the page is a portfolio piece
+           and says so, borrowing the hero's word to do it. Two lines, so the turn
+           lands on its own. */
+        disclaimer: ["עיקר משכנתאות היא חברה בדיונית.", "את האתר, לעומת זאת, בנינו באמת."],
+        legal: ["מדיניות פרטיות", "הצהרת נגישות", "תנאי שימוש"],
     },
 } as const;
 
@@ -193,5 +218,6 @@ export type NavigationItem = (typeof mortgageContent.navigation)[number];
 export type ServiceIconName = (typeof mortgageContent.services.items)[number]["icon"];
 export type ContactIconName =
     | (typeof mortgageContent.contact.methods)[number]["icon"]
-    | (typeof mortgageContent.footer.contact.links)[number]["icon"];
+    | (typeof mortgageContent.footer.contact.items)[number]["icon"];
 export type ContactFormContent = typeof mortgageContent.contact.form;
+export type FooterContent = typeof mortgageContent.footer;

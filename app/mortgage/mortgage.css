@@ -9,14 +9,14 @@
    and content lands on the exact same line at every width. */
 [data-campaign="mortgage"] {
     --page-max: 80rem;
-    --page-pad: 1.25rem;
-    --page-gutter: 0.25rem;
+    --page-pad: 3rem;
+    --page-gutter: 0.75rem;
     --page-bleed: 5rem;
     --header-height: 4.5rem;
-    --header-start: 2.25rem;
+    --header-start: 2.75rem;
     /* Stuck on mobile: the bar's gap above and beside it, one value. */
     --header-stuck-pad: calc(var(--spacing) * 1.6);
-    --header-stick: var(--header-stuck-pad);
+    --header-stick: 0.75rem;
     /* Stuck on desktop: the width the bar draws in to. */
     --header-max-stuck: 70rem;
     --panel-rim: 0.125rem;
@@ -24,31 +24,30 @@
     --default-transition-duration: 120ms;
 }
 
-/* Four states on the Tailwind breakpoints: base is mobile, sm is the large
-   phone, md is tablet, lg is desktop. */
-@media (width >= 40rem) {
-    [data-campaign="mortgage"] {
-        --page-pad: 1.5rem;
-    }
-}
-
-/* Tablet: the frame padding steps up again so the bar and the hero content
-   clear the sides, short of the desktop one; the gutter tracks the px-1 /
-   md:px-3 on the panel wrappers so the bleed math stays exact, and the bar
-   swaps to the desktop menu and stick. */
-@media (width >= 48rem) {
+/* Desktop-first, per BREAKPOINTS.md: the block above is the desktop design, and
+   the ladder below adapts it downward, widest boundary first so the narrower
+   override comes later and wins. Below lg the frame padding steps down and the
+   bar rests higher; below md the gutter tracks the px-1 on the panel wrappers so
+   the bleed math stays exact, and the bar switches to the mobile stick; below sm
+   the padding takes its last step. */
+@media (width < 64rem) {
     [data-campaign="mortgage"] {
         --page-pad: 2.25rem;
-        --page-gutter: 0.75rem;
-        --header-stick: 0.75rem;
+        --header-start: 2.25rem;
     }
 }
 
-/* Desktop: the full frame padding and the lower-resting bar. */
-@media (width >= 64rem) {
+@media (width < 48rem) {
     [data-campaign="mortgage"] {
-        --page-pad: 3rem;
-        --header-start: 2.75rem;
+        --page-pad: 1.5rem;
+        --page-gutter: 0.25rem;
+        --header-stick: var(--header-stuck-pad);
+    }
+}
+
+@media (width < 40rem) {
+    [data-campaign="mortgage"] {
+        --page-pad: 1.25rem;
     }
 }
 
@@ -66,31 +65,18 @@
     padding-inline: calc(var(--page-pad) - var(--page-gutter));
 }
 
-/* The contact form below sm: it leaves the content line for the panel line,
-   shedding the difference between the page padding and the gutter so its edges
-   land on the hero's and the position panel's, then putting that same difference
-   back as inline padding so its fields stay on the page's content line. One value,
-   spent twice in opposite directions: the panel widens and its contents do not move.
-   Scoped to the band rather than reset above it, so from sm up the rule is inert
-   and the panel's own p-6 governs untouched. */
-@media (width < 40rem) {
-    .mortgage-form-bleed {
-        margin-inline: calc((var(--page-pad) - var(--page-gutter)) * -1);
-        padding-inline: calc(var(--page-pad) - var(--page-gutter));
-    }
-}
-
 /* The bleeding panels themselves: the page frame plus --page-bleed on each side.
    An inner highlight rim, an ink ring the same width just outside it, and a soft
    ambient lift: the panels sit on the page rather than being cut out of it.
-   Values set directly, from the approved art direction. */
+   The rim and lift values are set directly, from the approved art direction; the
+   ring is the campaign's deep ink, so it follows the token. */
 .mortgage-panel {
     width: 100%;
     max-width: calc(var(--page-max) + 2 * var(--page-bleed));
     margin-inline: auto;
     border: var(--panel-rim) solid #ffffff14;
     box-shadow:
-        0 0 0 var(--panel-rim) #032820,
+        0 0 0 var(--panel-rim) var(--color-campaign-mortgage-deep),
         0 0 1.5rem -0.125rem #11231f4f;
 }
 
@@ -122,18 +108,18 @@
         padding-inline var(--default-transition-duration, 120ms) ease;
 }
 
-/* Once it catches, mobile stretches to the viewport edge and desktop draws in.
-   Driven by the observer rather than a scroll timeline, which Safari and Firefox
-   do not support. */
+/* Once it catches, desktop draws in and the phone stretches to the viewport
+   edge. Driven by the observer rather than a scroll timeline, which Safari and
+   Firefox do not support. */
 .mortgage-header-track[data-stuck="true"] {
-    max-width: 100%;
-    padding-inline: var(--header-stuck-pad);
+    max-width: var(--header-max-stuck);
+    padding-inline: var(--page-pad);
 }
 
-@media (width >= 48rem) {
+@media (width < 48rem) {
     .mortgage-header-track[data-stuck="true"] {
-        max-width: var(--header-max-stuck);
-        padding-inline: var(--page-pad);
+        max-width: 100%;
+        padding-inline: var(--header-stuck-pad);
     }
 }
 
@@ -186,7 +172,8 @@
 }
 
 /* A wash rather than a mask: the photograph carries the whole panel, and the ink
-   only tints it, thickening toward the headline so the type stays legible. */
+   only tints it, thickening toward the headline so the type stays legible.
+   Values set directly, from the approved art direction. */
 .mortgage-hero-media::after {
     position: absolute;
     inset: 0;
@@ -204,14 +191,16 @@
     inset: 0;
 }
 
+/* The washes mix the campaign's deep ink over transparency, so a brand edit
+   reaches them through the token. */
 .mortgage-service-media::after {
     position: absolute;
     inset: 0;
     background: linear-gradient(
         90deg,
-        rgb(3 40 32 / 42%) 0%,
-        rgb(3 40 32 / 72%) 52%,
-        rgb(3 40 32 / 96%) 100%
+        color-mix(in srgb, var(--color-campaign-mortgage-deep) 42%, transparent) 0%,
+        color-mix(in srgb, var(--color-campaign-mortgage-deep) 72%, transparent) 52%,
+        color-mix(in srgb, var(--color-campaign-mortgage-deep) 96%, transparent) 100%
     );
     content: "";
 }
@@ -225,11 +214,11 @@
     background:
         linear-gradient(
             90deg,
-            rgb(3 40 32 / 88%) 0%,
-            rgb(3 40 32 / 46%) 58%,
-            rgb(3 40 32 / 78%) 100%
+            color-mix(in srgb, var(--color-campaign-mortgage-deep) 88%, transparent) 0%,
+            color-mix(in srgb, var(--color-campaign-mortgage-deep) 46%, transparent) 58%,
+            color-mix(in srgb, var(--color-campaign-mortgage-deep) 78%, transparent) 100%
         ),
-        rgb(3 40 32 / 36%);
+        color-mix(in srgb, var(--color-campaign-mortgage-deep) 36%, transparent);
 }
 
 .mortgage-brand-mark {
@@ -305,7 +294,11 @@
     }
 
     .mortgage-service-media::after {
-        background: linear-gradient(180deg, rgb(3 40 32 / 8%) 0%, var(--primary) 100%);
+        background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--color-campaign-mortgage-deep) 8%, transparent) 0%,
+            var(--primary) 100%
+        );
     }
 
     .mortgage-service-content {
@@ -314,10 +307,21 @@
     }
 }
 
-/* One step further down on the phone, where the bar has the least room. After the
-   block above, so it wins in the band both of them cover. */
 @media (width < 40rem) {
+    /* One step further down on the phone, where the bar has the least room. */
     .mortgage-brand-mark:not(.mortgage-brand-mark--compact) {
         --mark-size: 2rem;
+    }
+
+    /* The contact form leaves the content line for the panel line, shedding the
+       difference between the page padding and the gutter so its edges land on
+       the hero's and the position panel's, then putting that same difference
+       back as inline padding so its fields stay on the page's content line. One
+       value, spent twice in opposite directions: the panel widens and its
+       contents do not move. Scoped to the band, so from sm up the rule is inert
+       and the panel's own padding governs untouched. */
+    .mortgage-form-bleed {
+        margin-inline: calc((var(--page-pad) - var(--page-gutter)) * -1);
+        padding-inline: calc(var(--page-pad) - var(--page-gutter));
     }
 }

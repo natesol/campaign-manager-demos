@@ -1,9 +1,6 @@
-import type { ComponentType, SVGProps } from "react";
-
 import type { Metadata } from "next";
 import Image from "next/image";
 
-import { IconBrandFacebook, IconBrandWhatsapp } from "@tabler/icons-react";
 import {
     ArrowLeft,
     ChartPie,
@@ -11,30 +8,21 @@ import {
     House,
     Landmark,
     type LucideIcon,
-    Mail,
-    Phone,
     RefreshCw,
 } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-import heroArchitecture from "./_assets/mortgage-counseling_asset-01_hero-architecture_v2.png";
-import servicesConsultation from "./_assets/mortgage-counseling_asset-02_services-consultation_v1.png";
-import processConsultation from "./_assets/mortgage-counseling_asset-03_process-consultation_v1.png";
-import companyPositionArchitecture from "./_assets/mortgage-counseling_asset-04_company-position-architecture_v1.png";
-import teamYael from "./_assets/mortgage-counseling_asset-05_team-yael-raz_v2.png";
-import teamItai from "./_assets/mortgage-counseling_asset-06_team-itai-shalev_v2.png";
-import teamMichal from "./_assets/mortgage-counseling_asset-07_team-michal-barak_v2.png";
-import teamOmer from "./_assets/mortgage-counseling_asset-08_team-omer-levi_v2.png";
-import { BrandMark } from "./_components/BrandMark";
 import { ContactForm } from "./_components/ContactForm";
+import { contactIcons } from "./_components/contact-icons";
+import { SiteFooter } from "./_components/SiteFooter";
 import { SiteHeader } from "./_components/SiteHeader";
-import { type ContactIconName, mortgageContent, type ServiceIconName } from "./content";
+import { mortgageContent, type ServiceIconName } from "./content";
 import "./mortgage.css";
 
 export const metadata: Metadata = {
-    title: "עיקר משכנתאות | לא בערך",
+    title: `${mortgageContent.company} | ${mortgageContent.tagline}`,
     description: mortgageContent.footer.line,
 };
 
@@ -46,25 +34,22 @@ const serviceIcons: Record<ServiceIconName, LucideIcon> = {
     refresh: RefreshCw,
 };
 
-/* Two icon sets, because lucide dropped its brand marks: the generic glyphs stay
-   lucide, the brands come from tabler. Typed by what both render into. */
-const contactIcons: Record<ContactIconName, ComponentType<SVGProps<SVGSVGElement>>> = {
-    phone: Phone,
-    whatsapp: IconBrandWhatsapp,
-    email: Mail,
-    facebook: IconBrandFacebook,
-};
-
-const supportingTeamImages = [teamItai, teamMichal, teamOmer] as const;
-
-const sectionWrap = "pt-20 lg:pt-28";
+const sectionWrap = "pt-28 below-lg:pt-20";
 const sectionShell = "mortgage-container";
 const sectionEyebrow = "font-semibold text-campaign-mortgage-accent text-base";
 const sectionTitle = "font-display text-2xl font-bold tracking-tight lg:text-3xl";
-const sectionCopy = "max-w-2xl text-base text-muted-foreground md:max-w-xl lg:max-w-2xl";
+const sectionCopy = "max-w-2xl text-base text-muted-foreground above-md:below-lg:max-w-xl";
+/* One card surface for the page: services and team share it, and only what a
+   card adds on top lives at its call site. */
+const cardShell =
+    "group overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none";
 
 function AccentLastWord({ text }: { text: string }) {
     const breakAt = text.lastIndexOf(" ");
+
+    if (breakAt === -1) {
+        return <span className="text-campaign-mortgage-accent">{text}</span>;
+    }
 
     return (
         <>
@@ -96,9 +81,10 @@ function ServiceCard({ service }: { service: (typeof mortgageContent.services.it
     return (
         <article
             className={cn(
-                "group relative min-w-0 overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none",
+                cardShell,
+                "relative min-w-0",
                 service.featured
-                    ? "mortgage-service-featured flex bg-primary text-primary-foreground hover:border-campaign-mortgage-accent-on-dark/35 sm:col-span-2"
+                    ? "mortgage-service-featured below-sm:col-auto col-span-2 flex bg-primary text-primary-foreground hover:border-campaign-mortgage-accent-on-dark/35"
                     : "flex min-h-56 flex-col p-6",
             )}
         >
@@ -108,7 +94,7 @@ function ServiceCard({ service }: { service: (typeof mortgageContent.services.it
                     aria-hidden
                 >
                     <Image
-                        src={servicesConsultation}
+                        src={mortgageContent.services.featuredImage}
                         alt=""
                         fill
                         sizes="(max-width: 80rem) 100vw, 58vw"
@@ -179,17 +165,17 @@ export default function MortgageRoute() {
             <SiteHeader company={company} items={mortgageContent.navigation} />
 
             <main>
-                <div className="px-1 pt-3 md:px-3">
+                <div className="below-md:px-1 px-3 pt-3">
                     <section
-                        className="mortgage-panel relative flex items-center overflow-hidden rounded-3xl bg-primary pt-40 pb-16 text-primary-foreground md:rounded-[2.8rem] md:py-48 lg:rounded-[3.5rem]"
+                        className="mortgage-panel relative flex items-center overflow-hidden below-lg:rounded-[2.8rem] below-md:rounded-3xl rounded-[3.5rem] bg-primary py-48 below-md:pt-40 below-md:pb-16 text-primary-foreground"
                         id="hero"
                         aria-labelledby="mortgage-hero-title"
                     >
                         <div className="mortgage-hero-media absolute inset-0">
                             <div className="mortgage-hero-pull absolute inset-x-0">
                                 <Image
-                                    src={heroArchitecture}
-                                    alt="בית מודרני מואר בשעת ערב"
+                                    src={hero.image}
+                                    alt={hero.imageAlt}
                                     fill
                                     priority
                                     sizes="100vw"
@@ -199,9 +185,9 @@ export default function MortgageRoute() {
                         </div>
 
                         <div className="mortgage-container-bleed relative z-10">
-                            <div className="w-full md:max-w-lg lg:max-w-xl">
+                            <div className="w-full below-lg:max-w-lg below-md:max-w-none max-w-xl">
                                 <h1
-                                    className="font-bold font-display text-3xl tracking-tight md:text-4xl lg:text-5xl"
+                                    className="font-bold font-display below-lg:text-4xl below-md:text-3xl text-5xl tracking-tight"
                                     id="mortgage-hero-title"
                                 >
                                     {hero.headline.map((line, index) => (
@@ -217,7 +203,7 @@ export default function MortgageRoute() {
                                         </span>
                                     ))}
                                 </h1>
-                                <p className="mt-5 max-w-80 text-base text-primary-foreground/80 md:mt-7">
+                                <p className="below-md:mt-5 mt-7 max-w-80 text-base text-primary-foreground/80">
                                     {hero.support}
                                 </p>
                                 <a
@@ -242,7 +228,7 @@ export default function MortgageRoute() {
                     <section
                         className={cn(
                             sectionShell,
-                            "flex flex-col items-center gap-5 md:flex-row md:gap-8",
+                            "flex below-md:flex-col items-center below-md:gap-5 gap-8",
                         )}
                         id="about"
                         aria-label={introduction.label}
@@ -266,7 +252,7 @@ export default function MortgageRoute() {
                         id="services"
                         aria-labelledby="services-title"
                     >
-                        <div className="grid items-end gap-6 lg:grid-cols-2 lg:gap-24">
+                        <div className="grid below-lg:grid-cols-none grid-cols-2 items-end below-lg:gap-6 gap-24">
                             <div>
                                 <p className={sectionEyebrow}>{services.label}</p>
                                 <h2 className={sectionTitle} id="services-title">
@@ -276,7 +262,7 @@ export default function MortgageRoute() {
                             <p className={sectionCopy}>{services.introduction}</p>
                         </div>
 
-                        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="mt-10 grid below-lg:grid-cols-2 below-sm:grid-cols-none grid-cols-3 gap-5">
                             {services.items.map((service) => (
                                 <ServiceCard key={service.title} service={service} />
                             ))}
@@ -286,7 +272,7 @@ export default function MortgageRoute() {
 
                 <div className={sectionWrap}>
                     <section className={sectionShell} id="process" aria-labelledby="process-title">
-                        <div className="grid items-start gap-6 lg:grid-cols-2 lg:gap-24">
+                        <div className="grid below-lg:grid-cols-none grid-cols-2 items-start below-lg:gap-6 gap-24">
                             <div>
                                 <p className={sectionEyebrow}>{process.label}</p>
                                 <h2 className={sectionTitle} id="process-title">
@@ -296,8 +282,8 @@ export default function MortgageRoute() {
                             <p className={sectionCopy}>{process.introduction}</p>
                         </div>
 
-                        <div className="mt-12 grid items-center gap-10 lg:grid-cols-5 lg:gap-20">
-                            <ol className="m-0 list-none p-0 lg:col-span-2">
+                        <div className="mt-12 grid below-lg:grid-cols-none grid-cols-5 items-center below-lg:gap-10 gap-20">
+                            <ol className="below-lg:col-auto col-span-2 m-0 list-none p-0">
                                 {process.steps.map((step, index) => (
                                     <li
                                         className="flex items-baseline gap-5 border-border border-b py-6 last:border-b-0"
@@ -317,10 +303,10 @@ export default function MortgageRoute() {
                                     </li>
                                 ))}
                             </ol>
-                            <div className="relative min-h-72 overflow-hidden rounded-3xl bg-muted lg:col-span-3 lg:min-h-96">
+                            <div className="relative below-lg:col-auto col-span-3 below-lg:min-h-72 min-h-96 overflow-hidden rounded-3xl bg-muted">
                                 <Image
-                                    src={processConsultation}
-                                    alt="יועץ משכנתאות בפגישה עם זוג"
+                                    src={process.image}
+                                    alt={process.imageAlt}
                                     fill
                                     sizes="(max-width: 80rem) 100vw, 58vw"
                                     className="object-cover"
@@ -330,13 +316,13 @@ export default function MortgageRoute() {
                     </section>
                 </div>
 
-                <div className="px-1 pt-20 md:px-3 lg:pt-28">
+                <div className="below-md:px-1 px-3 below-lg:pt-20 pt-28">
                     <section
-                        className="mortgage-panel relative flex items-center overflow-hidden rounded-3xl bg-primary py-10 text-primary-foreground lg:min-h-[34rem] lg:rounded-[3rem] lg:py-20"
+                        className="mortgage-panel relative flex below-lg:min-h-0 min-h-[34rem] items-center overflow-hidden below-lg:rounded-3xl rounded-[3rem] bg-primary below-lg:py-10 py-20 text-primary-foreground"
                         aria-labelledby="position-title"
                     >
                         <Image
-                            src={companyPositionArchitecture}
+                            src={position.image}
                             alt=""
                             fill
                             sizes="100vw"
@@ -347,18 +333,18 @@ export default function MortgageRoute() {
                             aria-hidden
                         />
                         <ArchitecturalLineArt />
-                        <div className="mortgage-container-bleed relative z-30 grid gap-10 lg:grid-cols-2 lg:gap-24">
+                        <div className="mortgage-container-bleed relative z-30 grid below-lg:grid-cols-none grid-cols-2 below-lg:gap-10 gap-24">
                             <div>
                                 <p className="font-semibold text-base text-campaign-mortgage-accent-on-dark">
                                     {position.label}
                                 </p>
                                 <h2
-                                    className="max-w-xl font-bold font-display text-2xl leading-tight tracking-tight lg:text-5xl"
+                                    className="max-w-xl font-bold font-display below-lg:text-2xl text-5xl leading-tight tracking-tight"
                                     id="position-title"
                                 >
                                     {position.heading}
                                 </h2>
-                                <p className="mt-5 max-w-2xl text-base text-primary-foreground/75 md:max-w-xl lg:max-w-2xl">
+                                <p className="mt-5 above-md:below-lg:max-w-xl max-w-2xl text-base text-primary-foreground/75">
                                     {position.support}
                                 </p>
                             </div>
@@ -388,7 +374,7 @@ export default function MortgageRoute() {
 
                 <div className={sectionWrap}>
                     <section className={sectionShell} id="team" aria-labelledby="team-title">
-                        <div className="max-w-2xl text-start md:max-w-xl lg:max-w-2xl">
+                        <div className="above-md:below-lg:max-w-xl max-w-2xl text-start">
                             <p className={sectionEyebrow}>{team.label}</p>
                             <h2 className={sectionTitle} id="team-title">
                                 {team.heading}
@@ -398,18 +384,23 @@ export default function MortgageRoute() {
                             </p>
                         </div>
 
-                        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-[minmax(31.5rem,1.76fr)_minmax(0,1.55fr)]">
+                        <div className="mt-12 grid below-lg:grid-cols-2 below-md:grid-cols-none grid-cols-[minmax(31.5rem,1.76fr)_minmax(0,1.55fr)] gap-6">
                             {/* One card over the two tracks the portrait and the text used to
                                 hold separately: 1.1fr and .66fr of the old three, so the
                                 proportions and the group beside it stay put. */}
-                            <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none md:col-span-2 md:flex-row lg:col-span-1">
-                                <div className="relative min-h-72 bg-muted sm:min-h-72 md:min-h-80 md:w-[62.5%] md:shrink-0 lg:w-2/5">
+                            <article
+                                className={cn(
+                                    cardShell,
+                                    "below-lg:col-span-2 below-md:col-auto flex below-md:flex-col",
+                                )}
+                            >
+                                <div className="relative below-md:min-h-72 min-h-80 below-lg:w-[62.5%] below-md:w-auto w-2/5 below-md:shrink shrink-0 bg-muted">
                                     <Image
-                                        src={teamYael}
+                                        src={team.featured.image}
                                         alt={`דיוקן של ${team.featured.name}`}
                                         fill
                                         sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 50vw, 30vw"
-                                        className="object-cover object-[50%_34%] sm:object-[50%_36%] md:object-[50%_34%]"
+                                        className="object-cover above-sm:below-md:object-[50%_36%] object-[50%_34%]"
                                     />
                                 </div>
                                 <div className="flex flex-col justify-center p-5 text-start">
@@ -428,19 +419,16 @@ export default function MortgageRoute() {
                                     </p>
                                 </div>
                             </article>
-                            <div className="grid gap-4 sm:grid-cols-2 md:col-span-2 md:grid-cols-3 lg:col-span-1 lg:grid-cols-2">
-                                {team.people.map((person, index) => (
-                                    <article
-                                        className="group overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none"
-                                        key={person.name}
-                                    >
-                                        <div className="relative min-h-52 overflow-hidden bg-muted sm:min-h-42 md:min-h-40 lg:min-h-36">
+                            <div className="below-lg:col-span-2 below-md:col-auto grid below-lg:grid-cols-3 below-md:grid-cols-2 below-sm:grid-cols-none grid-cols-2 gap-4">
+                                {team.people.map((person) => (
+                                    <article className={cardShell} key={person.name}>
+                                        <div className="relative below-lg:min-h-40 below-md:min-h-42 below-sm:min-h-52 min-h-36 overflow-hidden bg-muted">
                                             <Image
-                                                src={supportingTeamImages[index]}
+                                                src={person.image}
                                                 alt={`דיוקן של ${person.name}`}
                                                 fill
                                                 sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 30vw, 14vw"
-                                                className="object-cover object-[50%_38%] sm:object-[50%_25%] md:scale-105 lg:scale-110"
+                                                className="below-lg:scale-105 below-md:scale-none scale-110 object-cover below-sm:object-[50%_38%] object-[50%_25%]"
                                             />
                                         </div>
                                         <div className="min-h-40 p-5">
@@ -465,7 +453,7 @@ export default function MortgageRoute() {
                     <section
                         className={cn(
                             sectionShell,
-                            "grid items-start gap-12 lg:grid-cols-[.9fr_1fr] lg:gap-24",
+                            "grid below-lg:grid-cols-none grid-cols-[.9fr_1fr] items-start below-lg:gap-12 gap-24",
                         )}
                         id="contact"
                         aria-labelledby="contact-title"
@@ -475,27 +463,27 @@ export default function MortgageRoute() {
                             <h2 className={sectionTitle} id="contact-title">
                                 {contact.heading}
                             </h2>
-                            <p className="mt-5 max-w-2xl text-base text-muted-foreground md:max-w-xl lg:max-w-2xl">
+                            <p className="mt-5 above-md:below-lg:max-w-xl max-w-2xl text-base text-muted-foreground">
                                 {contact.support}
                             </p>
 
-                            <div className="mt-8 sm:flex sm:flex-wrap sm:items-center lg:block">
+                            <div className="mt-8 below-sm:block below-lg:flex below-lg:flex-wrap below-lg:items-center">
                                 {contact.methods.map((method) => {
                                     const Icon = contactIcons[method.icon];
                                     const isExternal = method.href.startsWith("http");
 
                                     return (
                                         <a
-                                            className="group flex min-h-20 items-center gap-5 rounded-sm border-border border-b border-dashed transition-colors last:border-b-0 hover:text-campaign-mortgage-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40 sm:border-e sm:border-b-0 sm:px-5 sm:last:border-e-0 sm:last:pe-0 sm:first:ps-0 md:px-8 lg:border-e-0 lg:border-b lg:px-0 lg:last:border-b-0"
+                                            className="group flex min-h-20 items-center gap-5 rounded-sm border-border below-lg:border-e below-sm:border-e-0 below-sm:border-b border-b below-lg:border-b-0 border-dashed below-lg:px-8 below-md:px-5 below-sm:px-0 transition-colors below-lg:first:ps-0 below-lg:last:border-e-0 below-sm:last:border-b-0 last:border-b-0 below-lg:last:pe-0 hover:text-campaign-mortgage-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
                                             href={method.href}
                                             key={method.label}
                                             target={isExternal ? "_blank" : undefined}
                                             rel={isExternal ? "noreferrer" : undefined}
                                         >
-                                            <span className="grid size-14 shrink-0 place-items-center rounded-full bg-accent text-campaign-mortgage-accent transition-colors group-hover:bg-campaign-mortgage-accent group-hover:text-white sm:size-11 md:size-14">
+                                            <span className="grid above-sm:below-md:size-11 size-14 shrink-0 place-items-center rounded-full bg-accent text-campaign-mortgage-accent transition-colors group-hover:bg-campaign-mortgage-accent group-hover:text-white">
                                                 <Icon
                                                     aria-hidden
-                                                    className="size-6 sm:size-5 md:size-6"
+                                                    className="above-sm:below-md:size-5 size-6"
                                                     strokeWidth={1.8}
                                                 />
                                             </span>
@@ -516,109 +504,7 @@ export default function MortgageRoute() {
                 </div>
             </main>
 
-            {/* Each part carries its own padding. The footer only sets the ground and
-                the minimum height; mt-auto on the bar spends whatever that leaves. */}
-            <footer className="mt-16 flex min-h-[32rem] flex-col bg-muted lg:mt-24">
-                <div
-                    className={cn(
-                        sectionShell,
-                        "grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.35fr_.78fr_1fr_1fr] lg:gap-20 lg:pt-20",
-                    )}
-                >
-                    <div className="sm:col-span-2 md:col-span-3 lg:col-span-1">
-                        <a
-                            className="flex items-center gap-3 rounded-sm font-bold font-display text-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
-                            href="#top"
-                            aria-label={`${company}, דף הבית`}
-                        >
-                            <BrandMark compact />
-                            <span>{company}</span>
-                        </a>
-                        <p className="mt-4 max-w-sm text-muted-foreground text-sm">{footer.line}</p>
-                    </div>
-
-                    <div>
-                        <h2 className="flex items-center gap-4 font-semibold text-base text-campaign-mortgage-accent">
-                            {footer.navigation.title}
-                            <span aria-hidden className="h-px w-8 bg-current" />
-                        </h2>
-                        <ul className="mt-5 space-y-3 text-sm">
-                            {footer.navigation.links.map((item) => (
-                                <li key={item.label}>
-                                    {item.href ? (
-                                        <a className="hover:text-primary" href={item.href}>
-                                            {item.label}
-                                        </a>
-                                    ) : (
-                                        <span className="text-muted-foreground">{item.label}</span>
-                                    )}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h2 className="flex items-center gap-4 font-semibold text-base text-campaign-mortgage-accent">
-                            {footer.services.title}
-                            <span aria-hidden className="h-px w-8 bg-current" />
-                        </h2>
-                        <ul className="mt-5 space-y-3 text-muted-foreground text-sm">
-                            {footer.services.links.map((item) => (
-                                <li key={item}>{item}</li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h2 className="flex items-center gap-4 font-semibold text-base text-campaign-mortgage-accent">
-                            {footer.contact.title}
-                            <span aria-hidden className="h-px w-8 bg-current" />
-                        </h2>
-                        <ul className="mt-5 space-y-4 text-muted-foreground text-sm">
-                            {footer.contact.links.map((item) => {
-                                const Icon = contactIcons[item.icon];
-
-                                return (
-                                    <li className="flex items-center gap-3" key={item.label}>
-                                        <Icon
-                                            aria-hidden
-                                            className="size-4 text-campaign-mortgage-accent"
-                                            strokeWidth={1.8}
-                                        />
-                                        <span dir="ltr">{item.label}</span>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </div>
-                </div>
-
-                <div
-                    className={cn(
-                        sectionShell,
-                        "mt-auto flex flex-col gap-6 border-border border-t py-8 text-muted-foreground text-sm md:flex-row md:items-center md:justify-between",
-                    )}
-                >
-                    <p>
-                        {footer.copyright}
-                        {footer.disclaimer.map((sentence) => (
-                            <span className="block text-subtle-foreground text-xs" key={sentence}>
-                                {sentence}
-                            </span>
-                        ))}
-                    </p>
-                    <ul className="flex flex-wrap">
-                        {footer.legal.map((item) => (
-                            <li
-                                className="border-border border-s px-4 first:border-0 first:ps-0"
-                                key={item}
-                            >
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </footer>
+            <SiteFooter company={company} footer={footer} />
         </div>
     );
 }

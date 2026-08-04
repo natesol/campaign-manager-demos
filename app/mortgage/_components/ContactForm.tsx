@@ -20,7 +20,7 @@ const fieldClassName =
     "h-14 w-full rounded-3xl border border-input bg-background px-5 text-base text-foreground outline-none transition-[border-color,box-shadow] placeholder:text-muted-foreground hover:border-campaign-mortgage-accent focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/20 user-invalid:border-destructive";
 
 const formShellClassName =
-    "mortgage-form-bleed min-h-[36rem] rounded-3xl bg-accent p-6 md:p-9 lg:min-h-[40rem] lg:p-12";
+    "mortgage-form-bleed min-h-[40rem] rounded-3xl bg-accent p-12 below-lg:min-h-[36rem] below-lg:p-9 below-md:p-6";
 
 export function ContactForm({ form }: { form: ContactFormContent }) {
     const [submitted, setSubmitted] = useState(false);
