@@ -34,6 +34,7 @@ These six are the whole scale: no seventh stop and no arbitrary width without th
   ```
 
   Each step restates only what changes; where two steps apply, the narrower wins.
+  Biome re-sorts class strings and does not know these variants, so the ladder's order inside a string carries no meaning: the cascade is decided by the definition order in `styles/breakpoints.css`, and a sorted string is not a broken one.
 - **A rule for one band is the ladder overriding itself.**
   Set the change at the wider boundary, restore or replace it at the narrower one.
 - **One direction per property.**

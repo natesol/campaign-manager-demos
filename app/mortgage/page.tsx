@@ -21,9 +21,21 @@ import { SiteHeader } from "./_components/SiteHeader";
 import { mortgageContent, type ServiceIconName } from "./content";
 import "./mortgage.css";
 
+/* The card image is the opengraph-image.jpg file convention beside this file;
+   Next wires it up with its alt from opengraph-image.alt.txt. Twitter reads the
+   same image through the card type. */
 export const metadata: Metadata = {
     title: `${mortgageContent.company} | ${mortgageContent.tagline}`,
     description: mortgageContent.footer.line,
+    openGraph: {
+        title: `${mortgageContent.company} | ${mortgageContent.tagline}`,
+        description: mortgageContent.footer.line,
+        type: "website",
+        locale: "he_IL",
+    },
+    twitter: {
+        card: "summary_large_image",
+    },
 };
 
 const serviceIcons: Record<ServiceIconName, LucideIcon> = {

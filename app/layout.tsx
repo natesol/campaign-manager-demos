@@ -16,8 +16,14 @@ const rubik = Rubik({
     subsets: ["hebrew", "latin"],
 });
 
+// The deploy workflow's GITHUB_REPOSITORY names the owner and the repo, the same
+// source the base path derives from, so the Pages origin never appears in code.
+// Local builds leave it unset and fall back to Next's localhost default.
+const repository = process.env.GITHUB_REPOSITORY;
+
 // The template applies to child segments only, so app/page.tsx takes the default.
 export const metadata: Metadata = {
+    metadataBase: repository ? new URL(`https://${repository.split("/")[0]}.github.io`) : undefined,
     title: {
         default: "דמו קמפיינים",
         template: "%s | דמו קמפיינים",
