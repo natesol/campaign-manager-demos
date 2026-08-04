@@ -15,21 +15,22 @@ import { Pill } from "./Pill";
 export function SummerGlow() {
     return (
         <section id="glow" className="bg-accent">
-            <div className="grid items-stretch lg:grid-cols-2">
+            <div className="skincare-container grid below-lg:grid-cols-1 grid-cols-2 items-stretch below-sm:px-6 px-16">
                 <ScrollReveal
                     motion="soft"
-                    className="flex flex-col justify-center gap-6 px-6 py-16 sm:px-10 lg:mx-auto lg:w-full lg:max-w-2xl lg:py-24 lg:ps-16"
+                    className="flex w-full flex-col justify-center gap-6 below-lg:py-16 py-24"
                 >
-                    <h2 className="max-w-md font-bold font-display text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
+                    <h2 className="max-w-md font-display font-semibold text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
                         <AccentedFirstWord text={glow.headingLines[0]} />
                         <br />
                         {glow.headingLines[1]}
                         <br />
                         {glow.headingLines[2]}
                     </h2>
-                    <p className="max-w-md text-pretty text-lg text-muted-foreground">
-                        {glow.body}
-                    </p>
+                    <div className="flex max-w-md flex-col gap-3 text-pretty text-lg text-muted-foreground">
+                        <p>{glow.body}</p>
+                        <p>{glow.secondaryBody}</p>
+                    </div>
                     <Pill href={glow.cta.href} className="self-start bg-background">
                         {glow.cta.label}
                     </Pill>
@@ -38,7 +39,7 @@ export function SummerGlow() {
                 <ScrollReveal
                     delay={80}
                     motion="soft"
-                    className="relative min-h-80 overflow-hidden bg-campaign-skincare-lavender/40 lg:min-h-[32rem]"
+                    className="relative below-lg:min-h-80 min-h-[32rem] overflow-hidden bg-campaign-skincare-lavender/40"
                 >
                     <Image
                         src={gelRibbonImage}

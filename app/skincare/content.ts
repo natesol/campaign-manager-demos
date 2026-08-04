@@ -9,11 +9,12 @@ import { Droplet, Flower, Leaf, Mail, MapPin, Moon, Phone, Shield, Sun, Waves } 
 export const brand = "בדיוק לעונה";
 
 export const navigation = [
-    { label: "שגרת הטיפוח", href: "#routine" },
-    { label: "המוצרים", href: "#products" },
+    { label: "אודות", href: "#glow" },
+    { label: "שלושת השלבים", href: "#products" },
+    { label: "חוות דעת", href: "#reviews" },
 ];
 
-export const primaryCta = { label: "להכיר את שגרת הטיפוח", href: "#routine" };
+export const primaryCta = { label: "הכירו את שגרת הטיפוח", href: "#routine" };
 
 export const hero = {
     /* Coral periods, as in the approved hero. */
@@ -23,7 +24,7 @@ export const hero = {
         { text: "מתחלפת", dot: true },
     ],
     support: "ניקוי ולחות בבוקר ובערב, והגנה מהשמש במהלך היום.",
-    cue: "לשגרת הטיפוח",
+    cue: { label: "גלו עוד", href: "#glow" },
 };
 
 /* The morning-and-evening mosaic: three copy cards woven between six images. */
@@ -100,30 +101,49 @@ export const testimonials = {
             name: "נועה, 29",
             skin: "עור רגיל",
             icon: Waves as LucideIcon,
+            rating: 5,
         },
         {
             quote: "השילוב של ניקוי עדין, לחות והגנה יוצר תחושה נינוחה כל היום.",
             name: "מיכל, 34",
             skin: "עור מעורב",
             icon: Droplet as LucideIcon,
+            rating: 4,
         },
         {
             quote: "העור שלי נראה הרבה יותר בריא. המרקם קל, הניקיון לא מייבש וההגנה מושלמת לימים חמים.",
             name: "רוני, 26",
             skin: "עור רגיש",
             icon: Leaf as LucideIcon,
+            rating: 5,
         },
         {
             quote: "הפכתי את שגרת הטיפוח לחלק מהבוקר שלי. שלושה שלבים וזהו – פשוט וקל.",
             name: "דנה, 31",
             skin: "עור יבש",
             icon: Flower as LucideIcon,
+            rating: 4,
         },
         {
             quote: "קרם ההגנה הכי נעים שהשתמשתי בו. קליל, נספג מהר ולא משאיר תחושה דביקה.",
             name: "שיר, 27",
             skin: "עור שמן",
             icon: Sun as LucideIcon,
+            rating: 5,
+        },
+        {
+            quote: "אהבתי את התחושה הקלילה ואת הניקוי העדין. הלחות נעימה, אבל בימים יבשים אני מוסיפה עוד שכבה.",
+            name: "יעל, 38",
+            skin: "עור יבש",
+            icon: Moon as LucideIcon,
+            rating: 3,
+        },
+        {
+            quote: "שגרה פשוטה שקל להתמיד בה. קרם ההגנה נספג מהר ומשתלב מצוין מתחת לאיפור.",
+            name: "מאיה, 32",
+            skin: "עור מעורב",
+            icon: Droplet as LucideIcon,
+            rating: 4,
         },
     ],
     cta: { label: "לקריאת חוות דעת נוספות", href: "#hero" },
@@ -132,6 +152,7 @@ export const testimonials = {
 export const glow = {
     headingLines: ["עור קליל,", "מוגן וזוהר", "כל הקיץ"],
     body: "הקיץ קורא לשגרת טיפוח חכמה וקלה: ניקוי עדין, לחות מאוזנת והגנה יעילה מהשמש. כך תשמרי על עור רענן, נוח ומואר – בכל יום ובכל מזג אוויר.",
+    secondaryBody: "כל שלב בשגרה עושה בדיוק את שלו, כדי שהעור ירגיש נוח, מאוזן ומוגן.",
     cta: { label: "לגלות את כל המוצרים", href: "#products" },
 };
 
@@ -166,5 +187,5 @@ export const footer = {
             { icon: MapPin as LucideIcon, value: "תל אביב, ישראל", ltr: false },
         ],
     },
-    rights: "© בדיוק לעונה. כל הזכויות שמורות.",
+    rights: ["© 2026 שקד שלמה"],
 };

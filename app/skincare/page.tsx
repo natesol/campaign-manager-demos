@@ -22,15 +22,15 @@ export default function SkincareRoute() {
     return (
         <div
             data-campaign="skincare"
-            className="flex flex-1 flex-col overflow-x-clip bg-background text-foreground"
+            className="flex flex-1 flex-col overflow-x-clip bg-background font-sans text-foreground"
         >
             <SiteHeader />
             <main className="flex flex-col">
                 <Hero />
+                <SummerGlow />
                 <MorningEvening />
                 <ProductSequence />
                 <Testimonials />
-                <SummerGlow />
                 <FinalCta />
             </main>
             <SiteFooter />

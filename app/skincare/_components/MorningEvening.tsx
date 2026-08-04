@@ -32,14 +32,14 @@ function MosaicCard({
         /* The cards are the mosaic's clickable stops, all leading to the products. */
         <a
             href="#products"
-            className={`group flex min-h-52 flex-col items-center justify-center gap-3 bg-accent p-5 text-center transition-[background-color,box-shadow] duration-200 ease-out hover:bg-campaign-skincare-lavender/25 hover:shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-campaign-skincare-lavender)_45%,transparent)] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 focus-visible:ring-inset ${span}`}
+            className={`group flex min-h-52 flex-col items-center justify-center gap-3 bg-accent p-5 text-center transition-[background-color,box-shadow] duration-[var(--skincare-motion-duration)] ease-out hover:bg-campaign-skincare-lavender/25 hover:shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-campaign-skincare-lavender)_45%,transparent)] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 focus-visible:ring-inset ${span}`}
         >
             <span
-                className={`flex size-11 items-center justify-center rounded-full border transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-focus-visible:-translate-y-0.5 motion-reduce:transform-none ${accent}`}
+                className={`flex size-11 items-center justify-center rounded-full border transition-transform duration-[var(--skincare-motion-duration)] ease-out group-hover:-translate-y-0.5 group-focus-visible:-translate-y-0.5 motion-reduce:transform-none ${accent}`}
             >
                 <card.icon aria-hidden strokeWidth={1.5} className="size-5" />
             </span>
-            <span className="font-bold font-display text-2xl">{card.title}</span>
+            <span className="font-display font-semibold text-2xl">{card.title}</span>
             <span className="text-pretty text-muted-foreground text-sm">{card.body}</span>
         </a>
     );
@@ -67,16 +67,16 @@ function MosaicTile({
 
 export function MorningEvening() {
     return (
-        <section id="routine" className="py-16 lg:py-24">
-            <div className="mx-auto w-full max-w-7xl px-6 sm:px-10">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[auto_15rem_15rem_15rem]">
+        <section id="routine" className="mt-52 below-lg:pb-16 pb-24">
+            <div className="skincare-container below-sm:px-6 px-16">
+                <div className="grid below-lg:grid-cols-2 below-sm:grid-cols-1 grid-cols-12 below-lg:grid-rows-none grid-rows-[auto_15rem_15rem_15rem] gap-4">
                     {/* Heading block: a short first row on the start side; the tall
                         cleanser shot spans this row and the next. */}
                     <ScrollReveal
                         motion="soft"
-                        className="flex flex-col justify-center gap-3 pb-6 sm:col-span-2 lg:col-span-7 lg:pe-16 lg:pb-0"
+                        className="below-lg:col-span-2 below-sm:col-span-1 col-span-7 flex flex-col justify-center gap-3 below-lg:pe-0 pe-16 below-lg:pb-6 pb-0"
                     >
-                        <h2 className="font-bold font-display text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
+                        <h2 className="font-display font-semibold text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
                             <AccentedFirstWord text={routine.heading} />
                         </h2>
                         <p className="max-w-md text-pretty text-lg text-muted-foreground">
@@ -88,7 +88,7 @@ export function MorningEvening() {
                         src={cleanserImage}
                         alt="ג'ל ניקוי רטוב לצד מים וזכוכית"
                         sizes="(min-width: 1024px) 42vw, (min-width: 640px) 50vw, 100vw"
-                        span="lg:col-span-5 lg:row-span-2"
+                        span="col-span-5 row-span-2 below-lg:col-span-1 below-lg:row-span-1"
                     />
 
                     {/* Summer lifestyle photograph. */}
@@ -97,12 +97,12 @@ export function MorningEvening() {
                         alt="אישה צועדת בטיילת קיצית ליד הים"
                         sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
                         position="object-top"
-                        span="lg:col-span-4"
+                        span="col-span-4 below-lg:col-span-1"
                     />
                     <MosaicCard
                         card={routine.cards.morning}
                         accent="border-campaign-skincare-coral/60 text-campaign-skincare-coral"
-                        span="lg:col-span-3"
+                        span="col-span-3 below-lg:col-span-1"
                     />
 
                     {/* Gel texture macro, the row's widest tile. */}
@@ -110,7 +110,7 @@ export function MorningEvening() {
                         src={waterImage}
                         alt="מרקם מים וג'ל בגווני לילך"
                         sizes="(min-width: 1024px) 42vw, (min-width: 640px) 50vw, 100vw"
-                        span="lg:col-span-5"
+                        span="col-span-5 below-lg:col-span-1"
                     />
                     {/* Moisturizer on its arch. */}
                     <MosaicTile
@@ -118,12 +118,12 @@ export function MorningEvening() {
                         alt="בקבוק לחות על רקע גאומטרי לילך"
                         sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
                         position="object-top"
-                        span="lg:col-span-4"
+                        span="col-span-4 below-lg:col-span-1"
                     />
                     <MosaicCard
                         card={routine.cards.evening}
                         accent="border-foreground/30 text-foreground"
-                        span="lg:col-span-3"
+                        span="col-span-3 below-lg:col-span-1"
                     />
 
                     {/* Sunscreen cap macro. */}
@@ -131,19 +131,19 @@ export function MorningEvening() {
                         src={spfCapImage}
                         alt="תקריב רטוב של מכסה קרם ההגנה"
                         sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
-                        span="lg:col-span-4"
+                        span="col-span-4 below-lg:col-span-1"
                     />
                     <MosaicCard
                         card={routine.cards.protection}
                         accent="border-campaign-skincare-coral/60 text-campaign-skincare-coral"
-                        span="lg:col-span-4"
+                        span="col-span-4 below-lg:col-span-1"
                     />
                     {/* Model holding the tube. */}
                     <MosaicTile
                         src={modelSpfImage}
                         alt="אישה מחזיקה קרם הגנה לצד פניה"
                         sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
-                        span="lg:col-span-4"
+                        span="col-span-4 below-lg:col-span-1"
                     />
                 </div>
             </div>

@@ -8,3 +8,17 @@
  * previews this campaign. The page keeps the default Rubik display face, which
  * already matches the approved v3 hero's rounded bold Hebrew.
  */
+
+[data-campaign="skincare"] {
+    --skincare-motion-duration: 120ms;
+}
+
+.skincare-container {
+    margin-inline: auto;
+    width: 100%;
+    max-width: var(--breakpoint-2xl);
+}
+
+[data-campaign="skincare"] [data-scroll-reveal] {
+    transition-duration: var(--skincare-motion-duration);
+}
