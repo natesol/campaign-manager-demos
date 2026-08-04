@@ -98,7 +98,7 @@ function ServiceCard({ service }: { service: (typeof mortgageContent.services.it
             className={cn(
                 "group relative min-w-0 overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none",
                 service.featured
-                    ? "mortgage-service-featured flex bg-primary text-primary-foreground hover:border-campaign-mortgage-accent-on-dark/35 md:col-span-2"
+                    ? "mortgage-service-featured flex bg-primary text-primary-foreground hover:border-campaign-mortgage-accent-on-dark/35 sm:col-span-2"
                     : "flex min-h-56 flex-col p-6",
             )}
         >
@@ -276,7 +276,7 @@ export default function MortgageRoute() {
                             <p className={sectionCopy}>{services.introduction}</p>
                         </div>
 
-                        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                             {services.items.map((service) => (
                                 <ServiceCard key={service.title} service={service} />
                             ))}
@@ -403,13 +403,13 @@ export default function MortgageRoute() {
                                 hold separately: 1.1fr and .66fr of the old three, so the
                                 proportions and the group beside it stay put. */}
                             <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none md:col-span-2 md:flex-row lg:col-span-1">
-                                <div className="relative min-h-80 bg-muted md:w-[62.5%] md:shrink-0 lg:w-2/5">
+                                <div className="relative min-h-72 bg-muted sm:min-h-72 md:min-h-80 md:w-[62.5%] md:shrink-0 lg:w-2/5">
                                     <Image
                                         src={teamYael}
                                         alt={`דיוקן של ${team.featured.name}`}
                                         fill
                                         sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 50vw, 30vw"
-                                        className="object-cover object-top md:object-[50%_34%]"
+                                        className="object-cover object-[50%_34%] sm:object-[50%_36%] md:object-[50%_34%]"
                                     />
                                 </div>
                                 <div className="flex flex-col justify-center p-5 text-start">
@@ -428,19 +428,19 @@ export default function MortgageRoute() {
                                     </p>
                                 </div>
                             </article>
-                            <div className="grid gap-4 md:col-span-2 md:grid-cols-3 lg:col-span-1 lg:grid-cols-2">
+                            <div className="grid gap-4 sm:grid-cols-2 md:col-span-2 md:grid-cols-3 lg:col-span-1 lg:grid-cols-2">
                                 {team.people.map((person, index) => (
                                     <article
                                         className="group overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-campaign-mortgage-accent/35 hover:shadow-foreground/5 hover:shadow-lg motion-reduce:transform-none"
                                         key={person.name}
                                     >
-                                        <div className="relative min-h-72 overflow-hidden bg-muted md:min-h-40 lg:min-h-36">
+                                        <div className="relative min-h-52 overflow-hidden bg-muted sm:min-h-42 md:min-h-40 lg:min-h-36">
                                             <Image
                                                 src={supportingTeamImages[index]}
                                                 alt={`דיוקן של ${person.name}`}
                                                 fill
                                                 sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 30vw, 14vw"
-                                                className="object-cover object-top md:scale-105 md:object-[50%_25%] lg:scale-110 lg:object-[50%_25%]"
+                                                className="object-cover object-[50%_38%] sm:object-[50%_25%] md:scale-105 lg:scale-110"
                                             />
                                         </div>
                                         <div className="min-h-40 p-5">
@@ -479,23 +479,23 @@ export default function MortgageRoute() {
                                 {contact.support}
                             </p>
 
-                            <div className="mt-8 md:flex md:items-center lg:block">
+                            <div className="mt-8 sm:flex sm:flex-wrap sm:items-center lg:block">
                                 {contact.methods.map((method) => {
                                     const Icon = contactIcons[method.icon];
                                     const isExternal = method.href.startsWith("http");
 
                                     return (
                                         <a
-                                            className="group flex min-h-20 items-center gap-5 rounded-sm border-border border-b border-dashed transition-colors last:border-b-0 hover:text-campaign-mortgage-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40 md:border-e md:border-b-0 md:px-8 md:last:border-e-0 md:last:pe-0 md:first:ps-0 lg:border-e-0 lg:border-b lg:px-0 lg:last:border-b-0"
+                                            className="group flex min-h-20 items-center gap-5 rounded-sm border-border border-b border-dashed transition-colors last:border-b-0 hover:text-campaign-mortgage-accent focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40 sm:border-e sm:border-b-0 sm:px-5 sm:last:border-e-0 sm:last:pe-0 sm:first:ps-0 md:px-8 lg:border-e-0 lg:border-b lg:px-0 lg:last:border-b-0"
                                             href={method.href}
                                             key={method.label}
                                             target={isExternal ? "_blank" : undefined}
                                             rel={isExternal ? "noreferrer" : undefined}
                                         >
-                                            <span className="grid size-14 shrink-0 place-items-center rounded-full bg-accent text-campaign-mortgage-accent transition-colors group-hover:bg-campaign-mortgage-accent group-hover:text-white">
+                                            <span className="grid size-14 shrink-0 place-items-center rounded-full bg-accent text-campaign-mortgage-accent transition-colors group-hover:bg-campaign-mortgage-accent group-hover:text-white sm:size-11 md:size-14">
                                                 <Icon
                                                     aria-hidden
-                                                    className="size-6"
+                                                    className="size-6 sm:size-5 md:size-6"
                                                     strokeWidth={1.8}
                                                 />
                                             </span>
@@ -516,14 +516,16 @@ export default function MortgageRoute() {
                 </div>
             </main>
 
-            <footer className="mt-16 flex min-h-[32rem] flex-col bg-muted py-14 lg:mt-24 lg:pt-20">
+            {/* Each part carries its own padding. The footer only sets the ground and
+                the minimum height; mt-auto on the bar spends whatever that leaves. */}
+            <footer className="mt-16 flex min-h-[32rem] flex-col bg-muted lg:mt-24">
                 <div
                     className={cn(
                         sectionShell,
-                        "grid gap-10 md:grid-cols-2 lg:grid-cols-[1.35fr_.78fr_1fr_1fr] lg:gap-20",
+                        "grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.35fr_.78fr_1fr_1fr] lg:gap-20 lg:pt-20",
                     )}
                 >
-                    <div>
+                    <div className="sm:col-span-2 md:col-span-3 lg:col-span-1">
                         <a
                             className="flex items-center gap-3 rounded-sm font-bold font-display text-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
                             href="#top"
@@ -594,10 +596,17 @@ export default function MortgageRoute() {
                 <div
                     className={cn(
                         sectionShell,
-                        "mt-auto flex flex-col gap-6 border-border border-t pt-8 text-muted-foreground text-sm md:flex-row md:items-center md:justify-between",
+                        "mt-auto flex flex-col gap-6 border-border border-t py-8 text-muted-foreground text-sm md:flex-row md:items-center md:justify-between",
                     )}
                 >
-                    <p>{footer.copyright}</p>
+                    <p>
+                        {footer.copyright}
+                        {footer.disclaimer.map((sentence) => (
+                            <span className="block text-subtle-foreground text-xs" key={sentence}>
+                                {sentence}
+                            </span>
+                        ))}
+                    </p>
                     <ul className="flex flex-wrap">
                         {footer.legal.map((item) => (
                             <li

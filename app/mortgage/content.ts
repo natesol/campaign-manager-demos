@@ -158,6 +158,10 @@ export const mortgageContent = {
     },
     footer: {
         line: "ייעוץ משכנתאות שמתחיל בתמונה המלאה.",
+        /* The studio's own voice, not the campaign's: the page is a portfolio piece
+           and says so, borrowing the hero's word to do it. Two lines, so the turn
+           lands on its own. */
+        disclaimer: ["עיקר משכנתאות היא חברה בדיונית.", "את האתר, לעומת זאת, בנינו באמת."],
         navigation: {
             title: "ניווט",
             links: [
@@ -181,7 +185,7 @@ export const mortgageContent = {
             ],
         },
         legal: ["מדיניות פרטיות", "הצהרת נגישות", "תנאי שימוש"],
-        copyright: "© 2026 עיקר משכנתאות",
+        copyright: "© 2026 שקד שלמה",
     },
 } as const;
 

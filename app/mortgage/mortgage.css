@@ -24,10 +24,17 @@
     --default-transition-duration: 120ms;
 }
 
-/* Three states on the Tailwind breakpoints: base is mobile, md is tablet, lg is
-   desktop. Tablet: the frame padding steps up from the base so the bar and the
-   hero content clear the sides, short of the desktop one; the gutter tracks the
-   px-1 / md:px-3 on the panel wrappers so the bleed math stays exact, and the bar
+/* Four states on the Tailwind breakpoints: base is mobile, sm is the large
+   phone, md is tablet, lg is desktop. */
+@media (width >= 40rem) {
+    [data-campaign="mortgage"] {
+        --page-pad: 1.5rem;
+    }
+}
+
+/* Tablet: the frame padding steps up again so the bar and the hero content
+   clear the sides, short of the desktop one; the gutter tracks the px-1 /
+   md:px-3 on the panel wrappers so the bleed math stays exact, and the bar
    swaps to the desktop menu and stick. */
 @media (width >= 48rem) {
     [data-campaign="mortgage"] {
@@ -57,6 +64,20 @@
     max-width: calc(var(--page-max) - 2 * var(--page-gutter));
     margin-inline: auto;
     padding-inline: calc(var(--page-pad) - var(--page-gutter));
+}
+
+/* The contact form below sm: it leaves the content line for the panel line,
+   shedding the difference between the page padding and the gutter so its edges
+   land on the hero's and the position panel's, then putting that same difference
+   back as inline padding so its fields stay on the page's content line. One value,
+   spent twice in opposite directions: the panel widens and its contents do not move.
+   Scoped to the band rather than reset above it, so from sm up the rule is inert
+   and the panel's own p-6 governs untouched. */
+@media (width < 40rem) {
+    .mortgage-form-bleed {
+        margin-inline: calc((var(--page-pad) - var(--page-gutter)) * -1);
+        padding-inline: calc(var(--page-pad) - var(--page-gutter));
+    }
 }
 
 /* The bleeding panels themselves: the page frame plus --page-bleed on each side.
@@ -290,5 +311,13 @@
     .mortgage-service-content {
         width: 100%;
         max-width: none;
+    }
+}
+
+/* One step further down on the phone, where the bar has the least room. After the
+   block above, so it wins in the band both of them cover. */
+@media (width < 40rem) {
+    .mortgage-brand-mark:not(.mortgage-brand-mark--compact) {
+        --mark-size: 2rem;
     }
 }
