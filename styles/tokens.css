@@ -46,12 +46,6 @@
        the stops is reachable too, which is what the title uses. */
     --font-weight-black: 900;
 
-    /* Tailwind's own scale starts at sm (40rem), which leaves everything from a
-       small phone to a 600px tablet sharing one set of styles. xs splits that
-       range. The rest of the scale is Tailwind's, untouched:
-       sm 40rem / md 48rem / lg 64rem / xl 80rem / 2xl 96rem. */
-    --breakpoint-xs: 30rem;
-
     /* Both families carry Hebrew subsets; a Latin-only family cannot serve as
        --font-sans here, because every page is Hebrew. */
     --font-sans: var(--font-assistant), system-ui, sans-serif;

@@ -1,16 +1,18 @@
 /*
  * The stylesheet entry point. Imports only.
  *
- *   vendor     Tailwind and the third-party layers, first because all else extends them
- *   tokens     the non-color scale: spacing, type, tracking, families
- *   roles      the color role names, defined here and given values by nobody
- *   schemes    what those roles mean in light and in dark
- *   campaigns  what they mean inside one campaign, one file each
- *   base       element defaults, last so its @apply sees everything above
+ *   vendor       Tailwind and the third-party layers, first because all else extends them
+ *   tokens       the non-color scale: spacing, type, tracking, families
+ *   breakpoints  the six stops and the directional variants over them
+ *   roles        the color role names, defined here and given values by nobody
+ *   schemes      what those roles mean in light and in dark
+ *   campaigns    what they mean inside one campaign, one file each
+ *   base         element defaults, last so its @apply sees everything above
  */
 
 @import "./vendor.css";
 @import "./tokens.css";
+@import "./breakpoints.css";
 @import "./roles.css";
 
 @import "./schemes/light.css";

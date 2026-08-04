@@ -1,0 +1,39 @@
+/*
+ * The breakpoint scale and the directional variants over it.
+ *
+ * The rules for using these live in BREAKPOINTS.md, and the full system in the
+ * parent project's guide. Six stops, two of them this project's own: xs is added
+ * below Tailwind's scale, and 2xl is 90rem rather than 96rem because 1440px is
+ * the width the pages are designed against.
+ *
+ * The literal widths in the variants mirror the tokens above them; a change to
+ * one is a change to both, and this file is the only place either is written.
+ */
+@theme inline {
+    --breakpoint-xs: 32rem;
+    --breakpoint-sm: 40rem;
+    --breakpoint-md: 48rem;
+    --breakpoint-lg: 64rem;
+    --breakpoint-xl: 80rem;
+    --breakpoint-2xl: 90rem;
+}
+
+/* above-*: at the stop and wider. Only ever written stacked with a below-*, as
+   the bounded band the desktop-first ladder cannot express. Ascending, so where
+   two apply the wider is later in the cascade and wins. */
+@custom-variant above-xs (@media (width >= 32rem));
+@custom-variant above-sm (@media (width >= 40rem));
+@custom-variant above-md (@media (width >= 48rem));
+@custom-variant above-lg (@media (width >= 64rem));
+@custom-variant above-xl (@media (width >= 80rem));
+@custom-variant above-2xl (@media (width >= 90rem));
+
+/* below-*: strictly narrower than the stop; the stop itself belongs to the wider
+   side. Descending, so the ladder cascades without specificity tricks: where two
+   apply the narrower is later and wins. */
+@custom-variant below-2xl (@media (width < 90rem));
+@custom-variant below-xl (@media (width < 80rem));
+@custom-variant below-lg (@media (width < 64rem));
+@custom-variant below-md (@media (width < 48rem));
+@custom-variant below-sm (@media (width < 40rem));
+@custom-variant below-xs (@media (width < 32rem));
