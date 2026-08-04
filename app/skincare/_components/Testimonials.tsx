@@ -52,10 +52,10 @@ export function Testimonials() {
     }, [api]);
 
     return (
-        <section id="reviews" className="py-16 lg:py-24">
+        <section id="reviews" className="below-lg:py-16 py-24">
             <div className="flex w-full flex-col items-center gap-12">
-                <div className="px-6 text-center sm:px-10">
-                    <h2 className="font-bold font-display text-[clamp(2rem,4vw,3rem)] leading-tight">
+                <div className="below-sm:px-6 px-10 text-center">
+                    <h2 className="font-display font-semibold text-[clamp(2rem,4vw,3rem)] leading-tight">
                         <AccentedFirstWord text={testimonials.headingLines[0]} />
                         <br />
                         {testimonials.headingLines[1]}
@@ -73,7 +73,7 @@ export function Testimonials() {
                             <CarouselItem
                                 key={review.name}
                                 aria-label={`${index + 1} מתוך ${testimonials.reviews.length}`}
-                                className="flex basis-[88%] xs:basis-[72%] sm:basis-1/2 lg:basis-1/3"
+                                className="flex basis-1/3 below-lg:basis-1/2 below-sm:basis-[72%] below-xs:basis-[88%]"
                             >
                                 <article className="flex min-h-80 w-full flex-col gap-4 rounded-3xl border border-campaign-skincare-lavender/55 bg-background/85 p-8 shadow-[0_1rem_3rem_-2rem_color-mix(in_oklab,var(--color-campaign-skincare-ink)_35%,transparent)]">
                                     <Stars />
@@ -104,7 +104,7 @@ export function Testimonials() {
                     </CarouselContent>
 
                     <div className="mx-auto mt-9 flex w-fit items-center justify-center gap-4 rounded-full border border-campaign-skincare-lavender/45 bg-background/80 px-3 py-2 shadow-sm backdrop-blur-sm">
-                        <CarouselPrevious className="size-10 border-border bg-background transition-[background-color,border-color,transform] duration-200 hover:-translate-y-px hover:border-campaign-skincare-lavender hover:bg-accent active:translate-y-0 motion-reduce:transform-none" />
+                        <CarouselPrevious className="size-10 border-border bg-background transition-[background-color,border-color,transform] duration-[var(--skincare-motion-duration)] hover:-translate-y-px hover:border-campaign-skincare-lavender hover:bg-accent active:translate-y-0 motion-reduce:transform-none" />
                         <span className="flex items-center gap-2.5 px-1">
                             {testimonials.reviews.map((review, index) => (
                                 <button
@@ -113,7 +113,7 @@ export function Testimonials() {
                                     aria-label={`חוות דעת ${index + 1}`}
                                     aria-current={index === current || undefined}
                                     onClick={() => api?.scrollTo(index)}
-                                    className={`h-2.5 rounded-full transition-[width,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 motion-reduce:transition-none ${
+                                    className={`h-2.5 rounded-full transition-[width,background-color] duration-[var(--skincare-motion-duration)] ease-out focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35 motion-reduce:transition-none ${
                                         index === current
                                             ? "w-7 bg-campaign-skincare-coral"
                                             : "w-2.5 bg-foreground/20 hover:bg-foreground/45"
@@ -121,7 +121,7 @@ export function Testimonials() {
                                 />
                             ))}
                         </span>
-                        <CarouselNext className="size-10 border-border bg-background transition-[background-color,border-color,transform] duration-200 hover:-translate-y-px hover:border-campaign-skincare-lavender hover:bg-accent active:translate-y-0 motion-reduce:transform-none" />
+                        <CarouselNext className="size-10 border-border bg-background transition-[background-color,border-color,transform] duration-[var(--skincare-motion-duration)] hover:-translate-y-px hover:border-campaign-skincare-lavender hover:bg-accent active:translate-y-0 motion-reduce:transform-none" />
                     </div>
                 </Carousel>
 

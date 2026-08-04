@@ -9,13 +9,13 @@ import { Pill } from "./Pill";
    the action on the left, all on one compact baseline. */
 export function SiteHeader() {
     return (
-        <header className="mx-auto grid w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-6 py-6 sm:px-10">
-            <nav className="hidden items-center gap-8 text-base sm:flex">
+        <header className="mx-auto grid w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-6 below-sm:px-6 px-10 py-6">
+            <nav className="flex below-sm:hidden items-center gap-8 text-base">
                 {navigation.map((item) => (
                     <a
                         key={item.href}
                         href={item.href}
-                        className="rounded-sm underline-offset-4 transition-colors duration-200 hover:text-campaign-skincare-coral hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35"
+                        className="rounded-sm underline-offset-4 transition-colors duration-[var(--skincare-motion-duration)] hover:text-campaign-skincare-coral hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35"
                     >
                         {item.label}
                     </a>
@@ -23,7 +23,7 @@ export function SiteHeader() {
             </nav>
             <Link
                 href="/"
-                className="col-start-2 flex items-center gap-2 rounded-sm font-bold font-display text-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35"
+                className="col-start-2 flex items-center gap-2 rounded-sm font-display font-semibold text-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/35"
             >
                 {brand}
                 <Flower
@@ -33,7 +33,7 @@ export function SiteHeader() {
                 />
             </Link>
             {/* On phones the hero cue and closing CTA carry the action. */}
-            <div className="hidden justify-self-end sm:block">
+            <div className="block below-sm:hidden justify-self-end">
                 <Pill href={primaryCta.href} size="sm" className="whitespace-nowrap">
                     {primaryCta.label}
                 </Pill>

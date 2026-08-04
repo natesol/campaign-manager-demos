@@ -17,7 +17,7 @@
        a faint lavender cast, deep cobalt-indigo typography, the periwinkle
        lavender of the packaging, and the controlled coral accent. */
     --color-campaign-skincare-paper: #fbfafd;
-    --color-campaign-skincare-ink: #262a72;
+    --color-campaign-skincare-ink: #1d227a;
     --color-campaign-skincare-lavender: #b7b1e3;
     --color-campaign-skincare-coral: #f17b68;
     --color-campaign-skincare-band: color-mix(
@@ -28,6 +28,8 @@
 }
 
 [data-campaign="skincare"] {
+    --font-sans: var(--font-heebo), system-ui, sans-serif;
+
     --background: var(--color-campaign-skincare-paper);
     --foreground: var(--color-campaign-skincare-ink);
     --card: var(--color-campaign-skincare-paper);
@@ -73,6 +75,7 @@
         var(--color-campaign-skincare-paper)
     );
     --accent-foreground: var(--color-campaign-skincare-ink);
+    --control-hover: color-mix(in oklab, var(--accent) 25%, var(--background));
 
     --border: color-mix(
         in oklab,

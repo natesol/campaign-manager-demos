@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Assistant, Rubik } from "next/font/google";
+import { Assistant, Heebo, Rubik } from "next/font/google";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
@@ -8,6 +8,11 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 // faces. Re-running `shadcn init` will try to add it back.
 const assistant = Assistant({
     variable: "--font-assistant",
+    subsets: ["hebrew", "latin"],
+});
+
+const heebo = Heebo({
+    variable: "--font-heebo",
     subsets: ["hebrew", "latin"],
 });
 
@@ -38,7 +43,7 @@ export default function RootLayout({
             lang="he"
             dir="rtl"
             suppressHydrationWarning
-            className={`${assistant.variable} ${rubik.variable} h-full antialiased`}
+            className={`${assistant.variable} ${heebo.variable} ${rubik.variable} h-full antialiased`}
         >
             {/* Ground and ink come from the base layer in globals.css. */}
             <body className="flex min-h-full flex-col font-sans">

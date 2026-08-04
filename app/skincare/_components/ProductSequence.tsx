@@ -22,10 +22,10 @@ const productImages = {
  */
 export function ProductSequence() {
     return (
-        <section id="products" className="py-16 lg:py-24">
-            <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-14 px-6 sm:px-10">
+        <section id="products" className="below-lg:py-16 py-24">
+            <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-14 below-sm:px-6 px-10">
                 <div className="flex flex-col items-center gap-1 text-center">
-                    <h2 className="font-bold font-display text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
+                    <h2 className="font-display font-semibold text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight">
                         <AccentedFirstWord text={sequence.headingLines[0]} />
                         <br />
                         {sequence.headingLines[1]}
@@ -36,12 +36,12 @@ export function ProductSequence() {
                     {/* The path binding the three stops. */}
                     <span
                         aria-hidden="true"
-                        className="absolute inset-x-[16.6667%] top-11 hidden border-campaign-skincare-lavender border-t border-dashed sm:block"
+                        className="absolute inset-x-[16.6667%] top-4.5 z-0 block below-sm:hidden border-campaign-skincare-lavender border-t border-dashed"
                     />
-                    <ol className="grid gap-12 sm:grid-cols-3 sm:gap-8">
+                    <ol className="grid below-sm:grid-cols-1 grid-cols-3 below-sm:gap-12 gap-8">
                         {products.map((product, index) => (
                             <li key={product.id} className="flex flex-col items-center gap-6">
-                                <span className="relative flex size-9 items-center justify-center rounded-full border border-campaign-skincare-coral bg-campaign-skincare-coral/10 font-bold text-foreground text-sm tabular-nums">
+                                <span className="relative z-10 flex size-9 items-center justify-center rounded-full border border-campaign-skincare-coral bg-[color-mix(in_oklab,var(--color-campaign-skincare-coral)_10%,var(--background))] font-bold text-foreground text-sm tabular-nums">
                                     {product.step}
                                 </span>
                                 <ScrollReveal
@@ -59,7 +59,7 @@ export function ProductSequence() {
                                         />
                                     </span>
                                     <span className="flex flex-col items-center gap-2">
-                                        <span className="font-bold font-display text-2xl">
+                                        <span className="font-display font-semibold text-2xl">
                                             {product.label}
                                         </span>
                                         <span

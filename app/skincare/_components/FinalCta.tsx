@@ -13,13 +13,13 @@ import { Pill } from "./Pill";
  */
 export function FinalCta() {
     return (
-        <section id="closing" className="py-16 lg:py-24">
-            <div className="mx-auto flex w-full max-w-5xl flex-col gap-14 px-6 sm:px-10">
+        <section id="closing" className="below-lg:py-16 py-24">
+            <div className="mx-auto flex w-full max-w-5xl flex-col gap-14 below-sm:px-6 px-10">
                 <ScrollReveal
                     motion="soft"
                     className="flex flex-col items-center gap-6 text-center"
                 >
-                    <h2 className="font-bold font-display text-[clamp(1.9rem,3.5vw,2.75rem)] leading-tight">
+                    <h2 className="font-display font-semibold text-[clamp(1.9rem,3.5vw,2.75rem)] leading-tight">
                         <AccentedFirstWord text={finalCta.heading} />
                     </h2>
                     <p className="text-lg text-muted-foreground">{finalCta.support}</p>

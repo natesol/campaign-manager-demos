@@ -9,11 +9,12 @@ import { Droplet, Flower, Leaf, Mail, MapPin, Moon, Phone, Shield, Sun, Waves } 
 export const brand = "בדיוק לעונה";
 
 export const navigation = [
-    { label: "שגרת הטיפוח", href: "#routine" },
-    { label: "המוצרים", href: "#products" },
+    { label: "אודות", href: "#glow" },
+    { label: "שלושת השלבים", href: "#products" },
+    { label: "חוות דעת", href: "#reviews" },
 ];
 
-export const primaryCta = { label: "להכיר את שגרת הטיפוח", href: "#routine" };
+export const primaryCta = { label: "הכירו את שגרת הטיפוח", href: "#routine" };
 
 export const hero = {
     /* Coral periods, as in the approved hero. */
@@ -23,7 +24,7 @@ export const hero = {
         { text: "מתחלפת", dot: true },
     ],
     support: "ניקוי ולחות בבוקר ובערב, והגנה מהשמש במהלך היום.",
-    cue: "לשגרת הטיפוח",
+    cue: { label: "גלו עוד", href: "#glow" },
 };
 
 /* The morning-and-evening mosaic: three copy cards woven between six images. */
@@ -132,6 +133,7 @@ export const testimonials = {
 export const glow = {
     headingLines: ["עור קליל,", "מוגן וזוהר", "כל הקיץ"],
     body: "הקיץ קורא לשגרת טיפוח חכמה וקלה: ניקוי עדין, לחות מאוזנת והגנה יעילה מהשמש. כך תשמרי על עור רענן, נוח ומואר – בכל יום ובכל מזג אוויר.",
+    secondaryBody: "כל שלב בשגרה עושה בדיוק את שלו, כדי שהעור ירגיש נוח, מאוזן ומוגן.",
     cta: { label: "לגלות את כל המוצרים", href: "#products" },
 };
 

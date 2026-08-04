@@ -69,6 +69,7 @@ export function ScrollReveal({
     return (
         <div
             ref={ref}
+            data-scroll-reveal
             style={delay ? { transitionDelay: `${delay}ms` } : undefined}
             className={`${transition} ${
                 hidden ? `${hiddenPosition} opacity-0` : "translate-y-0 opacity-100"
