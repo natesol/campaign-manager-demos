@@ -53,6 +53,9 @@ A page may add its own stylesheet next to itself for what only that page uses.
   Use them where nothing else reuses the value; add a token the moment something does.
 - **Every page is RTL.**
   Use logical utilities: `ps`/`pe`, `ms`/`me`, `start`/`end`, `text-start`, never `left`/`right`.
+- **Responsive code follows [`BREAKPOINTS.md`](BREAKPOINTS.md).**
+  Desktop-first, adapting downward with `below-*` variants on the project's six-stop scale.
+  Read it before writing any responsive class.
 - **Check utility names against v4 before using them.**
   Several were renamed: `bg-gradient-to-b` is now `bg-linear-to-b`.
 
