@@ -2,7 +2,7 @@ import Image, { type StaticImageData } from "next/image";
 
 import cookiesPreview from "../cookies/_assets/cookie-drop_asset-07_release-tray_v1.webp";
 import mortgagePreview from "../mortgage/_assets/mortgage-counseling_full-preview.webp";
-import skincarePreview from "../skincare/_assets/seasonal-skincare_asset-01_hero-trio_v3-transparent.webp";
+import skincarePreview from "../skincare/_assets/seasonal-skincare_full-preview.webp";
 import type { Demo } from "./demos";
 
 /*
@@ -17,8 +17,8 @@ const previews: Record<
 > = {
     /* The reunited trio in its open release tray. */
     cookies: { src: cookiesPreview, paper: "bg-campaign-cookies-paper", fit: "cover" },
-    /* The transparent product trio, staged on the campaign's near-white paper. */
-    skincare: { src: skincarePreview, paper: "bg-campaign-skincare-paper", fit: "contain" },
+    /* The full-page capture: rests on the hero, scrolls the page on hover. */
+    skincare: { src: skincarePreview, paper: "bg-campaign-skincare-paper", fit: "scroll" },
     /* The full-page capture: rests on the hero, scrolls the page on hover. */
     mortgage: { src: mortgagePreview, paper: "bg-campaign-mortgage-paper", fit: "scroll" },
 };
@@ -54,7 +54,7 @@ export function DemoPreview({ theme }: { theme: Demo["theme"] }) {
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none"
                 />
             ) : (
-                <div className="absolute inset-4 transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none sm:inset-6">
+                <div className="absolute below-sm:inset-4 inset-6 transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none">
                     <Image
                         src={preview.src}
                         alt=""

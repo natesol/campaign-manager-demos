@@ -13,14 +13,6 @@ const accent: Record<Demo["theme"], string> = {
     mortgage: "text-campaign-mortgage-accent",
 };
 
-// Hovering a band washes it with that campaign's band tint — the token that
-// exists exactly for these bands — instead of the page's neutral accent.
-const hoverBand: Record<Demo["theme"], string> = {
-    cookies: "hover:bg-campaign-cookies-band",
-    skincare: "hover:bg-campaign-skincare-band",
-    mortgage: "hover:bg-campaign-mortgage-band",
-};
-
 // The supporting lines sit back until the band is hovered. The campaign name and
 // its description never fade: they are what the band is for.
 const fadeUntilHover = "opacity-80 transition-opacity group-hover:opacity-100";
@@ -35,15 +27,17 @@ export function PosterBands() {
                 <li key={demo.href} className="flow-root">
                     <Link
                         href={demo.href}
-                        className={`group mx-auto my-8 flex w-full max-w-7xl flex-wrap items-center gap-6 px-4 py-5 transition-colors focus-visible:outline-2 focus-visible:outline-current focus-visible:-outline-offset-4 sm:px-6 lg:my-16 lg:gap-10 lg:px-8 lg:py-8 ${hoverBand[demo.theme]}`}
+                        className="group mx-auto below-lg:my-8 my-16 flex w-full max-w-7xl flex-wrap items-center below-lg:gap-6 gap-10 below-lg:px-6 below-sm:px-4 px-8 below-lg:py-5 py-8 focus-visible:outline-2 focus-visible:outline-current focus-visible:-outline-offset-4"
                     >
                         {/* Text asks for a readable column, the preview for one step
                             more, both from the container scale. Side by side while
                             they fit, stacked when they do not. */}
-                        <div className="flex grow basis-md flex-col gap-4 lg:gap-6">
-                            <div className={`flex items-center gap-4 lg:gap-5 ${fadeUntilHover}`}>
+                        <div className="flex grow basis-md flex-col below-lg:gap-4 gap-6">
+                            <div
+                                className={`flex items-center below-lg:gap-4 gap-5 ${fadeUntilHover}`}
+                            >
                                 <span
-                                    className={`font-display text-4xl tabular-nums leading-none lg:text-5xl ${accent[demo.theme]}`}
+                                    className={`font-display below-lg:text-4xl text-5xl tabular-nums leading-none ${accent[demo.theme]}`}
                                 >
                                     {String(index + 1).padStart(2, "0")}
                                 </span>
@@ -58,7 +52,7 @@ export function PosterBands() {
                                 >
                                     {demo.product}
                                 </p>
-                                <h2 className="whitespace-pre-line text-balance font-bold font-display text-3xl tracking-tight sm:text-4xl xl:text-5xl">
+                                <h2 className="whitespace-pre-line text-balance font-black font-display below-sm:text-3xl below-xl:text-4xl text-5xl tracking-tight">
                                     {demo.campaign.map((segment, segmentIndex) =>
                                         segment.accent ? (
                                             <span
@@ -86,7 +80,7 @@ export function PosterBands() {
                                 />
                             </span>
                         </div>
-                        <div className="aspect-video grow basis-lg overflow-hidden rounded-sm border border-current/20">
+                        <div className="aspect-video grow basis-lg overflow-hidden border-2 border-[#f9fafb] shadow-[0_0_0_0.1rem_#0f182b05,0_0_0.75rem_-0.25rem_#0f172c1a]">
                             <DemoPreview theme={demo.theme} />
                         </div>
                     </Link>

@@ -4,9 +4,9 @@ export function Footer() {
     return (
         // Mirrors the hero: margin and padding on the container, the rule on the
         // inner block so it lines up with the hero's rules.
-        <footer className="mx-auto mt-16 w-full max-w-7xl px-4 sm:mt-24 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap items-end justify-between gap-6 border-border border-t pt-10 pb-8 lg:gap-8 lg:pt-14 lg:pb-10">
-                <p className="font-bold font-display text-xl">
+        <footer className="mx-auto below-sm:mt-16 mt-24 w-full max-w-7xl below-lg:px-6 below-sm:px-4 px-8">
+            <div className="flex flex-wrap items-end justify-between below-lg:gap-6 gap-8 border-border border-t below-lg:pt-10 pt-14 below-lg:pb-8 pb-10">
+                <p className="font-black font-display text-xl">
                     סוף העמוד.
                     <br />
                     תחילת הרעיון.
