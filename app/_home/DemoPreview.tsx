@@ -1,7 +1,7 @@
 import Image, { type StaticImageData } from "next/image";
 
 import cookiesPreview from "../cookies/_assets/cookie-drop_asset-07_release-tray_v1.webp";
-import mortgagePreview from "../mortgage/_assets/mortgage-counseling_asset-01_hero-architecture_v1.png";
+import mortgagePreview from "../mortgage/_assets/mortgage-counseling_asset-01_hero-architecture_v2.webp";
 import skincarePreview from "../skincare/_assets/seasonal-skincare_asset-01_hero-trio_v3-transparent.webp";
 import type { Demo } from "./demos";
 
