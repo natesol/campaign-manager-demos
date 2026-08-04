@@ -1,7 +1,7 @@
 import Image, { type StaticImageData } from "next/image";
 
 import cookiesPreview from "../cookies/_assets/cookie-drop_asset-07_release-tray_v1.webp";
-import mortgagePreview from "../mortgage/_assets/mortgage-counseling_asset-01_hero-architecture_v2.webp";
+import mortgagePreview from "../mortgage/_assets/mortgage-counseling_full-preview.webp";
 import skincarePreview from "../skincare/_assets/seasonal-skincare_asset-01_hero-trio_v3-transparent.webp";
 import type { Demo } from "./demos";
 
@@ -13,14 +13,20 @@ import type { Demo } from "./demos";
  */
 const previews: Record<
     Demo["theme"],
-    { src: StaticImageData; paper: string; fit: "cover" | "contain" }
+    { src: StaticImageData; paper: string; fit: "cover" | "contain"; position?: string }
 > = {
     /* The reunited trio in its open release tray. */
     cookies: { src: cookiesPreview, paper: "bg-campaign-cookies-paper", fit: "cover" },
     /* The transparent product trio, staged on the campaign's near-white paper. */
     skincare: { src: skincarePreview, paper: "bg-campaign-skincare-paper", fit: "contain" },
-    /* The hero architecture photograph. */
-    mortgage: { src: mortgagePreview, paper: "bg-campaign-mortgage-paper", fit: "cover" },
+    /* The full-page capture, pinned to its top so the band shows the hero
+       rather than an arbitrary slice of the strip. */
+    mortgage: {
+        src: mortgagePreview,
+        paper: "bg-campaign-mortgage-paper",
+        fit: "cover",
+        position: "object-top",
+    },
 };
 
 /* Decorative: the band's text already names and describes the campaign. */
@@ -37,7 +43,7 @@ export function DemoPreview({ theme }: { theme: Demo["theme"] }) {
                     alt=""
                     fill
                     sizes="(min-width: 64rem) 40vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none"
+                    className={`object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none ${preview.position ?? ""}`}
                 />
             ) : (
                 <div className="absolute inset-4 transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none sm:inset-6">
